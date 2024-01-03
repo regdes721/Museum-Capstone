@@ -18,6 +18,7 @@ def seed_products():
         name = "Cluedo Louvre",
         description = "Extraordinary theft at the Musée du Louvre ! As the day dawns on the city of Paris, Mr Bunchofkeys, the night warden at the Musée du Louvre, makes a terrible discovery. An artwork has disappeared! The police immediately rush to the scene, all entrances to the museum are cordoned off and visits are suspended until further notice. It is essential that the name of the stolen artwork is not revealed, so as not to obstruct the investigators' work. After going through the building with a fine-tooth comb, they can con_rm that the thief could not have escaped with their loot. The artwork has to be hidden somewhere in the museum! Which of the 6 suspects identifed is the real culprit? In which room has the masterpiece been hidden? And which artwork is it? Try to solve the mystery by searching the building for clues and questioning witnesses. For ages 8 and up. Number of players: 3 to 6. The box contains: 1 game board, 6 Character counters, 6 Work tokens, 6 Suspect cards, 6 artwork cards, 9 Location cards, 1 confidential case, 1 bilingual detective sheets, 2 dice and game rules.Illustrations Fabrice Weiss",
         price = 45,
+        category = "Kids",
         num_sold = 9,
         dimensions = "40 cm x 26,7 cm x 5 cm",
         quantity = 20
@@ -120,9 +121,18 @@ def seed_products():
         dimensions = "18.5 cm x 9.5 cm x 6 cm",
         quantity = 20
     )
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(product_1)
+    db.session.add(product_2)
+    db.session.add(product_3)
+    db.session.add(product_4)
+    db.session.add(product_5)
+    db.session.add(product_6)
+    db.session.add(product_7)
+    db.session.add(product_8)
+    db.session.add(product_9)
+    db.session.add(product_10)
+    db.session.add(product_11)
+    db.session.add(product_12)
     db.session.commit()
 
 
