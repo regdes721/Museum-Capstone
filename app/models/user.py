@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     mobile_number = db.Column(db.String, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    # relationship attributes
+    museums_owner = db.relationship("Museum", back_populates="user")
+
     @property
     def password(self):
         return self.hashed_password

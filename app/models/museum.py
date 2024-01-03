@@ -17,9 +17,11 @@ class Museum(db.Model, UserMixin):
     store_name = db.Column(db.String, nullable=False)
     store_address = db.Column(db.String, nullable=False)
     phone_number = db.Column(db.String)
-    email = db.Column(db.String(255), nullable=False, unique=True)
+    email = db.Column(db.String(255), unique=True)
     museum_website = db.Column(db.String, nullable=False)
 
+    # relationship attributes
+    user = db.relationship("User", back_populates="museums_owner")
 
     def to_dict(self):
         return {
