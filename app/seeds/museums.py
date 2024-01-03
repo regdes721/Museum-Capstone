@@ -46,9 +46,10 @@ def seed_museums():
         museum_website = "https://www.guimet.fr/fr"
     )
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(museum_1)
+    db.session.add(museum_2)
+    db.session.add(museum_3)
+    db.session.add(museum_4)
     db.session.commit()
 
 
@@ -58,10 +59,10 @@ def seed_museums():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_users():
+def undo_museums():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.museums RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM museums"))
 
     db.session.commit()
