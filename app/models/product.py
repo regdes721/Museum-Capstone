@@ -16,7 +16,7 @@ class Product(db.Model, UserMixin):
     price = db.Column(db.Float, nullable=False)
     category = db.Column(db.String, nullable=False)
     num_sold = db.Column(db.Integer, default = 0)
-    characteristics = db.Column(db.String, nullable=False)
+    dimensions = db.Column(db.String, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
 
