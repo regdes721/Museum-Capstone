@@ -22,6 +22,7 @@ class Product(db.Model, UserMixin):
 
     # relationship attributes
     museum = db.relationship("Museum", back_populates="products")
+    product_images = db.relationship("ProductImage", back_populates = "product")
 
     def to_dict(self):
         return {
