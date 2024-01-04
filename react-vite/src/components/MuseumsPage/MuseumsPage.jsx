@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { thunkLoadMuseums } from "../../redux/museums";
 
 const MuseumsPage = () => {
@@ -13,7 +14,18 @@ const MuseumsPage = () => {
 
     return (
         <div>
-            <h1>Hello from Museums</h1>
+            <div>
+                <NavLink to="/"><p>Home</p></NavLink>
+                <h1>Museums</h1>
+                <h3>Discover the selection of books and products from the most famous Museums.</h3>
+            </div>
+            {museums.map((museum) => (
+                <div>
+                    <img src={museum.image_url} />
+                    <h2>{museum.name}</h2>
+                </div>
+
+            ))}
         </div>
     )
 }
