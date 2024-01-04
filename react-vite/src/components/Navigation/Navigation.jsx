@@ -21,8 +21,8 @@ function Navigation() {
       </div>
       <nav>
         <button>MENU</button>
-        <button>MUSEUMS</button>
-        <NavLink><h1>Museum Central</h1></NavLink>
+        <NavLink to="/museums"><button>MUSEUMS</button></NavLink>
+        <NavLink to="/"><h1>Museum Central</h1></NavLink>
         <button>Search</button>
         <button>Wishlist</button>
         <button>Cart</button>
