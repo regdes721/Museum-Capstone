@@ -1,12 +1,20 @@
-import { NavLink } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from "./ProfileButton";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
+import * as sessionActions from '../../redux/session';
 import "./Navigation.css";
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const logout = () => {
+    dispatch(sessionActions.thunkLogout());
+    navigate("/")
+  };
 
   return (
     <header>
@@ -17,6 +25,12 @@ function Navigation() {
           itemText="Log In"
           modalComponent={<LoginFormModal />}
         />
+        )}
+        {sessionUser && (
+          <div>
+            <h3>My account</h3>
+            <h3 onClick={logout}>Sign out</h3>
+          </div>
         )}
       </div>
       <nav>
