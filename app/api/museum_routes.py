@@ -13,3 +13,10 @@ def museums():
     museums = Museum.query.all()
     return {'museums': [museum.to_dict() for museum in museums]}
 
+@museum_routes.route('/<int:id>')
+def museum(id):
+    """
+    Query for a user by id and returns that user in a dictionary
+    """
+    museum = Museum.query.get(id)
+    return museum.to_dict()

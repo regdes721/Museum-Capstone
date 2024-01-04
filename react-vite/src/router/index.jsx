@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import MuseumsPage from '../components/MuseumsPage';
+import MuseumDetailsPage from '../components/MuseumDetailsPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "museums",
         element: <MuseumsPage />
+      },
+      {
+        path: "museums/:museumId",
+        element: <MuseumDetailsPage />
       }
     ],
   },

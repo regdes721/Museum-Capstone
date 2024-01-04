@@ -20,10 +20,12 @@ const MuseumsPage = () => {
                 <h3>Discover the selection of books and products from the most famous Museums.</h3>
             </div>
             {museums.map((museum) => (
-                <div>
-                    <img src={museum.image_url} />
-                    <h2>{museum.name}</h2>
-                </div>
+                <NavLink to={`/museums/${museum.id}`}>
+                    <div>
+                        <img src={museum.image_url} />
+                        <h2>{museum.name}</h2>
+                    </div>
+                </NavLink>
 
             ))}
         </div>
