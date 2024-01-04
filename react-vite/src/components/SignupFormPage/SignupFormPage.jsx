@@ -7,16 +7,22 @@ function SignupFormPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [location, setLocation] = useState("")
+  const [mobileNumber, setMobileNumber] = useState("")
   const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const mobileNumberRegex = /^[0-9]*$/
 
     if (password !== confirmPassword) {
       return setErrors({
@@ -25,11 +31,21 @@ function SignupFormPage() {
       });
     }
 
+    if (mobileNumber.split(" ").join("").length !== 10 || !mobileNumberRegex.test(mobileNumber.split(" ").join(""))) {
+      return setErrors({
+        mobile_number: "Mobile Number must be exactly 10 digits"
+      })
+    }
+
     const serverResponse = await dispatch(
       thunkSignup({
+        first_name: firstName,
+        last_name: lastName,
         email,
         username,
         password,
+        location,
+        mobile_number: mobileNumber
       })
     );
 
@@ -45,6 +61,26 @@ function SignupFormPage() {
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
+      <label>
+          First Name
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.first_name && <p>{errors.first_name}</p>}
+        <label>
+          Last Name
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.last_name && <p>{errors.last_name}</p>}
         <label>
           Email
           <input
@@ -85,6 +121,26 @@ function SignupFormPage() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        <label>
+          Address
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            required
+          />
+        </label>
+        {errors.location && <p>{errors.location}</p>}
+        <label>
+          Mobile Number
+          <input
+            type="text"
+            value={mobileNumber}
+            onChange={(e) => setMobileNumber(e.target.value)}
+            required
+          />
+        </label>
+        {errors.mobile_number && <p>{errors.mobile_number}</p>}
         <button type="submit">Sign Up</button>
       </form>
     </>
