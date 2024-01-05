@@ -45,6 +45,29 @@ def create_museum():
         return new_museum.to_dict()
     return {'errors': form.errors}, 401
 
+@museum_routes.route('/<int:museumId>', methods=['PUT'])
+@login_required
+def edit_museum(museumId):
+    form = MuseumForm()
+    museum = Museum.query.get(museumId)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit() and int(session['_user_id']) == museum.to_dict()['owner_id']:
+        data = form.data
+        museum.name = data['name'],
+        museum.description = data['description'],
+        museum.image_url = data['image_url'],
+        museum.store_name = data['store_name'],
+        museum.store_address = data['store_address'],
+        museum.phone_number = data['phone_number'],
+        museum.email = data['email'],
+        museum.museum_website = data['museum_website']
+        db.session.commit()
+        return museum.to_dict()
+    elif not form.validate_on_submit():
+        return {'errors': form.errors}, 401
+    return {'errors': {'message': 'Unauthorized'}}, 403
+
+
 @museum_routes.route('/<int:museumId>', methods=['DELETE'])
 @login_required
 def delete_museum(museumId):
