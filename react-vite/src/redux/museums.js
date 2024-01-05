@@ -1,5 +1,6 @@
 const LOAD_MUSEUMS = 'museums/loadMuseums';
 const LOAD_MUSEUM_DETAILS = 'museums/loadMuseumDetails';
+const CREATE_MUSEUM = 'museums/createMuseum'
 const DELETE_MUSEUM = 'museums/deleteMuseum'
 
 export const loadMuseums = (museums) => {
@@ -12,6 +13,13 @@ export const loadMuseums = (museums) => {
 export const loadMuseumDetails = (museum) => {
     return {
         type: LOAD_MUSEUM_DETAILS,
+        museum
+    }
+}
+
+export const createMuseum = (museum) => {
+    return {
+        type: CREATE_MUSEUM,
         museum
     }
 }
@@ -32,6 +40,23 @@ export const thunkLoadMuseumDetails = (museumId) => async (dispatch) => {
     const response = await fetch(`/api/museums/${museumId}`);
     const museum = await response.json();
     dispatch(loadMuseumDetails(museum));
+}
+
+export const thunkCreateMuseum = (museum) => async (dispatch) => {
+    const response = await fetch(`/api/museums`, {
+        method: "POST",
+        body: JSON.stringify(museum),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json()
+    if (response.ok) {
+        dispatch(createMuseum(data))
+        return data
+    } else {
+        return data
+    }
 }
 
 export const thunkDeleteMuseum = (museum) => async (dispatch) => {
@@ -61,6 +86,11 @@ const museumReducer = (state = initialState, action) => {
             const singleMuseum = {}
             singleMuseum[action.museum.id] = action.museum
             return { ...state, singleMuseum }
+        }
+        case CREATE_MUSEUM: {
+            const newMuseum = {}
+            newMuseum[0] = action.museum
+            return { ...state, newMuseum }
         }
         case DELETE_MUSEUM: {
             return { ...state, singleMuseum: {} }
