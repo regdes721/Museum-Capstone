@@ -27,6 +27,7 @@ const MuseumDetailsPage = () => {
                 {museum.length === 1 ? <h1>{museum[0].name}</h1>: null}
                 {museum.length === 1 ? <p>{museum[0].description}</p> : null}
                 <div className={organizerButtonClassName}>
+                    {museum.length === 1 ? <NavLink to={`/museums/${museum[0].id}/edit`}><button>Update Museum</button></NavLink> : null}
                     <OpenModalButton
                         buttonText="Delete Museum"
                         modalComponent={<DeleteMuseumModal />}

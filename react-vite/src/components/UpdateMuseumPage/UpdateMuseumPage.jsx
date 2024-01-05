@@ -1,22 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { useNavigate, Navigate } from 'react-router-dom'
-import { thunkCreateMuseum } from '../../redux/museums'
+import { useNavigate, Navigate, useParams } from 'react-router-dom'
+import { thunkUpdateMuseum } from '../../redux/museums'
 
 
-export default function CreateMuseumPage() {
+export default function UpdateMuseumPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const { museumId } = useParams();
     const sessionUser = useSelector(state => state.session.user)
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [image_url, setImage] = useState('')
-    const [store_name, setStoreName] = useState('')
-    const [store_address, setStoreAddress] = useState('')
-    const [phone_number, setPhoneNumber] = useState('')
-    const [email, setEmail] = useState('')
-    const [museum_website, setMuseumWebsite] = useState('')
+    const museumObj = useSelector((state) => state.museums.singleMuseum)
+    const museum = Object.values(museumObj)
+    const [name, setName] = useState(museum && museum[0] && museum[0].name ? museum[0].name : '')
+    const [description, setDescription] = useState(museum && museum[0] && museum[0].description ? museum[0].description : '')
+    const [image_url, setImage] = useState(museum && museum[0] && museum[0].image_url ? museum[0].image_url : '')
+    const [store_name, setStoreName] = useState(museum && museum[0] && museum[0].store_name ? museum[0].store_name : '')
+    const [store_address, setStoreAddress] = useState(museum && museum[0] && museum[0].store_address ? museum[0].store_address : '')
+    const [phone_number, setPhoneNumber] = useState(museum && museum[0] && museum[0].phone_number ? museum[0].phone_number : '')
+    const [email, setEmail] = useState(museum && museum[0] && museum[0].email ? museum[0].email : '')
+    const [museum_website, setMuseumWebsite] = useState(museum && museum[0] && museum[0].museum_website ? museum[0].museum_website : '')
     const [errors, setErrors] = useState('')
 
     useEffect(() => {
@@ -33,24 +35,27 @@ export default function CreateMuseumPage() {
             }, 401)
           }
         const form = {
+            museumId,
             name,
             description,
             image_url,
-            owner_id: sessionUser.id,
             store_name,
             store_address,
             phone_number,
             email,
             museum_website
         }
-        const handleMuseumCreation = async (museum) => {
-            const museumData = await dispatch(thunkCreateMuseum(museum))
+        console.log(form)
+        const handleMuseumUpdate = async (museum) => {
+            const museumData = await dispatch(thunkUpdateMuseum(museum))
             if (!museumData.errors) {
                 navigate(`/museums/${museumData.id}`)
+            } else {
+                console.log("still a form?", form)
+                setErrors(museumData.errors)
             }
-            setErrors(museumData.errors)
         }
-        handleMuseumCreation(form)
+        handleMuseumUpdate(form)
     }
 
     if (!sessionUser) return null
