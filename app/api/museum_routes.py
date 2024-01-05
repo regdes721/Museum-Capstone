@@ -1,4 +1,4 @@
-from flask import Blueprint, session, jsonify
+from flask import Blueprint, session, jsonify, request
 from flask_login import login_required
 from app.models import db, Museum
 from ..forms import MuseumForm
@@ -26,6 +26,7 @@ def museum(museumId):
 @login_required
 def create_museum():
     form = MuseumForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_museum = Museum(
