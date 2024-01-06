@@ -1,0 +1,23 @@
+.signup-container {
+    width: 50%;
+    margin: 0 15%
+}
+
+.signup-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px
+}
+
+.signup-button {
+    background-color: white;
+    padding: 5px 10px;
+    margin: 10px;
+}
+
+.signup-button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
