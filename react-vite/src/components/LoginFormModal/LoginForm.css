@@ -1,0 +1,51 @@
+.login-container {
+    padding: 20px 50px;
+}
+
+.login-form-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0
+}
+
+.login-button {
+    border: 1px solid #0A49FA;
+    background-color: #0A49FA;
+    color: white;
+    width: 100%;
+    padding: 5px 0;
+    margin-top: 10px
+}
+
+.login-button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #0A49FA;
+}
+
+.gray-container {
+    background-color: #E5E5E5;
+}
+
+.new-client-button {
+    border: 1px solid black;
+    background-color: none;
+    color: black;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.new-client-button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.button-gap {
+    margin-top: 10px;
+}
+
+.red {
+    color: red
+}

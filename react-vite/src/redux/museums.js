@@ -80,7 +80,10 @@ export const thunkUpdateMuseum = (museum) => async (dispatch) => {
             phone_number,
             email,
             museum_website
-        })
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
     })
     const data = await response.json();
     if (response.ok) {
