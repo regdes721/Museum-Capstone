@@ -45,7 +45,7 @@ function Navigation() {
 
   return (
     <header>
-      <div>
+      <div className="header-section-1">
         <h3>Professional Access</h3>
         {!sessionUser && (
           <OpenModalMenuItem
@@ -54,29 +54,33 @@ function Navigation() {
         />
         )}
         {sessionUser && (
-          <div>
+          <div className="header-section-1a">
             <h3>My account</h3>
-            <h3 onClick={logout}>Sign out</h3>
+            <h3 onClick={logout} className="cursor-pointer">Sign out</h3>
           </div>
         )}
       </div>
       <nav>
-        <button>MENU</button>
-        <NavLink to="/museums"><button onClick={closeMenu}>MUSEUMS</button></NavLink>
+        <div className="nav-left">
+          <button className="nav-left-button">MENU</button>
+          <NavLink to="/museums"><button onClick={closeMenu} className="nav-left-button">MUSEUMS</button></NavLink>
+        </div>
         <NavLink to="/"><h1>Museum Central</h1></NavLink>
-        <button>Search</button>
-        <button>Wishlist</button>
-        <button>Cart</button>
-        {sessionUser && (
-          <div>
-            <button onClick={toggleMenu}>Create</button>
-            {showMenu &&
-              <ul className={ulClassName} ref={ulRef}>
-                <NavLink to="/museums/new"><li onClick={closeMenu}>Create Museum</li></NavLink>
-              </ul>
-              }
-          </div>
-        )}
+        <div className="nav-right">
+          <button className="nav-search"><i className="fa-solid fa-magnifying-glass"></i></button>
+          <button className="nav-right-button"><i className="fa-regular fa-heart"></i></button>
+          <button className="nav-right-button"><i className="fa-solid fa-cart-shopping"></i></button>
+          {sessionUser && (
+            <div>
+              <button onClick={toggleMenu} className="nav-plus-button"><i className="fa-solid fa-plus"></i></button>
+              {showMenu &&
+                <ul className={ulClassName} ref={ulRef}>
+                  <NavLink to="/museums/new"><li onClick={closeMenu}>Create Museum</li></NavLink>
+                </ul>
+                }
+            </div>
+          )}
+        </div>
       </nav>
     </header>
     // <ul>
