@@ -62,14 +62,14 @@ function Navigation() {
       </div>
       <nav>
         <div className="nav-left">
-          <button className="nav-left-button">MENU</button>
+          <button className="nav-left-button" onClick={() => (alert(`Feature Coming Soon...`))}>MENU</button>
           <NavLink to="/museums"><button onClick={closeMenu} className="nav-left-button">MUSEUMS</button></NavLink>
         </div>
-        <NavLink to="/"><h1>Museum Central</h1></NavLink>
+        <NavLink to="/"><h1 className="nav-title">Museum Central</h1></NavLink>
         <div className="nav-right">
-          <button className="nav-search"><i className="fa-solid fa-magnifying-glass"></i></button>
-          <button className="nav-right-button"><i className="fa-regular fa-heart"></i></button>
-          <button className="nav-right-button"><i className="fa-solid fa-cart-shopping"></i></button>
+          <button className="nav-search" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-magnifying-glass"></i></button>
+          <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-regular fa-heart"></i></button>
+          <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-cart-shopping"></i></button>
           {sessionUser && (
             <div>
               <button onClick={toggleMenu} className="nav-plus-button"><i className="fa-solid fa-plus"></i></button>
