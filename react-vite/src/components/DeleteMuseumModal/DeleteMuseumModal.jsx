@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useModal } from '../../context/Modal';
 import { thunkDeleteMuseum } from '../../redux/museums';
+import './DeleteMuseumModal.css'
 
 function DeleteMuseumModal() {
     const dispatch = useDispatch();
@@ -30,11 +31,13 @@ function DeleteMuseumModal() {
     // if (message === "Successfully deleted") return <Navigate to={`/groups`} replace={true} />
 
     return (
-        <div>
+        <div className='login-container'>
             <h1>Confirm Delete</h1>
             <p>Are you sure you want to remove this museum?</p>
-            <button onClick={handleSubmit}>{`Yes (Delete Museum)`}</button>
-            <button onClick={closeModal}>{`No (Keep Museum)`}</button>
+            <div className='delete-museum-button-container'>
+                <button onClick={handleSubmit} className='delete-museum-yes-button'>{`Yes (Delete Museum)`}</button>
+                <button onClick={closeModal} className='delete-museum-no-button'>{`No (Keep Museum)`}</button>
+            </div>
             {errors && <p>{errors}</p>}
         </div>
     )

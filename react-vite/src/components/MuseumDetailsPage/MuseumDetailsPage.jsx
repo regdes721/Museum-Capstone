@@ -30,13 +30,13 @@ const MuseumDetailsPage = () => {
                         {museum.length === 1 ? <p>{museum[0].description}</p> : null}
                         <div className="museum-details-column-right museum-details-buttons-right">
                             <div className={`${organizerButtonClassName} museum-details-buttons-right`}>
-                                {museum.length === 1 ? <NavLink to={`/museums/${museum[0].id}/edit`}><button>Update Museum</button></NavLink> : null}
+                                {museum.length === 1 ? <NavLink to={`/museums/${museum[0].id}/edit`}><button className="nav-left-button">Update Museum</button></NavLink> : null}
                                 <OpenModalButton
                                     buttonText="Delete Museum"
                                     modalComponent={<DeleteMuseumModal />}
                                 />
                             </div>
-                            <button className="museum-details-products-button"><p>See all products</p> <i className="fa-solid fa-arrow-right"></i></button>
+                            <button className="museum-details-products-button" onClick={() => (alert(`Feature Coming Soon...`))}><p>See all products</p> <i className="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ const MuseumDetailsPage = () => {
                     <p>{museum[0].store_address}</p>
                     {museum[0].phone_number && <p>Phone: {museum[0].phone_number}</p>}
                     {museum[0].email && <p>{museum[0].email}</p>}
-                    <NavLink to={museum[0].museum_website} target="_blank"><button>VISIT THE MUSEUM WEBSITE</button></NavLink>
+                    <NavLink to={museum[0].museum_website} target="_blank"><button className="nav-left-button">VISIT THE MUSEUM WEBSITE</button></NavLink>
                 </div>
             </div> : null}
         </div>
