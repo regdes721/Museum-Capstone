@@ -103,7 +103,7 @@ export default function UpdateMuseumPage() {
                 <span>{errors.museum_website}</span>
                 <input type='text' value={museum_website} onChange={e => setMuseumWebsite(e.target.value)} placeholder="Ex: https://www.moma.org/" />
             </div>
-            <input type='submit' value="Create New Museum" />
+            <input type='submit' value="Update Museum" />
             {!sessionUser && (
                 <Navigate to="/" replace={true} />
             )}
