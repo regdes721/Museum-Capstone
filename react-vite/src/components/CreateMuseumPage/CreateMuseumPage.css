@@ -1,0 +1,19 @@
+.create-museum-container {
+    margin: 0 15%
+  }
+
+.create-museum-input {
+    width: 530px;
+    height: 30px
+}
+
+.create-museum-submit-button {
+    background-color: white;
+    padding: 5px 10px;
+}
+
+.create-museum-submit-button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

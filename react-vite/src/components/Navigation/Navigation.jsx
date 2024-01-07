@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from "./ProfileButton";
@@ -10,15 +11,41 @@ function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [showMenu, setShowMenu] = useState(false);
+  const ulRef = useRef();
+
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+
+  const toggleMenu = (e) => {
+    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    setShowMenu(!showMenu);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (ulRef.current && !ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
 
   const logout = () => {
     dispatch(sessionActions.thunkLogout());
     navigate("/")
+    closeMenu();
   };
 
   return (
     <header>
-      <div>
+      <div className="header-section-1">
         <h3>Professional Access</h3>
         {!sessionUser && (
           <OpenModalMenuItem
@@ -27,19 +54,33 @@ function Navigation() {
         />
         )}
         {sessionUser && (
-          <div>
+          <div className="header-section-1a">
             <h3>My account</h3>
-            <h3 onClick={logout}>Sign out</h3>
+            <h3 onClick={logout} className="cursor-pointer">Sign out</h3>
           </div>
         )}
       </div>
       <nav>
-        <button>MENU</button>
-        <NavLink to="/museums"><button>MUSEUMS</button></NavLink>
-        <NavLink to="/"><h1>Museum Central</h1></NavLink>
-        <button>Search</button>
-        <button>Wishlist</button>
-        <button>Cart</button>
+        <div className="nav-left">
+          <button className="nav-left-button" onClick={() => (alert(`Feature Coming Soon...`))}>MENU</button>
+          <NavLink to="/museums"><button onClick={closeMenu} className="nav-left-button">MUSEUMS</button></NavLink>
+        </div>
+        <NavLink to="/"><h1 className="nav-title">Museum Central</h1></NavLink>
+        <div className="nav-right">
+          <button className="nav-search" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-magnifying-glass"></i></button>
+          <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-regular fa-heart"></i></button>
+          <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-cart-shopping"></i></button>
+          {sessionUser && (
+            <div>
+              <button onClick={toggleMenu} className="nav-plus-button"><i className="fa-solid fa-plus"></i></button>
+              {showMenu &&
+                <ul className={ulClassName} ref={ulRef}>
+                  <NavLink to="/museums/new"><li onClick={closeMenu}>Create Museum</li></NavLink>
+                </ul>
+                }
+            </div>
+          )}
+        </div>
       </nav>
     </header>
     // <ul>

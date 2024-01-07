@@ -37,34 +37,43 @@ function LoginFormModal() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <h2>Already client?</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
-      </form>
-      <div>
-        <h2>New client:</h2>
-        <button onClick={handleCreate}>CREATE YOUR ACCOUNT</button>
+      <div className="login-container">
+        <h1>Log In</h1>
+        <h2>Already client?</h2>
+        <form onSubmit={handleSubmit}>
+          <div className='login-form-content-container'>
+            <label>
+              Email <span className="red">*</span>
+            </label>
+            <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            {errors.email && <p className="red">{errors.email}</p>}
+          </div>
+          <div className='login-form-content-container'>
+            <label>
+              Password <span className="red">*</span>
+            </label>
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            {errors.password && <p className="red">{errors.password}</p>}
+          </div>
+          <button type="submit" className="login-button">LOG IN</button>
+        </form>
+      </div>
+      <div className="gray-container">
+        <div className="login-container">
+          <h2>New client:</h2>
+          <button onClick={handleCreate} className="new-client-button">CREATE YOUR ACCOUNT</button>
+          <button className="new-client-button button-gap">DEMO USER</button>
+        </div>
       </div>
     </>
   );

@@ -3,6 +3,8 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import MuseumsPage from '../components/MuseumsPage';
 import MuseumDetailsPage from '../components/MuseumDetailsPage';
+import CreateMuseumPage from '../components/CreateMuseumPage';
+import UpdateMuseumPage from '../components/UpdateMuseumPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
       {
         path: "museums/:museumId",
         element: <MuseumDetailsPage />
+      },
+      {
+        path: "museums/new",
+        element: <CreateMuseumPage />
+      },
+      {
+        path: "museums/:museumId/edit",
+        element: <UpdateMuseumPage />
       }
     ],
   },

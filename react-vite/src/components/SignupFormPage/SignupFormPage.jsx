@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
+import "./SignupForm.css"
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -57,93 +58,108 @@ function SignupFormPage() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
+    <div className="signup-container">
+      <h1>Create your account</h1>
       <form onSubmit={handleSubmit}>
-      <label>
-          First Name
+        <div className="signup-content-container">
+          <label>
+            First Name
+          </label>
           <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.first_name && <p>{errors.first_name}</p>}
-        <label>
-          Last Name
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          {errors.first_name && <p className="red">{errors.first_name}</p>}
+        </div>
+        <div className="signup-content-container">
+          <label>
+            Last Name
+          </label>
           <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.last_name && <p>{errors.last_name}</p>}
-        <label>
-          Email
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          {errors.last_name && <p className="red">{errors.last_name}</p>}
+        </div>
+        <div className="signup-content-container">
+          <label>
+            Email
+          </label>
           <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          {errors.email && <p className="red">{errors.email}</p>}
+        </div>
+        <div className="signup-content-container">
+          <label>
+            Username
+          </label>
           <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
-          Password
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          {errors.username && <p className="red">{errors.username}</p>}
+        </div>
+        <div className="signup-content-container">
+          <label>
+            Password
+          </label>
           <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          {errors.password && <p className="red">{errors.password}</p>}
+        </div>
+        <div className="signup-content-container">
+          <label>
+            Confirm Password
+          </label>
           <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <label>
-          Address
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          {errors.confirmPassword && <p className="red">{errors.confirmPassword}</p>}
+        </div>
+        <div className="signup-content-container">
+          <label>
+            Address
+          </label>
           <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-          />
-        </label>
-        {errors.location && <p>{errors.location}</p>}
-        <label>
-          Mobile Number
+              type="text"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              required
+            />
+          {errors.location && <p className="red">{errors.location}</p>}
+        </div>
+        <div className="signup-content-container">
+          <label>
+            Mobile Number
+          </label>
           <input
-            type="text"
-            value={mobileNumber}
-            onChange={(e) => setMobileNumber(e.target.value)}
-            required
-          />
-        </label>
-        {errors.mobile_number && <p>{errors.mobile_number}</p>}
-        <button type="submit">Sign Up</button>
+              type="text"
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+              required
+            />
+          {errors.mobile_number && <p className="red">{errors.mobile_number}</p>}
+        </div>
+        <button type="submit" className="signup-button">SAVE</button>
       </form>
-    </>
+    </div>
   );
 }
 
