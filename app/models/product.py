@@ -33,7 +33,8 @@ class Product(db.Model, UserMixin):
             'price': self.price,
             'category': self.category,
             'num_sold': self.num_sold,
-            'characteristics': self.characteristics,
+            'dimensions': self.dimensions,
             'quantity': self.quantity,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'product_images': [product_image.to_dict() for product_image in self.product_images]
         }

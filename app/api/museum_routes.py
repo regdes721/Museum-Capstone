@@ -20,7 +20,7 @@ def museum(museumId):
     Query for a user by id and returns that user in a dictionary
     """
     museum = Museum.query.get(museumId)
-    return museum.to_dict()
+    return museum.to_dict(products=True)
 
 @museum_routes.route('', methods=['POST'])
 @login_required
