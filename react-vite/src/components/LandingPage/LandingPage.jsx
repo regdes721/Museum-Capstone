@@ -17,11 +17,11 @@ export default function LandingPage() {
     return (
         <div>
             <h2>Best Sellers</h2>
-            {bestSellers.map((product) =>
+            {bestSellers.length > 0 && bestSellers.map((product) =>
                 <div>
-                    <img src={product.product_images[0].image_url} />
-                    <h3>{product.name}</h3>
-                    <p>€{product.price}</p>
+                    <img src={product?.product_images[0].image_url} />
+                    <h3>{product?.name}</h3>
+                    <p>€{product?.price}</p>
                 </div>
             )}
             <button onClick={() => (alert(`Feature Coming Soon...`))}>BEST SELLERS</button>

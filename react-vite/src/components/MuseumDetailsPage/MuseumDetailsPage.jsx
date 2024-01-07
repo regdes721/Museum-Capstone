@@ -11,7 +11,25 @@ const MuseumDetailsPage = () => {
     const dispatch = useDispatch();
     const museumDetailsObj = useSelector(state => state.museums.singleMuseum);
     const museum = Object.values(museumDetailsObj)
+    let museumProducts;
+    let sortedProducts;
+    let bestSellers;
+    let sortedBestSellers;
+    if (museumDetailsObj[museumId]) {
+        museumProducts = museumDetailsObj[museumId].products
+    }
+    if (museumProducts) {
+        sortedProducts = museumProducts.sort((a, b) => b.num_sold - a.num_sold)
+    }
+    if (sortedProducts) {
+        bestSellers = [sortedProducts[0], sortedProducts[1], sortedProducts[2], sortedProducts[3]]
+    }
+    if (bestSellers) {
+        sortedBestSellers = bestSellers.filter((product) => product !== undefined)
+    }
     const sessionUser = useSelector((state) => state.session.user);
+
+    console.log(sortedBestSellers)
 
     const organizerButtonClassName = (!sessionUser || museum.length !== 1 || museum.length === 1 && sessionUser.id !== museum[0].owner_id) ? "hidden" : null
 
@@ -36,11 +54,24 @@ const MuseumDetailsPage = () => {
                                     modalComponent={<DeleteMuseumModal />}
                                 />
                             </div>
-                            <button className="museum-details-products-button" onClick={() => (alert(`Feature Coming Soon...`))}><p>See all products</p> <i className="fa-solid fa-arrow-right"></i></button>
+                            {museum.length === 1 && sortedBestSellers && sortedBestSellers.length > 0 ? <button className="museum-details-products-button" onClick={() => (alert(`Feature Coming Soon...`))}><p>See all products</p> <i className="fa-solid fa-arrow-right"></i></button> : null}
                         </div>
                     </div>
                 </div>
             </div>
+            {museum.length === 1 && sortedBestSellers && sortedBestSellers.length > 0 ?
+            <div>
+                <h2>Best Sellers {museum[0].name}</h2>
+                {sortedBestSellers.map((product) =>
+                <div>
+                    <img src={product?.product_images[0].image_url} />
+                    <h3>{product?.name}</h3>
+                    <p>€{product?.price}</p>
+                </div>
+                )}
+                <button onClick={() => (alert(`Feature Coming Soon...`))}>BEST SELLERS</button>
+            </div>
+        : null}
             {museum.length === 1 ?
             <div>
                 <h2>Find us at the shop</h2>
