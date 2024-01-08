@@ -9,6 +9,7 @@ import LandingPage from '../components/LandingPage';
 import MuseumBestSellersPage from '../components/MuseumBestSellersPage';
 import BestSellersPage from '../components/BestSellersPage';
 import MuseumProductsPage from '../components/MuseumProductsPage';
+import ProductCategoryPage from '../components/ProductCategoryPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "museums/:museumId/products",
         element: <MuseumProductsPage />
+      },
+      {
+        path: "products/:category",
+        element: <ProductCategoryPage />
       },
       {
         path: "best-sellers",

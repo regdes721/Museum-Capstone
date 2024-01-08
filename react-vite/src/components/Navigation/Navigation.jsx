@@ -117,16 +117,16 @@ function Navigation() {
           <button className="nav-left-button" onClick={toggleMenu2}>MENU</button>
           {showMenu2 &&
             <ul className={ulClassName2} ref={ulRef}>
-              <li onClick={closeMenu2}>Posters & Stationary</li>
-              <li onClick={closeMenu2}>Beauty</li>
-              <li onClick={closeMenu2}>Decoration</li>
-              <li onClick={closeMenu2}>Books</li>
-              <li onClick={closeMenu2}>Kids</li>
-              <li onClick={closeMenu2}>Fashion & Accessories</li>
-              <li onClick={closeMenu2}>Jewellery</li>
-              <li onClick={closeMenu2}>Engravings</li>
-              <li onClick={closeMenu2}>Sculpture</li>
-              <li onClick={closeMenu2}>Print on Demand</li>
+              <NavLink to="/products/posters-stationery"><li onClick={closeMenu2}>Posters & Stationary</li></NavLink>
+              <NavLink to="/products/beauty"><li onClick={closeMenu2}>Beauty</li></NavLink>
+              <NavLink to="/products/decoration"><li onClick={closeMenu2}>Decoration</li></NavLink>
+              <NavLink to="/products/books"><li onClick={closeMenu2}>Books</li></NavLink>
+              <NavLink to="/products/kids"><li onClick={closeMenu2}>Kids</li></NavLink>
+              <NavLink to="/products/fashion-accessories"><li onClick={closeMenu2}>Fashion & Accessories</li></NavLink>
+              <NavLink to="/products/jewellery"><li onClick={closeMenu2}>Jewellery</li></NavLink>
+              <NavLink to="/products/engravings"><li onClick={closeMenu2}>Engravings</li></NavLink>
+              <NavLink to="/products/sculpture"><li onClick={closeMenu2}>Sculpture</li></NavLink>
+              <NavLink to="/products/print-on-demand"><li onClick={closeMenu2}>Print on Demand</li></NavLink>
             </ul>
           }
           <NavLink to="/museums"><button onClick={closeMenu} className="nav-left-button">MUSEUMS</button></NavLink>
