@@ -11,6 +11,7 @@ import BestSellersPage from '../components/BestSellersPage';
 import MuseumProductsPage from '../components/MuseumProductsPage';
 import ProductCategoryPage from '../components/ProductCategoryPage';
 import ProductDetailsPage from '../components/ProductDetailsPage';
+import CreateProductPage from '../components/CreateProductPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "museums/:museumId/products",
         element: <MuseumProductsPage />
+      },
+      {
+        path: "products/new",
+        element: <CreateProductPage />
       },
       {
         path: "products/:category",

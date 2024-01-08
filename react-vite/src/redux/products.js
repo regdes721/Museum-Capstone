@@ -1,5 +1,6 @@
 const LOAD_PRODUCTS = 'products/loadProducts'
 const LOAD_PRODUCT_DETAILS = 'products/loadProductDetails'
+const CREATE_PRODUCT = 'products/createProduct'
 
 export const loadProducts = (products) => {
     return {
@@ -11,6 +12,13 @@ export const loadProducts = (products) => {
 export const loadProductDetails = (product) => {
     return {
         type: LOAD_PRODUCT_DETAILS,
+        product
+    }
+}
+
+export const createProduct = (product) => {
+    return {
+        type: CREATE_PRODUCT,
         product
     }
 }
@@ -27,6 +35,23 @@ export const thunkLoadProductDetails = (productId) => async (dispatch) => {
     dispatch(loadProductDetails(product))
 }
 
+export const thunkCreateProduct = (product) => async (dispatch) => {
+    const response = await fetch(`/api/products`, {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json()
+    if (response.ok) {
+        dispatch(createProduct(data))
+        return data
+    } else {
+        return data
+    }
+}
+
 const initialState = { allProducts: {}, singleProduct: {} }
 
 const productReducer = (state = initialState, action) => {
@@ -40,6 +65,11 @@ const productReducer = (state = initialState, action) => {
             const singleProduct = {};
             singleProduct[action.product.id] = action.product
             return { ...state, singleProduct}
+        }
+        case CREATE_PRODUCT: {
+            const newProduct = {}
+            newProduct[0] = action.product
+            return { ...state, newProduct }
         }
         default: {
             return state

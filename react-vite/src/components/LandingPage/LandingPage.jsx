@@ -22,7 +22,7 @@ export default function LandingPage() {
             <div>
                 <h2>Best Sellers</h2>
                 {bestSellers.length > 0 && bestSellers.map((product) =>
-                <NavLink to={`/products/${product.id}/details`}><div>
+                <NavLink to={`/products/${product?.id}/details`}><div>
                     <img src={product?.product_images[0].image_url} />
                     <h3>{product?.name}</h3>
                     <p>€{product?.price}</p>

@@ -1,6 +1,7 @@
 from flask import Blueprint, session, jsonify, request
 from flask_login import login_required
 from app.models import db, Product
+from ..forms import ProductForm
 
 product_routes = Blueprint('products', __name__)
 
@@ -19,3 +20,24 @@ def product(productId):
     """
     product = Product.query.get(productId)
     return product.to_dict(museum=True)
+
+@product_routes.route('', methods=['POST'])
+@login_required
+def create_product():
+    form = ProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        new_product = Product(
+            museum_id = data["museum_id"],
+            name = data["name"],
+            description = data["description"],
+            price = data["price"],
+            category = data["category"],
+            dimensions = data["dimensions"],
+            quantity = data["quantity"]
+        )
+        db.session.add(new_product)
+        db.session.commit()
+        return new_product.to_dict()
+    return {'errors': form.errors}, 401
