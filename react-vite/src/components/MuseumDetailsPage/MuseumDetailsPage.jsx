@@ -29,8 +29,6 @@ const MuseumDetailsPage = () => {
     }
     const sessionUser = useSelector((state) => state.session.user);
 
-    console.log(sortedBestSellers)
-
     const organizerButtonClassName = (!sessionUser || museum.length !== 1 || museum.length === 1 && sessionUser.id !== museum[0].owner_id) ? "hidden" : null
 
     useEffect(() => {
@@ -69,7 +67,7 @@ const MuseumDetailsPage = () => {
                     <p>€{product?.price}</p>
                 </div>
                 )}
-                <button onClick={() => (alert(`Feature Coming Soon...`))}>BEST SELLERS</button>
+                <NavLink to={`/museums/${museum[0].id}/best-sellers`}><button>BEST SELLERS</button></NavLink>
             </div>
         : null}
             {museum.length === 1 ?

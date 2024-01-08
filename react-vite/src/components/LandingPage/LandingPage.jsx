@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { NavLink } from "react-router-dom"
 import { thunkLoadProducts } from "../../redux/products"
 
 export default function LandingPage() {
@@ -8,7 +9,6 @@ export default function LandingPage() {
     const products = Object.values(productObj)
     const sortedProducts = products.sort((a, b) => b.num_sold - a.num_sold)
     const bestSellers = [sortedProducts[0], sortedProducts[1], sortedProducts[2], sortedProducts[3]]
-    console.log(bestSellers)
 
     useEffect(() => {
         dispatch(thunkLoadProducts())
@@ -24,7 +24,7 @@ export default function LandingPage() {
                     <p>€{product?.price}</p>
                 </div>
             )}
-            <button onClick={() => (alert(`Feature Coming Soon...`))}>BEST SELLERS</button>
+            <NavLink to="/best-sellers"><button>BEST SELLERS</button></NavLink>
         </div>
     )
 }
