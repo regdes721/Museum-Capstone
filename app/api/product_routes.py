@@ -11,3 +11,11 @@ def products():
     """
     products = Product.query.all()
     return {'products': [product.to_dict() for product in products]}
+
+@product_routes.route('/<int:productId>')
+def product(productId):
+    """
+    Query for a product by id and returns that product in a dictionary
+    """
+    product = Product.query.get(productId)
+    return product.to_dict(museum=True)
