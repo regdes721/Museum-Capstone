@@ -14,6 +14,7 @@ export default function CreateProductPage() {
     const [category, setCategory] = useState("");
     const [dimensions, setDimensions] = useState("");
     const [quantity, setQuantity] = useState("");
+    const [image_url, setImageUrl] = useState("");
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector(state => state.session.user)
     const museumsObj = useSelector(state => state.museums.allMuseums);
@@ -22,6 +23,7 @@ export default function CreateProductPage() {
     if (museums) {
         userMuseums = museums.filter((museum) => museum.owner_id === sessionUser.id)
     }
+    console.log(errors)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -33,7 +35,8 @@ export default function CreateProductPage() {
             price,
             category,
             dimensions,
-            quantity
+            quantity,
+            image_url
         }
         const handleProductCreation = async (product) => {
             const productData = await dispatch(thunkCreateProduct(product))
@@ -150,6 +153,18 @@ export default function CreateProductPage() {
                     required
                 />
                 {errors.quantity && <p className="red">{errors.quantity}</p>}
+            </div>
+            <div>
+                <label>
+                    Product Preview Image
+                </label>
+                <input
+                    type="text"
+                    value={image_url}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    required
+                />
+                {errors.image_url && <p className="red">{errors.image_url}</p>}
             </div>
             <button type="submit" className="signup-button">SAVE</button>
         </form>
