@@ -40,5 +40,5 @@ class Product(db.Model, UserMixin):
         }
 
         if museum:
-            dictionary['museum'] = self.museum
+            dictionary['museum'] = self.museum.to_dict()
         return dictionary

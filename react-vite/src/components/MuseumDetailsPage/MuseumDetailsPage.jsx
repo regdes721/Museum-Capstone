@@ -61,11 +61,11 @@ const MuseumDetailsPage = () => {
             <div>
                 <h2>Best Sellers {museum[0].name}</h2>
                 {sortedBestSellers.map((product) =>
-                <div>
+                <NavLink to={`/products/${product.id}/details`}><div>
                     <img src={product?.product_images[0].image_url} />
                     <h3>{product?.name}</h3>
                     <p>€{product?.price}</p>
-                </div>
+                </div></NavLink>
                 )}
                 <NavLink to={`/museums/${museum[0].id}/best-sellers`}><button>BEST SELLERS</button></NavLink>
             </div>

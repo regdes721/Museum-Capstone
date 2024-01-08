@@ -38,7 +38,8 @@ const productReducer = (state = initialState, action) => {
         }
         case LOAD_PRODUCT_DETAILS: {
             const singleProduct = {};
-            singleProduct[action.product.id]
+            singleProduct[action.product.id] = action.product
+            return { ...state, singleProduct}
         }
         default: {
             return state

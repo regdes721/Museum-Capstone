@@ -10,6 +10,7 @@ import MuseumBestSellersPage from '../components/MuseumBestSellersPage';
 import BestSellersPage from '../components/BestSellersPage';
 import MuseumProductsPage from '../components/MuseumProductsPage';
 import ProductCategoryPage from '../components/ProductCategoryPage';
+import ProductDetailsPage from '../components/ProductDetailsPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
       {
         path: "products/:category",
         element: <ProductCategoryPage />
+      },
+      {
+        path: "products/:productId/details",
+        element: <ProductDetailsPage />
       },
       {
         path: "best-sellers",

@@ -49,16 +49,14 @@ export default function ProductCategoryPage() {
         <div>
             <div>
                 <p><NavLink to="/"><span> <i className="fa-solid fa-angle-left"></i> Home</span></NavLink></p>
-                <h1>{!sortedProducts || (sortedProducts && sortedProducts.length === 0) ? "No Products for this category" : null}</h1>
-
-                <h1>{sortedProducts && sortedProducts.length > 0 ? sortedProducts[0].category : null}</h1>
+                <h1>{!sortedProducts || (sortedProducts && sortedProducts.length === 0) ? "No Products for this category" : sortedProducts[0].category}</h1>
             </div>
             {sortedProducts && sortedProducts.length > 0 && sortedProducts.map((product) =>
-                <div>
+                <NavLink to={`/products/${product.id}/details`}><div>
                     <img src={product?.product_images[0].image_url} />
                     <h3>{product?.name}</h3>
                     <p>€{product?.price}</p>
-                </div>
+                </div></NavLink>
             )}
         </div>
     )
