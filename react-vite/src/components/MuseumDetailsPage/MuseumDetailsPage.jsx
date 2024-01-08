@@ -52,7 +52,7 @@ const MuseumDetailsPage = () => {
                                     modalComponent={<DeleteMuseumModal />}
                                 />
                             </div>
-                            {museum.length === 1 && sortedBestSellers && sortedBestSellers.length > 0 ? <button className="museum-details-products-button" onClick={() => (alert(`Feature Coming Soon...`))}><p>See all products</p> <i className="fa-solid fa-arrow-right"></i></button> : null}
+                            {museum.length === 1 && sortedBestSellers && sortedBestSellers.length > 0 ? <NavLink to={`/museums/${museum[0].id}/products`}><button className="museum-details-products-button"><p>See all products</p> <i className="fa-solid fa-arrow-right"></i></button></NavLink> : null}
                         </div>
                     </div>
                 </div>
