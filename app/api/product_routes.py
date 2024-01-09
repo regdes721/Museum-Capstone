@@ -37,12 +37,13 @@ def create_product():
             dimensions = data["dimensions"],
             quantity = data["quantity"]
         )
+        db.session.add(new_product)
+        db.session.commit()
         new_product_image = ProductImage(
             product_id = new_product.id,
             image_url = data["image_url"],
             preview = True
         )
-        db.session.add(new_product)
         db.session.add(new_product_image)
         db.session.commit()
         return new_product.to_dict()
