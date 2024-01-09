@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useNavigate, Navigate, useParams } from 'react-router-dom'
-import { thunkUpdateMuseum } from '../../redux/museums'
-
+import { thunkUpdateMuseum, uploadImage } from '../../redux/museums'
 
 export default function UpdateMuseumPage() {
     const dispatch = useDispatch()
@@ -13,11 +12,11 @@ export default function UpdateMuseumPage() {
     const museum = Object.values(museumObj)
     const [name, setName] = useState(museum && museum[0] && museum[0].name ? museum[0].name : '')
     const [description, setDescription] = useState(museum && museum[0] && museum[0].description ? museum[0].description : '')
-    const [image_url, setImage] = useState(museum && museum[0] && museum[0].image_url ? museum[0].image_url : '')
+    const [image, setImage] = useState(museum && museum[0] && museum[0].image_url ? museum[0].image_url : '')
     const [store_name, setStoreName] = useState(museum && museum[0] && museum[0].store_name ? museum[0].store_name : '')
     const [store_address, setStoreAddress] = useState(museum && museum[0] && museum[0].store_address ? museum[0].store_address : '')
-    const [phone_number, setPhoneNumber] = useState(museum && museum[0] && museum[0].phone_number ? museum[0].phone_number : '')
-    const [email, setEmail] = useState(museum && museum[0] && museum[0].email ? museum[0].email : '')
+    const [phone_number, setPhoneNumber] = useState(museum && museum[0] && museum[0].phone_number ? museum[0].phone_number : null)
+    const [email, setEmail] = useState(museum && museum[0] && museum[0].email ? museum[0].email : null)
     const [museum_website, setMuseumWebsite] = useState(museum && museum[0] && museum[0].museum_website ? museum[0].museum_website : '')
     const [errors, setErrors] = useState('')
 
@@ -34,18 +33,25 @@ export default function UpdateMuseumPage() {
                 phone_number: "Phone Number must be exactly 10 digits"
             }, 401)
           }
+          let returnImage
+          if (image) {
+            const formData = new FormData();
+            formData.append("image", image);
+            // aws uploads can be a bit slow—displaying
+            // some sort of loading message is a good idea
+            returnImage = await dispatch(uploadImage(formData));
+          }
         const form = {
             museumId,
             name,
             description,
-            image_url,
             store_name,
             store_address,
             phone_number,
             email,
             museum_website
         }
-        console.log(form)
+        if (returnImage) form.image_url = returnImage.url
         const handleMuseumUpdate = async (museum) => {
             const museumData = await dispatch(thunkUpdateMuseum(museum))
             if (!museumData.errors) {
@@ -74,9 +80,9 @@ export default function UpdateMuseumPage() {
             </div>
             <div>
                 <h1>Upload an image for your museum</h1>
-                <input type='text' value={image_url} onChange={e => setImage(e.target.value)} className='create-museum-input' />
+                {/* <input type='text' value={image_url} onChange={e => setImage(e.target.value)} className='create-museum-input' /> */}
+                <input type="file" className='server-creation-file-upload' accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
                 <p className='red'>{errors.image_url}</p>
-                {/* <input type="file" className='server-creation-file-upload' accept="image/*" onChange={(e) => setImage(e.target.files[0])} /> */}
             </div>
             <div>
                 <h1>{`What is the name of your museum's store/gift shop?`}</h1>
