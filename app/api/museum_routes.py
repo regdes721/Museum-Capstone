@@ -98,8 +98,10 @@ def edit_museum(museumId):
 def delete_museum(museumId):
     museum = Museum.query.get(museumId)
     if museum and int(session['_user_id']) == museum.to_dict()['owner_id']:
+        museum_image = museum.image_url
         db.session.delete(museum)
         db.session.commit()
+        remove_file_from_s3(museum_image)
         return {'message': 'Successfully deleted'}
     if not museum:
         return {'errors': {'message': "Musuem couldn't be found"}}
