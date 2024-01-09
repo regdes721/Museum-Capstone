@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
-import { thunkCreateMuseum } from '../../redux/museums'
+import { thunkCreateMuseum, uploadImage } from '../../redux/museums'
 import "./CreateMuseumPage.css"
 
 export default function CreateMuseumPage() {
@@ -11,11 +11,11 @@ export default function CreateMuseumPage() {
     const sessionUser = useSelector(state => state.session.user)
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-    const [image_url, setImage] = useState('')
+    const [image, setImage] = useState('')
     const [store_name, setStoreName] = useState('')
     const [store_address, setStoreAddress] = useState('')
-    const [phone_number, setPhoneNumber] = useState('')
-    const [email, setEmail] = useState('')
+    const [phone_number, setPhoneNumber] = useState(null)
+    const [email, setEmail] = useState(null)
     const [museum_website, setMuseumWebsite] = useState('')
     const [errors, setErrors] = useState('')
 
@@ -32,10 +32,17 @@ export default function CreateMuseumPage() {
                 phone_number: "Phone Number must be exactly 10 digits"
             }, 401)
           }
+          let returnImage
+          if (image) {
+            const formData = new FormData();
+            formData.append("image", image);
+            // aws uploads can be a bit slow—displaying
+            // some sort of loading message is a good idea
+            returnImage = await dispatch(uploadImage(formData));
+          }
         const form = {
             name,
             description,
-            image_url,
             owner_id: sessionUser.id,
             store_name,
             store_address,
@@ -43,6 +50,7 @@ export default function CreateMuseumPage() {
             email,
             museum_website
         }
+        if (returnImage) form.image_url = returnImage.url
         const handleMuseumCreation = async (museum) => {
             const museumData = await dispatch(thunkCreateMuseum(museum))
             if (!museumData.errors) {
@@ -69,9 +77,9 @@ export default function CreateMuseumPage() {
             </div>
             <div>
                 <h1>Upload an image for your museum</h1>
-                <input type='text' value={image_url} onChange={e => setImage(e.target.value)} className='create-museum-input' />
+                {/* <input type='text' value={image_url} onChange={e => setImage(e.target.value)} className='create-museum-input' /> */}
+                <input type="file" className='server-creation-file-upload' accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
                 <p className='red'>{errors.image_url}</p>
-                {/* <input type="file" className='server-creation-file-upload' accept="image/*" onChange={(e) => setImage(e.target.files[0])} /> */}
             </div>
             <div>
                 <h1>{`What is the name of your museum's store/gift shop?`}</h1>

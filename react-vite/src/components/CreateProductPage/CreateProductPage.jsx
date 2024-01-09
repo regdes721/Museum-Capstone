@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from 'react-router-dom'
-import { thunkLoadMuseums } from "../../redux/museums";
+import { thunkLoadMuseums, uploadImage } from "../../redux/museums";
 import { thunkCreateProduct } from "../../redux/products";
 
 export default function CreateProductPage() {
@@ -14,7 +14,7 @@ export default function CreateProductPage() {
     const [category, setCategory] = useState("");
     const [dimensions, setDimensions] = useState("");
     const [quantity, setQuantity] = useState("");
-    const [image_url, setImageUrl] = useState("");
+    const [image, setImage] = useState("");
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector(state => state.session.user)
     const museumsObj = useSelector(state => state.museums.allMuseums);
@@ -28,6 +28,14 @@ export default function CreateProductPage() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors({})
+        let returnImage
+        if (image) {
+          const formData = new FormData();
+          formData.append("image", image);
+          // aws uploads can be a bit slow—displaying
+          // some sort of loading message is a good idea
+          returnImage = await dispatch(uploadImage(formData));
+        }
         const form = {
             museum_id,
             name,
@@ -36,8 +44,8 @@ export default function CreateProductPage() {
             category,
             dimensions,
             quantity,
-            image_url
         }
+        if (returnImage) form.image_url = returnImage.url
         const handleProductCreation = async (product) => {
             const productData = await dispatch(thunkCreateProduct(product))
             if (!productData.errors) {
@@ -61,7 +69,7 @@ export default function CreateProductPage() {
     )
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
             <h1>Hi From Create Product</h1>
             <div>
                 <label>
@@ -159,11 +167,8 @@ export default function CreateProductPage() {
                     Product Preview Image
                 </label>
                 <input
-                    type="text"
-                    value={image_url}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    required
-                />
+                    type="file" className='server-creation-file-upload'accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])} />
                 {errors.image_url && <p className="red">{errors.image_url}</p>}
             </div>
             <button type="submit" className="signup-button">SAVE</button>
