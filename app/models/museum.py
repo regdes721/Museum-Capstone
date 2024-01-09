@@ -24,8 +24,8 @@ class Museum(db.Model, UserMixin):
     user = db.relationship("User", back_populates="museums_owner")
     products = db.relationship("Product", back_populates="museum", cascade="all, delete")
 
-    def to_dict(self):
-        return {
+    def to_dict(self, products=False):
+        dictionary = {
             'id': self.id,
             'owner_id': self.owner_id,
             'name': self.name,
@@ -35,5 +35,10 @@ class Museum(db.Model, UserMixin):
             'store_address': self.store_address,
             'phone_number': self.phone_number,
             'email': self.email,
-            'museum_website': self.museum_website
+            'museum_website': self.museum_website,
         }
+
+        if products:
+            dictionary['products'] = [product.to_dict() for product in self.products]
+
+        return dictionary

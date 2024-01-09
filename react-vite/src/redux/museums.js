@@ -67,6 +67,15 @@ export const thunkCreateMuseum = (museum) => async (dispatch) => {
     }
 }
 
+export const uploadImage = (image) => async () => {
+    const res = await fetch(`/api/museums/images`, {
+        method: "POST",
+        body: image
+    })
+    const data = await res.json()
+    return data
+}
+
 export const thunkUpdateMuseum = (museum) => async (dispatch) => {
     const { museumId, name, description, image_url, store_name, store_address, phone_number, email, museum_website } = museum
     const response = await fetch(`/api/museums/${museumId}`, {

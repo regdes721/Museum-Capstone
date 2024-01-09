@@ -1,7 +1,8 @@
 from flask import Blueprint, session, jsonify, request
 from flask_login import login_required
 from app.models import db, Museum
-from ..forms import MuseumForm
+from ..forms import MuseumForm, ImageForm
+from ..aws import (upload_file_to_s3, get_unique_filename, remove_file_from_s3)
 
 museum_routes = Blueprint('museums', __name__)
 
@@ -20,7 +21,7 @@ def museum(museumId):
     Query for a user by id and returns that user in a dictionary
     """
     museum = Museum.query.get(museumId)
-    return museum.to_dict()
+    return museum.to_dict(products=True)
 
 @museum_routes.route('', methods=['POST'])
 @login_required
@@ -45,6 +46,30 @@ def create_museum():
         return new_museum.to_dict()
     return {'errors': form.errors}, 401
 
+@museum_routes.route("images", methods=["POST"])
+def upload_image():
+    form = ImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+
+        image = form.data["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        # print(upload)
+
+        if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message (and we printed it above)
+            return {"errors":[upload]}, 401
+
+        url = upload["url"]
+        return {"url": url}
+
+    if form.errors:
+        # print(form.errors)
+        return {"errors": form.errors}, 401
+
 @museum_routes.route('/<int:museumId>', methods=['PUT'])
 @login_required
 def edit_museum(museumId):
@@ -53,13 +78,13 @@ def edit_museum(museumId):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit() and int(session['_user_id']) == museum.to_dict()['owner_id']:
         data = form.data
-        museum.name = data['name'],
-        museum.description = data['description'],
-        museum.image_url = data['image_url'],
-        museum.store_name = data['store_name'],
-        museum.store_address = data['store_address'],
-        museum.phone_number = data['phone_number'],
-        museum.email = data['email'],
+        museum.name = data['name']
+        museum.description = data['description']
+        museum.image_url = data['image_url']
+        museum.store_name = data['store_name']
+        museum.store_address = data['store_address']
+        museum.phone_number = data['phone_number']
+        museum.email = data['email']
         museum.museum_website = data['museum_website']
         db.session.commit()
         return museum.to_dict()
@@ -73,8 +98,10 @@ def edit_museum(museumId):
 def delete_museum(museumId):
     museum = Museum.query.get(museumId)
     if museum and int(session['_user_id']) == museum.to_dict()['owner_id']:
+        museum_image = museum.image_url
         db.session.delete(museum)
         db.session.commit()
+        remove_file_from_s3(museum_image)
         return {'message': 'Successfully deleted'}
     if not museum:
         return {'errors': {'message': "Musuem couldn't be found"}}
