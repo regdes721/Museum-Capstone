@@ -24,11 +24,11 @@ export default function MuseumProductsPage() {
                 {museum.length === 1 ? <h1>{museum[0].name} Products</h1> : null}
             </div>
             {museumProducts && museumProducts.length > 0 && museumProducts.map((product) =>
-                <div>
+                <NavLink to={`/products/${product.id}/details`}><div>
                     <img src={product?.product_images[0].image_url} />
                     <h3>{product?.name}</h3>
                     <p>€{product?.price}</p>
-                </div>
+                </div></NavLink>
                 )}
         </div>
     )

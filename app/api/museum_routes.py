@@ -1,6 +1,6 @@
 from flask import Blueprint, session, jsonify, request
 from flask_login import login_required
-from app.models import db, Museum
+from app.models import db, Museum, Product
 from ..forms import MuseumForm, ImageForm
 from ..aws import (upload_file_to_s3, get_unique_filename, remove_file_from_s3)
 
@@ -100,8 +100,17 @@ def edit_museum(museumId):
 @login_required
 def delete_museum(museumId):
     museum = Museum.query.get(museumId)
+    museum_products = Product.query.filter(Product.museum_id == museumId)
+    print(museum_products, "--------------------")
     if museum and int(session['_user_id']) == museum.to_dict()['owner_id']:
         museum_image = museum.image_url
+        for product in museum_products:
+            print(product, "product ---------------- product")
+            print(product.product_images, "product images")
+            for image in product.product_images:
+                print(image, "image")
+                # delete from aws
+                remove_file_from_s3(image.image_url)
         db.session.delete(museum)
         db.session.commit()
         remove_file_from_s3(museum_image)

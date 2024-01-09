@@ -63,6 +63,11 @@ export default function ProductDetailsPage() {
             </div>}
             {product.length > 0 ?
                  <div>
+                    {/* <div>
+                        {product[0]?.product_images.map((image) =>
+                            <img src={image.image_url} />
+                        )}
+                    </div> */}
                     <div>
                         <img src={product[0]?.product_images[0].image_url} />
                     </div>
@@ -71,10 +76,11 @@ export default function ProductDetailsPage() {
                         <p>{product[0]?.description}</p>
                         <p>€{product[0]?.price}</p>
                         <button>ADD TO CART</button>
-                        <OpenModalButton
+                        {sessionUser.id === product[0].museum.owner_id && <OpenModalButton
                             buttonText="Delete Product"
                             modalComponent={<DeleteProductModal />}
                         />
+                        }
                         <button>Wishlist</button>
                     </div>
                     <div>
