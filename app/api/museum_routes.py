@@ -77,6 +77,7 @@ def edit_museum(museumId):
     museum = Museum.query.get(museumId)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit() and int(session['_user_id']) == museum.to_dict()['owner_id']:
+        old_museum_image = museum.image_url
         data = form.data
         museum.name = data['name']
         museum.description = data['description']
@@ -87,6 +88,8 @@ def edit_museum(museumId):
         museum.email = data['email']
         museum.museum_website = data['museum_website']
         db.session.commit()
+        if old_museum_image != data['image_url']:
+            remove_file_from_s3(old_museum_image)
         return museum.to_dict()
     elif not form.validate_on_submit():
         return {'errors': form.errors}, 401

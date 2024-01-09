@@ -20,6 +20,8 @@ export default function UpdateMuseumPage() {
     const [museum_website, setMuseumWebsite] = useState(museum && museum[0] && museum[0].museum_website ? museum[0].museum_website : '')
     const [errors, setErrors] = useState('')
 
+    console.log(image)
+
     useEffect(() => {
         if (!sessionUser) { navigate("/") }
     }, [sessionUser, navigate]);
@@ -34,7 +36,7 @@ export default function UpdateMuseumPage() {
             }, 401)
           }
           let returnImage
-          if (image) {
+          if (image && image !== museum[0].image_url) {
             const formData = new FormData();
             formData.append("image", image);
             // aws uploads can be a bit slow—displaying
@@ -52,6 +54,7 @@ export default function UpdateMuseumPage() {
             museum_website
         }
         if (returnImage) form.image_url = returnImage.url
+        else form.image_url = image
         const handleMuseumUpdate = async (museum) => {
             const museumData = await dispatch(thunkUpdateMuseum(museum))
             if (!museumData.errors) {

@@ -2,6 +2,7 @@ from flask import Blueprint, session, jsonify, request
 from flask_login import login_required
 from app.models import db, Product, ProductImage
 from ..forms import ProductForm
+from ..aws import (upload_file_to_s3, get_unique_filename, remove_file_from_s3)
 
 product_routes = Blueprint('products', __name__)
 
@@ -48,3 +49,16 @@ def create_product():
         db.session.commit()
         return new_product.to_dict()
     return {'errors': form.errors}, 401
+
+@product_routes.route('/<int:productId>', methods=['DELETE'])
+@login_required
+def delete_product(productId):
+    product = Product.query.get(productId)
+    if product and int(session['_user_id']) == product.to_dict(museum=True)['museum']['owner_id']:
+        product_image = product.product_images[0].image_url
+        db.session.delete(product)
+        db.session.commit()
+        remove_file_from_s3(product_image)
+    if not product:
+        return {'errors': {'message': "Product couldn't be found"}}
+    return {'errors': {'message': 'Unauthorized'}}, 403

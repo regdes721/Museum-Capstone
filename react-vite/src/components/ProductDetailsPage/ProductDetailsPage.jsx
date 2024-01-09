@@ -1,11 +1,14 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink } from "react-router-dom"
+import OpenModalButton from "../OpenModalButton"
 import { thunkLoadProductDetails } from "../../redux/products"
+import DeleteProductModal from "../DeleteProductModal"
 
 export default function ProductDetailsPage() {
     const { productId } = useParams()
     const dispatch = useDispatch()
+    const sessionUser = useSelector((state) => state.session.user);
     const productDetailsObj = useSelector(state => state.products.singleProduct);
     const product = Object.values(productDetailsObj)
     let category;
@@ -39,6 +42,8 @@ export default function ProductDetailsPage() {
     if (product.length > 0 && product[0].category === "Print on demand") {
         category = "print-on-demand"
     }
+    const organizerButtonClassName = (product.length !== 1 || product.length === 1 && sessionUser.id !== product[0].museum.owner_id) ? "hidden" : null
+
     console.log(product)
 
     useEffect(() => {
@@ -66,6 +71,10 @@ export default function ProductDetailsPage() {
                         <p>{product[0]?.description}</p>
                         <p>€{product[0]?.price}</p>
                         <button>ADD TO CART</button>
+                        <OpenModalButton
+                            buttonText="Delete Product"
+                            modalComponent={<DeleteProductModal />}
+                        />
                         <button>Wishlist</button>
                     </div>
                     <div>

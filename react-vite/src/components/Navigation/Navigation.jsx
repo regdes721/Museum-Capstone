@@ -142,6 +142,7 @@ function Navigation() {
               {showMenu &&
                 <ul className={ulClassName} ref={ulRef}>
                   <NavLink to="/museums/new"><li onClick={closeMenu}>Create Museum</li></NavLink>
+                  <NavLink to="/products/new"><li onClick={closeMenu}>Create Product</li></NavLink>
                 </ul>
                 }
             </div>
