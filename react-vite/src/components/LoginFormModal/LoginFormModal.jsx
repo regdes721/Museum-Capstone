@@ -35,6 +35,19 @@ function LoginFormModal() {
     closeModal()
   }
 
+  const handleDemo = (e) => {
+    e.preventDefault();
+    setErrors({});
+    return dispatch(thunkLogin({ email: 'demo@aa.io', password: 'password' }))
+      .then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+        }
+      });
+  };
+
   return (
     <>
       <div className="login-container">
@@ -72,7 +85,7 @@ function LoginFormModal() {
         <div className="login-container">
           <h2>New client:</h2>
           <button onClick={handleCreate} className="new-client-button">CREATE YOUR ACCOUNT</button>
-          <button className="new-client-button button-gap">DEMO USER</button>
+          <button className="new-client-button button-gap" onClick={handleDemo}>DEMO USER</button>
         </div>
       </div>
     </>
