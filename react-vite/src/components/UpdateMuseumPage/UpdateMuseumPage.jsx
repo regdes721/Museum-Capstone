@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { useNavigate, Navigate, useParams } from 'react-router-dom'
-import { thunkUpdateMuseum, uploadImage } from '../../redux/museums'
+import { thunkUpdateMuseum, thunkLoadMuseumDetails, uploadImage } from '../../redux/museums'
 
 export default function UpdateMuseumPage() {
     const dispatch = useDispatch()
@@ -21,10 +21,6 @@ export default function UpdateMuseumPage() {
     const [errors, setErrors] = useState('')
 
     console.log(image)
-
-    useEffect(() => {
-        if (!sessionUser) { navigate("/") }
-    }, [sessionUser, navigate]);
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -66,6 +62,25 @@ export default function UpdateMuseumPage() {
         }
         handleMuseumUpdate(form)
     }
+
+    useEffect(() => {
+        const getMuseum = async () => {
+            const museum = await dispatch(thunkLoadMuseumDetails(museumId))
+            setName(museum.name)
+            setDescription(museum.description)
+            setImage(museum.image_url)
+            setStoreName(museum.store_name)
+            setStoreAddress(museum.store_address)
+            setPhoneNumber(museum.phone_number)
+            setEmail(museum.email)
+            setMuseumWebsite(museum.museum_website)
+        }
+        getMuseum()
+    }, [dispatch])
+
+    useEffect(() => {
+        if (!sessionUser) { navigate("/") }
+    }, [sessionUser, navigate]);
 
     if (!sessionUser) return null
 

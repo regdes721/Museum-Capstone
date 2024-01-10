@@ -47,7 +47,12 @@ export const thunkLoadProducts = () => async (dispatch) => {
 export const thunkLoadProductDetails = (productId) => async (dispatch) => {
     const response = await fetch(`/api/products/${productId}`);
     const product = await response.json();
-    dispatch(loadProductDetails(product))
+    if (response.ok) {
+        dispatch(loadProductDetails(product))
+        return product
+    } else {
+        return product
+    }
 }
 
 export const thunkCreateProduct = (product) => async (dispatch) => {
