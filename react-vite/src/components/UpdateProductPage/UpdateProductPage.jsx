@@ -31,6 +31,11 @@ export default function UpdateProductPage() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors({})
+        const priceRegex = /^\d{1,7}(\.\d{1,2})?$/;
+        if (price && !priceRegex.test(price)) {
+            setErrors({ price: "Price is invalid" })
+            return
+        }
         let returnImage
         if (image && image !== product[0].product_images[0].image_url) {
           const formData = new FormData();
@@ -78,7 +83,7 @@ export default function UpdateProductPage() {
 
     return (
         <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <h1>Hi From Create Product</h1>
+            <h1>Hi From Edit Product</h1>
             <div>
                 <label>
                     Museum
@@ -162,12 +167,29 @@ export default function UpdateProductPage() {
                 <label>
                     Product Quantity
                 </label>
-                <input
-                    type="text"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    required
-                />
+                <select value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+                    <option value="" disabled>{`(Select one)`}</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                </select>
                 {errors.quantity && <p className="red">{errors.quantity}</p>}
             </div>
             <div>

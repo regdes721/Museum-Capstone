@@ -42,8 +42,7 @@ export default function ProductDetailsPage() {
     if (product.length > 0 && product[0].category === "Print on demand") {
         category = "print-on-demand"
     }
-    const organizerButtonClassName = (product.length !== 1 || product.length === 1 && sessionUser.id !== product[0].museum.owner_id) ? "hidden" : null
-
+    
     console.log(product)
 
     useEffect(() => {
@@ -76,7 +75,7 @@ export default function ProductDetailsPage() {
                         <p>{product[0]?.description}</p>
                         <p>€{product[0]?.price}</p>
                         <button>ADD TO CART</button>
-                        {sessionUser.id === product[0].museum.owner_id &&
+                        {sessionUser && sessionUser.id === product[0].museum.owner_id &&
                         <div>
                             <NavLink to={`/products/${product[0].id}/edit`}><button>Update Product</button></NavLink>
                             <OpenModalButton
