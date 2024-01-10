@@ -47,7 +47,12 @@ export const thunkLoadMuseums = () => async (dispatch) => {
 export const thunkLoadMuseumDetails = (museumId) => async (dispatch) => {
     const response = await fetch(`/api/museums/${museumId}`);
     const museum = await response.json();
-    dispatch(loadMuseumDetails(museum));
+    if (response.ok) {
+        dispatch(loadMuseumDetails(museum));
+        return museum
+    } else {
+        return museum
+    }
 }
 
 export const thunkCreateMuseum = (museum) => async (dispatch) => {

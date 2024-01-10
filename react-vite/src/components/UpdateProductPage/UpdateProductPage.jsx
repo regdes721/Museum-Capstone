@@ -10,6 +10,8 @@ export default function UpdateProductPage() {
     const { productId } = useParams();
     const productObj = useSelector(state => state.products.singleProduct)
     const product = Object.values(productObj)
+    // console.log((product && product[0] && product[0].museum_id), "-----------")
+    // console.log(product[0])
     const [museum_id, setMuseumId] = useState(product && product[0] && product[0].museum_id ? product[0].museum_id : "")
     const [name, setName] = useState(product && product[0] && product[0].name ? product[0].name : "");
     const [description, setDescription] = useState(product && product[0] && product[0].description ? product[0].description : "");
@@ -26,8 +28,7 @@ export default function UpdateProductPage() {
     if (museums) {
         userMuseums = museums.filter((museum) => museum.owner_id === sessionUser.id)
     }
-    console.log(errors)
-
+    // console.log(product)
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors({})
@@ -69,9 +70,20 @@ export default function UpdateProductPage() {
     }
 
     useEffect(() => {
-        dispatch(thunkLoadMuseums())
-        dispatch(thunkLoadProductDetails(productId))
-    }, [dispatch, productId])
+        const getProduct = async () => {
+            await dispatch(thunkLoadMuseums())
+            const product = await dispatch(thunkLoadProductDetails(productId))
+            setMuseumId(product.museum_id)
+            setName(product.name)
+            setDescription(product.description)
+            setPrice(product.price)
+            setCategory(product.category)
+            setDimensions(product.dimensions)
+            setQuantity(product.quantity)
+            setImage(product.product_images[0].image_url)
+        }
+        getProduct()
+    }, [dispatch])
 
     useEffect(() => {
         if (!sessionUser) { navigate("/") }
