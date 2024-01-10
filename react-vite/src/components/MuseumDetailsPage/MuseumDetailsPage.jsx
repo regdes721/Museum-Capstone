@@ -40,10 +40,10 @@ const MuseumDetailsPage = () => {
             <div>
                 {museum.length === 1 ? <img src={museum[0].image_url} className="museum-details-img" /> : null}
                 <div className="museum-details-main-container">
-                    <p><NavLink to="/"><span> <i className="fa-solid fa-angle-left"></i> Home</span></NavLink> <NavLink to="/museums"><span>Museums</span></NavLink> {museum.length === 1 ? <span>{museum[0].name}</span> : null }</p>
-                    {museum.length === 1 ? <h1>{museum[0].name}</h1>: null}
+                    <p><NavLink to="/" className='no-underline font-text'><span> <i className="fa-solid fa-angle-left"></i> Home</span></NavLink> <NavLink to="/museums" className='no-underline font-text'><span>Museums</span></NavLink> {museum.length === 1 ? <span className='font-text'>{museum[0].name}</span> : null }</p>
+                    {museum.length === 1 ? <h1 className="font-header all-museums-header-title">{museum[0].name}</h1>: null}
                     <div className="museum-details-columns-container">
-                        {museum.length === 1 ? <p>{museum[0].description}</p> : null}
+                        {museum.length === 1 ? <p className="font-text museum-details-column-left">{museum[0].description}</p> : null}
                         <div className="museum-details-column-right museum-details-buttons-right">
                             <div className={`${organizerButtonClassName} museum-details-buttons-right`}>
                                 {museum.length === 1 ? <NavLink to={`/museums/${museum[0].id}/edit`}><button className="nav-left-button">Update Museum</button></NavLink> : null}
@@ -58,20 +58,24 @@ const MuseumDetailsPage = () => {
                 </div>
             </div>
             {museum.length === 1 && sortedBestSellers && sortedBestSellers.length > 0 ?
-            <div>
+            <div className="font-text">
                 <h2>Best Sellers {museum[0].name}</h2>
-                {sortedBestSellers.map((product) =>
-                <NavLink to={`/products/${product.id}/details`}><div>
-                    <img src={product?.product_images[0].image_url} />
-                    <h3>{product?.name}</h3>
-                    <p>€{product?.price}</p>
-                </div></NavLink>
-                )}
-                <NavLink to={`/museums/${museum[0].id}/best-sellers`}><button>BEST SELLERS</button></NavLink>
+                <div className="best-sellers-preview-grid">
+                    {sortedBestSellers.map((product) =>
+                    <NavLink to={`/products/${product.id}/details`} className='no-underline'><div className="best-sellers-preview-container">
+                        <img src={product?.product_images[0].image_url} className="best-sellers-preview-img" />
+                        <div className="best-sellers-preview-name">
+                            <h3>{product?.name}</h3>
+                        </div>
+                        <p>€{product?.price}</p>
+                    </div></NavLink>
+                    )}
+                </div>
+                <NavLink to={`/museums/${museum[0].id}/best-sellers`}><button className="best-sellers-button">BEST SELLERS</button></NavLink>
             </div>
         : null}
             {museum.length === 1 ?
-            <div>
+            <div className="font-text">
                 <h2>Find us at the shop</h2>
                 <div className="museum-details-shopcard-container">
                     <p>{museum[0].store_name}</p>
