@@ -1,0 +1,50 @@
+.best-sellers-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.best-sellers-preview-container {
+    border-left: 1px solid #A7A7A7;
+    padding-left: 10px;
+}
+
+.best-sellers-preview-img {
+    width: 100%
+}
+
+.best-sellers-preview-name {
+    width: 80%
+}
+
+.best-sellers-button {
+    background-color: white;
+    padding: 5px 10px;
+}
+
+.best-sellers-button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.landing-page-infocard-container {
+    background-color: #E5E5E5;
+    margin: 50px 5%;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px
+}
+
+.font-text {
+    font-family: 'Tajawal', sans-serif;
+}
+
+.no-underline {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    margin: 0
+}
