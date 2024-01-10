@@ -31,11 +31,11 @@ export default function BestSellersPage() {
                 <h1>Best Sellers</h1>
             </div>
             {sortedBestSellers && sortedBestSellers.length > 0 && sortedBestSellers.map((product) =>
-                <div>
+                <NavLink to={`/products/${product.id}/details`}><div>
                     <img src={product?.product_images[0].image_url} />
                     <h3>{product?.name}</h3>
                     <p>€{product?.price}</p>
-                </div>
+                </div></NavLink>
                 )}
         </div>
     )

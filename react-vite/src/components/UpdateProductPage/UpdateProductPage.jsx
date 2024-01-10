@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, NavLink } from 'react-router-dom'
+import { useNavigate, NavLink, useParams } from 'react-router-dom'
 import { thunkLoadMuseums, uploadImage } from "../../redux/museums";
-import { thunkCreateProduct } from "../../redux/products";
+import { thunkUpdateProduct, thunkLoadProductDetails } from "../../redux/products";
 
 export default function UpdateProductPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { productId } = useParams();
     const productObj = useSelector(state => state.products.singleProduct)
     const product = Object.values(productObj)
     const [museum_id, setMuseumId] = useState(product && product[0] && product[0].museum_id ? product[0].museum_id : "")
@@ -16,7 +17,7 @@ export default function UpdateProductPage() {
     const [category, setCategory] = useState(product && product[0] && product[0].category ? product[0].category : "");
     const [dimensions, setDimensions] = useState(product && product[0] && product[0].dimensions ? product[0].dimensions : "");
     const [quantity, setQuantity] = useState(product && product[0] && product[0].quantity ? product[0].quantity : "");
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(product && product[0] && product[0].product_images ? product[0].product_images[0].image_url : "");
     const [errors, setErrors] = useState({});
     const sessionUser = useSelector(state => state.session.user)
     const museumsObj = useSelector(state => state.museums.allMuseums);
@@ -31,7 +32,7 @@ export default function UpdateProductPage() {
         e.preventDefault()
         setErrors({})
         let returnImage
-        if (image) {
+        if (image && image !== product[0].product_images[0].image_url) {
           const formData = new FormData();
           formData.append("image", image);
           // aws uploads can be a bit slow—displaying
@@ -39,6 +40,7 @@ export default function UpdateProductPage() {
           returnImage = await dispatch(uploadImage(formData));
         }
         const form = {
+            productId,
             museum_id,
             name,
             description,
@@ -50,20 +52,21 @@ export default function UpdateProductPage() {
         if (returnImage) form.image_url = returnImage.url
         if (!returnImage) form.image_url = image
         console.log("form image", form.image_url)
-        const handleProductCreation = async (product) => {
-            const productData = await dispatch(thunkCreateProduct(product))
+        const handleProductUpdate = async (product) => {
+            const productData = await dispatch(thunkUpdateProduct(product))
             if (!productData.errors) {
 
                 navigate(`/products/${productData.id}/details`)
             }
             setErrors(productData.errors)
         }
-        handleProductCreation(form)
+        handleProductUpdate(form)
     }
 
     useEffect(() => {
         dispatch(thunkLoadMuseums())
-    }, [dispatch])
+        dispatch(thunkLoadProductDetails(productId))
+    }, [dispatch, productId])
 
     useEffect(() => {
         if (!sessionUser) { navigate("/") }

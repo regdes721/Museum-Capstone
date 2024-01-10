@@ -1,6 +1,7 @@
 const LOAD_PRODUCTS = 'products/loadProducts'
 const LOAD_PRODUCT_DETAILS = 'products/loadProductDetails'
 const CREATE_PRODUCT = 'products/createProduct'
+const UPDATE_PRODUCT = 'products/updateProduct'
 const DELETE_PRODUCT = 'products/deleteProduct'
 
 export const loadProducts = (products) => {
@@ -20,6 +21,13 @@ export const loadProductDetails = (product) => {
 export const createProduct = (product) => {
     return {
         type: CREATE_PRODUCT,
+        product
+    }
+}
+
+export const updateProduct = (product) => {
+    return {
+        type: UPDATE_PRODUCT,
         product
     }
 }
@@ -59,6 +67,33 @@ export const thunkCreateProduct = (product) => async (dispatch) => {
     }
 }
 
+export const thunkUpdateProduct = (product) => async (dispatch) => {
+    const { productId, museum_id, name, description, price, category, dimensions, quantity, image_url } = product
+    const response = await fetch(`/api/products/${productId}`, {
+        method: "PUT",
+        body: JSON.stringify({
+            museum_id,
+            name,
+            description,
+            price,
+            category,
+            dimensions,
+            quantity,
+            image_url
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json();
+    if (response.ok) {
+        dispatch(updateProduct(data))
+        return data
+    } else {
+        return data
+    }
+}
+
 export const thunkDeleteProduct = (product) => async (dispatch) => {
     const { productId } = product;
     const response = await fetch(`/api/products/${productId}`, {
@@ -88,6 +123,11 @@ const productReducer = (state = initialState, action) => {
             return { ...state, singleProduct}
         }
         case CREATE_PRODUCT: {
+            const newProduct = {}
+            newProduct[0] = action.product
+            return { ...state, newProduct }
+        }
+        case UPDATE_PRODUCT: {
             const newProduct = {}
             newProduct[0] = action.product
             return { ...state, newProduct }

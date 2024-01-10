@@ -12,6 +12,7 @@ import MuseumProductsPage from '../components/MuseumProductsPage';
 import ProductCategoryPage from '../components/ProductCategoryPage';
 import ProductDetailsPage from '../components/ProductDetailsPage';
 import CreateProductPage from '../components/CreateProductPage';
+import UpdateProductPage from '../components/UpdateProductPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: "products/:productId/details",
         element: <ProductDetailsPage />
+      },
+      {
+        path: "products/:productId/edit",
+        element: <UpdateProductPage />
       },
       {
         path: "best-sellers",

@@ -50,6 +50,46 @@ def create_product():
         return new_product.to_dict()
     return {'errors': form.errors}, 401
 
+@product_routes.route('/<int:productId>', methods=['PUT'])
+@login_required
+def edit_product(productId):
+    form = ProductForm()
+    product = Product.query.get(productId)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit() and int(session['_user_id']) == product.to_dict(museum=True)['museum']['owner_id']:
+        old_product_image = ProductImage.query.filter(ProductImage.product_id == product.id).first()
+        # print(old_product_image, "------------------------------------")
+        old_image_url = old_product_image.image_url
+        # print("!!!!!!!!!!!!!!", old_image_url)
+        data = form.data
+        product.museum_id = data['museum_id']
+        product.name = data['name']
+        product.description = data['description']
+        product.price = data['price']
+        product.category = data['category']
+        product.dimensions = data['dimensions']
+        product.quantity = data['quantity']
+        db.session.commit()
+        if old_image_url != data['image_url']:
+            old_product_image.image_url = data["image_url"]
+            # new_product_image = ProductImage(
+            # product_id = product.id,
+            # image_url = data["image_url"],
+            # preview = True
+            # )
+            # db.session.add(new_product_image)
+            # db.session.commit()
+            # db.session.delete(old_product_image)
+            db.session.commit()
+            remove_file_from_s3(old_image_url)
+        return product.to_dict()
+    elif not form.validate_on_submit():
+        return {'errors': form.errors}, 401
+    return {'errors': {'message': 'Unauthorized'}}, 403
+
+
+
+
 @product_routes.route('/<int:productId>', methods=['DELETE'])
 @login_required
 def delete_product(productId):
