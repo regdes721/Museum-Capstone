@@ -76,10 +76,14 @@ export default function ProductDetailsPage() {
                         <p>{product[0]?.description}</p>
                         <p>€{product[0]?.price}</p>
                         <button>ADD TO CART</button>
-                        {sessionUser.id === product[0].museum.owner_id && <OpenModalButton
+                        {sessionUser.id === product[0].museum.owner_id &&
+                        <div>
+                            <NavLink to={`/products/${product[0].id}/edit`}><button>Update Product</button></NavLink>
+                            <OpenModalButton
                             buttonText="Delete Product"
                             modalComponent={<DeleteProductModal />}
                         />
+                        </div>
                         }
                         <button>Wishlist</button>
                     </div>
