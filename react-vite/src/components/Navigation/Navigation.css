@@ -1,6 +1,35 @@
-/* .profile-dropdown {
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   position: absolute;
-} */
+  background-color: #E5E5E5;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.profile-dropdown-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  background-color: #E5E5E5;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  top: 150px;
+  left: 30px;
+  font-size: 20px
+}
+
+.nav-menu {
+  list-style: none;
+}
+
+.nav-menu:hover {
+  color: #0A49FA
+}
 
 header {
   margin: 0 15%
