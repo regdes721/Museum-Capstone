@@ -4,6 +4,7 @@ import { useParams, NavLink } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
 import { thunkLoadProductDetails } from "../../redux/products"
 import DeleteProductModal from "../DeleteProductModal"
+import './ProductDetailsPage.css'
 
 export default function ProductDetailsPage() {
     const { productId } = useParams()
@@ -42,7 +43,7 @@ export default function ProductDetailsPage() {
     if (product.length > 0 && product[0].category === "Print on demand") {
         category = "print-on-demand"
     }
-    
+
     console.log(product)
 
     useEffect(() => {
@@ -50,44 +51,48 @@ export default function ProductDetailsPage() {
     }, [dispatch, productId])
 
     return (
-        <div>
+        <div className="all-museums-container">
             {!product || product.length === 0 ?
-            <div>
-                <p><NavLink to="/"><span> <i className="fa-solid fa-angle-left"></i> Home</span></NavLink></p>
+            <div className="museums-best-sellers-header">
+                <p><NavLink to="/" className='no-underline font-text'><span> <i className="fa-solid fa-angle-left"></i> Home</span></NavLink></p>
                 <h1>No Product Available</h1>
             </div>
             :
-            <div>
-                <p><NavLink to="/"><span> <i className="fa-solid fa-angle-left"></i> Home</span></NavLink> <NavLink to={`/products/${category}`}><span>{product[0].category}</span></NavLink></p>
+            <div className="museums-best-sellers-header">
+                <p><NavLink to="/" className='no-underline font-text'><span> <i className="fa-solid fa-angle-left"></i> Home</span></NavLink> <NavLink to={`/products/${category}`} className='no-underline font-text'><span>{product[0].category}</span></NavLink></p>
             </div>}
             {product.length > 0 ?
-                 <div>
+                 <div className="product-details-container">
                     {/* <div>
                         {product[0]?.product_images.map((image) =>
                             <img src={image.image_url} />
                         )}
                     </div> */}
                     <div>
-                        <img src={product[0]?.product_images[0].image_url} />
+                        <img src={product[0]?.product_images[0].image_url} className="product-details-preview-img" />
                     </div>
-                    <div>
-                        <h2>{product[0]?.name}</h2>
-                        <p>{product[0]?.description}</p>
-                        <p>€{product[0]?.price}</p>
-                        <button>ADD TO CART</button>
+                    <div className="font-text">
+                        <h2 className="product-details-product-name">{product[0]?.name}</h2>
+                        <p className="product-details-product-description ">{product[0]?.description}</p>
+                        <p className="product-details-product-price">€{product[0]?.price}</p>
+                        {/* <button className="product-details-addcart-button" onClick={() => (alert(`Feature Coming Soon...`))}>ADD TO CART</button> */}
                         {sessionUser && sessionUser.id === product[0].museum.owner_id &&
-                        <div>
-                            <NavLink to={`/products/${product[0].id}/edit`}><button>Update Product</button></NavLink>
+                        <div className="product-details-row-buttons product-details-row2-buttons">
+                            <NavLink to={`/products/${product[0].id}/edit`}><button className="nav-left-button">UPDATE PRODUCT</button></NavLink>
                             <OpenModalButton
-                            buttonText="Delete Product"
+                            buttonText="DELETE PRODUCT"
                             modalComponent={<DeleteProductModal />}
                         />
                         </div>
                         }
-                        <button>Wishlist</button>
+                        {/* <div className="product-details-row-buttons">
+                            <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-regular fa-heart"></i></button>
+                        </div> */}
                     </div>
-                    <div>
-                        <h3>Characteristics</h3>
+                    <div className="font-text">
+                        <div className="product-details-characteristics-border">
+                            <h3>Characteristics</h3>
+                        </div>
                         <div>
                             <p>Dimensions: {product[0].dimensions}</p>
                         </div>
@@ -98,8 +103,8 @@ export default function ProductDetailsPage() {
                 </div>
                 : null
             }
-            <div>
-                <div>
+            <div className="product-guarantees-infocard-container font-text">
+                <div className="product-guarantees-infocard-details">
                     <h3><i className="fa-solid fa-check"></i> Delivery</h3>
                     <p>Shipping in 1-2 business days according to the method of delivery chosen</p>
                 </div>
