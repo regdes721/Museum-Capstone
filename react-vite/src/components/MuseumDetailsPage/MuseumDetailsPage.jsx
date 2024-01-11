@@ -46,9 +46,9 @@ const MuseumDetailsPage = () => {
                         {museum.length === 1 ? <p className="font-text museum-details-column-left">{museum[0].description}</p> : null}
                         <div className="museum-details-column-right museum-details-buttons-right">
                             <div className={`${organizerButtonClassName} museum-details-buttons-right`}>
-                                {museum.length === 1 ? <NavLink to={`/museums/${museum[0].id}/edit`}><button className="nav-left-button">Update Museum</button></NavLink> : null}
+                                {museum.length === 1 ? <NavLink to={`/museums/${museum[0].id}/edit`}><button className="nav-left-button">UPDATE MUSEUM</button></NavLink> : null}
                                 <OpenModalButton
-                                    buttonText="Delete Museum"
+                                    buttonText="DELETE MUSEUM"
                                     modalComponent={<DeleteMuseumModal />}
                                 />
                             </div>

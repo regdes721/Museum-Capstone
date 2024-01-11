@@ -1,0 +1,11 @@
+.create-product-button {
+    background-color: white;
+    padding: 5px 10px;
+    margin-top: 20px
+}
+
+.create-product-button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

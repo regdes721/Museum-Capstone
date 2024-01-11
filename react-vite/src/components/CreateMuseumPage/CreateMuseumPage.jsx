@@ -65,48 +65,49 @@ export default function CreateMuseumPage() {
 
     return (
         <form onSubmit={onSubmit} encType="multipart/form-data" className='create-museum-container'>
+            <h1 className="font-header all-museums-header-title">Create a Museum</h1>
             <div>
-                <h1>{`What's the name of your museum?`}</h1>
+                <h2 className='font-text'>{`What's the name of your museum?`}</h2>
                 <input type='text' value={name} onChange={e => setName(e.target.value)} placeholder="Ex: Museum of Modern Art " className='create-museum-input' />
                 <p className='red'>{errors.name}</p>
             </div>
             <div>
-                <h1>Describe your museum</h1>
+                <h2 className='font-text'>Describe your museum</h2>
                 <textarea rows="13" cols="70" type='text' value={description} onChange={e => setDescription(e.target.value)} placeholder="Ex: MoMA is a place that fuels creativity, ignites minds, and provides inspiration with its extraordinary exhibitions and collection of modern and contemporary art." />
                 <p className='red'>{errors.description}</p>
             </div>
             <div>
-                <h1>Upload an image for your museum</h1>
+                <h2 className='font-text'>Upload an image for your museum</h2>
                 {/* <input type='text' value={image_url} onChange={e => setImage(e.target.value)} className='create-museum-input' /> */}
                 <input type="file" className='server-creation-file-upload' accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
                 <p className='red'>{errors.image_url}</p>
             </div>
             <div>
-                <h1>{`What is the name of your museum's store/gift shop?`}</h1>
+                <h2 className='font-text'>{`What is the name of your museum's store/gift shop?`}</h2>
                 <input type='text' value={store_name} onChange={e => setStoreName(e.target.value)} placeholder="Ex: MoMA Design Store" className='create-museum-input' />
                 <p className='red'>{errors.store_name}</p>
             </div>
             <div>
-                <h1>{`What is the address of your museum's store/gift shop?`}</h1>
+                <h2 className='font-text'>{`What is the address of your museum's store/gift shop?`}</h2>
                 <input type='text' value={store_address} onChange={e => setStoreAddress(e.target.value)} placeholder="Ex: 11 West 53 Street, Manhattan, NY 10019" className='create-museum-input' />
                 <p className='red'>{errors.store_address}</p>
             </div>
             <div>
-                <h1>{`Add a phone number for your museum's store/gift shop. (optional)`}</h1>
+                <h2 className='font-text'>{`Add a phone number for your museum's store/gift shop. (optional)`}</h2>
                 <input type='text' value={phone_number} onChange={e => setPhoneNumber(e.target.value)} className='create-museum-input' />
                 <p className='red'>{errors.phone_number}</p>
             </div>
             <div>
-                <h1>{`Add an email address for your museum's store/gift shop. (optional)`}</h1>
+                <h2 className='font-text'>{`Add an email address for your museum's store/gift shop. (optional)`}</h2>
                 <input type='text' value={email} onChange={e => setEmail(e.target.value)} className='create-museum-input' />
                 <p className='red'>{errors.email}</p>
             </div>
             <div>
-                <h1>{`What is your museum's website?`}</h1>
+                <h2 className='font-text'>{`What is your museum's website?`}</h2>
                 <input type='text' value={museum_website} onChange={e => setMuseumWebsite(e.target.value)} placeholder="Ex: https://www.moma.org/" className='create-museum-input' />
                 <p className='red'>{errors.museum_website}</p>
             </div>
-            <input type='submit' value="Create New Museum" className='create-museum-submit-button'/>
+            <input type='submit' value="SAVE" className='create-museum-submit-button'/>
             {!sessionUser && (
                 <Navigate to="/" replace={true} />
             )}
