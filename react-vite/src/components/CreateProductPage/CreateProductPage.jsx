@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink } from 'react-router-dom'
 import { thunkLoadMuseums, uploadImage } from "../../redux/museums";
 import { thunkCreateProduct } from "../../redux/products";
+import './CreateProductPage.css'
 
 export default function CreateProductPage() {
     const dispatch = useDispatch()
@@ -23,8 +24,6 @@ export default function CreateProductPage() {
     if (museums) {
         userMuseums = museums.filter((museum) => museum.owner_id === sessionUser.id)
     }
-    console.log(errors)
-    console.log(parseInt(quantity))
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -75,12 +74,12 @@ export default function CreateProductPage() {
     )
 
     return (
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <h1>Hi From Create Product</h1>
+        <form onSubmit={handleSubmit} encType="multipart/form-data" className='create-museum-container'>
+            <h1 className="font-header all-museums-header-title">Create a Product</h1>
             <div>
-                <label>
+                <h2 className='font-text'>
                     Museum
-                </label>
+                </h2>
                 <select value={museum_id} onChange={(e) => setMuseumId(e.target.value)}>
                     <option value="" disabled>{`(Select one)`}</option>
                     {userMuseums.map((museum) => (
@@ -90,23 +89,25 @@ export default function CreateProductPage() {
                 {errors.museum_id && <p className="red">{errors.museum_id}</p>}
             </div>
             <div>
-                <label>
+                <h2 className='font-text'>
                     Product Name
-                </label>
+                </h2>
                 <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    className='create-museum-input'
                     required
                 />
                 {errors.name && <p className="red">{errors.name}</p>}
             </div>
             <div>
-                <label>
+                <h2 className='font-text'>
                     Product Description
-                </label>
-                <input
+                </h2>
+                <textarea
                     type="text"
+                    rows="13" cols="70"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
@@ -114,21 +115,22 @@ export default function CreateProductPage() {
                 {errors.description && <p className="red">{errors.description}</p>}
             </div>
             <div>
-                <label>
+                <h2 className='font-text'>
                     Product Price
-                </label>
+                </h2>
                 <input
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
+                    className='create-museum-input'
                     required
                 />
                 {errors.price && <p className="red">{errors.price}</p>}
             </div>
             <div>
-                <label>
+                <h2 className='font-text'>
                     Product Category
-                </label>
+                </h2>
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="" disabled>{`(Select one)`}</option>
                     <option value="Posters & stationery">Posters & stationery</option>
@@ -145,21 +147,23 @@ export default function CreateProductPage() {
                 {errors.category && <p className="red">{errors.category}</p>}
             </div>
             <div>
-                <label>
+                <h2 className='font-text'>
                     Product Dimensions
-                </label>
+                </h2>
                 <input
                     type="text"
                     value={dimensions}
                     onChange={(e) => setDimensions(e.target.value)}
+                    placeholder="Ex: 21 cm x 15 cm"
+                    className='create-museum-input'
                     required
                 />
                 {errors.dimensions && <p className="red">{errors.dimensions}</p>}
             </div>
             <div>
-                <label>
+                <h2 className='font-text'>
                     Product Quantity
-                </label>
+                </h2>
                 <select value={quantity} onChange={(e) => setQuantity(e.target.value)}>
                     <option value="" disabled>{`(Select one)`}</option>
                     <option value="1">1</option>
@@ -186,15 +190,15 @@ export default function CreateProductPage() {
                 {errors.quantity && <p className="red">{errors.quantity}</p>}
             </div>
             <div>
-                <label>
+                <h2 className='font-text'>
                     Product Preview Image
-                </label>
+                </h2>
                 <input
                     type="file" className='server-creation-file-upload'accept="image/*"
                     onChange={(e) => setImage(e.target.files[0])} />
                 {errors.image_url && <p className="red">{errors.image_url}</p>}
             </div>
-            <button type="submit" className="signup-button">SAVE</button>
+            <button type="submit" className="create-product-button">SAVE</button>
         </form>
     )
 }

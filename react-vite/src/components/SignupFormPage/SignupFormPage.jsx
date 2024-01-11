@@ -59,7 +59,7 @@ function SignupFormPage() {
 
   return (
     <div className="signup-container">
-      <h1>Create your account</h1>
+      <h1 className="font-header all-museums-header-title">Create your account</h1>
       <form onSubmit={handleSubmit}>
         <div className="signup-content-container">
           <label>

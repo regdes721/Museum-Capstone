@@ -51,8 +51,8 @@ function LoginFormModal() {
   return (
     <>
       <div className="login-container">
-        <h1>Log In</h1>
-        <h2>Already client?</h2>
+        <h1 className="font-header all-museums-header-title">Log In</h1>
+        <h2 className="font-text">Already client?</h2>
         <form onSubmit={handleSubmit}>
           <div className='login-form-content-container'>
             <label>
@@ -83,7 +83,7 @@ function LoginFormModal() {
       </div>
       <div className="gray-container">
         <div className="login-container">
-          <h2>New client:</h2>
+          <h2 className="font-text">New client:</h2>
           <button onClick={handleCreate} className="new-client-button">CREATE YOUR ACCOUNT</button>
           <button className="new-client-button button-gap" onClick={handleDemo}>DEMO USER</button>
         </div>
