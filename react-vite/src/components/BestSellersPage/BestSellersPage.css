@@ -1,0 +1,9 @@
+.product-guarantees-infocard-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 40px;
+}
+
+.product-guarantees-infocard-details {
+    width: 80%
+}

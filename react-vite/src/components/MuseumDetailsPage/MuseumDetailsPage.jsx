@@ -67,7 +67,7 @@ const MuseumDetailsPage = () => {
                         <div className="best-sellers-preview-name">
                             <h3>{product?.name}</h3>
                         </div>
-                        <p>€{product?.price}</p>
+                        <p>€{product?.price.toFixed(2)}</p>
                     </div></NavLink>
                     )}
                 </div>
