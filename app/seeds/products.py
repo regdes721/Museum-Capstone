@@ -118,8 +118,69 @@ def seed_products():
         description = 'This MB Original bento box is the perfect partner for your daily lunches at the office, for your picnics and other meals on the go. Made in France, this compartmentalised lunch box is made of quality materials to follow you every day, for many years. The visual featuring a detail by one of a work from the series of Small Flowers by the Japanese artist Katsushika Hokusai (1760-1849), "Bullfinch and weeping cherry-tree", 1834. Katsushika Hokusai (1760-1849), painter, draftsman, engraver and author is the most famous artist in the world. He renewed the art of printmaking.',
         price = 39.95,
         category = "Decoration",
+        num_sold = 6,
         dimensions = "18.5 cm x 9.5 cm x 6 cm",
         quantity = 20
+    )
+    product_13 = Product(
+        museum_id = 1,
+        name = "Mona Lisa Lip balm",
+        description = "Box showing a detail of the work of Leonardo da Vinci, Portrait of Lisa del Giocondo, called Mona Lisa.",
+        price = 4.95,
+        category = "Beauty",
+        num_sold = 12,
+        dimensions = "Ø 3,7 cm",
+        quantity = 12
+    )
+    product_14 = Product(
+        museum_id = 1,
+        name = "Spiral Notebook Alexandre Hyacinthe Dunouy - View of Naples from Capodimonte, 1813",
+        description = 'This notebook was published for the exhibition "Naples in Paris The Louvre Hosts the Museo di Capodimonte" at the musée du Louvre from June 7th 2023 to January 8th 2024. 1st and 2nd cover: Alexandre Hyacinthe Dunouy (1757-1841) View of Naples from Capodimonte (details), 1813. Oil on canvas. H. 129 ; l. 180 cm. Naples, Museo e Real Bosco di Capodimonte. © Photo Amedeo Benestante. 3rd and 4th cover: Pierre jacques Volaire (1729-1799) Eruption of Vesuvius from the Ponte della Maddalena (Mary Magdalene Bridge) (details), 1782. Oil on canvas. H. 130 ; l. 240 cm. Naples, Museo e Real Bosco di Capodimonte. © Photo Per gentile concessione del Museo e Real Bosco di Capodimonte. Notebook 17×22 cm, 100 pages, white sheets. Printed in France, on creative papers. © Rmn-Grand Palais, Paris 2023',
+        price = 6,
+        category = "Posters & stationery",
+        num_sold = 8,
+        dimensions = "17 x 22 cm",
+        quantity = 6
+    )
+    product_15 = Product(
+        museum_id = 1,
+        name = "Mona Lisa Glasses Case",
+        description = "Glasses case showing details of the work of Leonardo da Vinci, Portrait of Lisa del Giocondo, called Mona Lisa. This eyeglass case is sold with a microfiber of the same visual.",
+        price = 15.95,
+        category = "Fashion & Accessories",
+        num_sold = 7,
+        dimensions = "16,5 x 6,5 x 3 cm",
+        quantity = 12
+    )
+    product_16 = Product(
+        museum_id = 2,
+        name = "Waterlilies mug",
+        description = "Mug showing a detail of the work of Claude Monet, Nymphéas, Matin. Suitable for dishwasher and microwave.",
+        price = 12.95,
+        category = "Decoration",
+        num_sold = 12,
+        dimensions = "Ø 8 cm ; H. 9,2 cm",
+        quantity = 18
+    )
+    product_17 = Product(
+        museum_id = 2,
+        name = "Black Panther - François Pompon - Small size",
+        description = "Reproduction with hand patina. Mold made from an impression of the original work exhibited at the Musée d'Orsay.As an observer of animals at the Jardin des Plantes zoo, François Pompon was able to transcribe their movements by eliminating the characteristic modeling of his master and employer, Auguste Rodin. The panther's slender profile lends itself particularly well to this simplification of form, as does the choice of monochrome materials: black marble or bronze with a brown patina.",
+        price = 240,
+        category = "Sculpture",
+        num_sold = 13,
+        dimensions = "35 x 14 x 5 cm",
+        quantity = 7
+    )
+    product_18 = Product(
+        museum_id = 2,
+        name = "Poppy Pin - Claude Monet",
+        description = "This pin is inspired by the famous work of Claude Monet (1840-1926), Poppies, 1873, musée d'Orsay. He showed Poppies to the public at the first Impressionist exhibition held in the photographer Nadar's disused studio in 1874. Now one of the world's most famous paintings, it conjures up the vibrant atmosphere of a stroll through the fields on a summer's day. Monet diluted the contours and constructed a colourful rhythm with blobs of paint starting from a sprinkling of poppies; the disproportionately large patches in the foreground indicate the primacy he put on visual impression. A step towards abstraction had been taken.",
+        price = 7.95,
+        category = "Jewellery",
+        num_sold = 8,
+        dimensions = "2.3 cm x 2.1 cm",
+        quantity = 8
     )
     db.session.add(product_1)
     db.session.add(product_2)
@@ -133,6 +194,13 @@ def seed_products():
     db.session.add(product_10)
     db.session.add(product_11)
     db.session.add(product_12)
+    db.session.add(product_12)
+    db.session.add(product_13)
+    db.session.add(product_14)
+    db.session.add(product_15)
+    db.session.add(product_16)
+    db.session.add(product_17)
+    db.session.add(product_18)
     db.session.commit()
 
 
