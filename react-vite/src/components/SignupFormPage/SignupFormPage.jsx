@@ -20,23 +20,67 @@ function SignupFormPage() {
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
+  const validateEmail = (email) => {
+    const atPos = email.indexOf("@");
+    const dotPos = email.lastIndexOf(".");
+    return atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 1;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let errorsTemp = {}
+    setErrors({})
 
     const mobileNumberRegex = /^[0-9]*$/
 
+    if (/\d/.test(firstName) === true) {
+      errorsTemp = {
+        ...errorsTemp,
+        first_name:
+          "First name must not include digits (0-9)"
+      };
+    }
+
+    if (/\d/.test(lastName) === true) {
+      errorsTemp = {
+        ...errorsTemp,
+        last_name:
+          "Last name must not include digits (0-9)"
+      };
+    }
+
+    if (password.length < 6) {
+      errorsTemp = {
+        ...errorsTemp,
+        password: "Password must be at least 6 characters",
+      };
+    }
+
     if (password !== confirmPassword) {
-      return setErrors({
+      errorsTemp = {
+        ...errorsTemp,
         confirmPassword:
           "Confirm Password field must be the same as the Password field",
-      });
+      };
+    }
+
+    if (!validateEmail(email)) {
+      errorsTemp = {
+        ...errorsTemp,
+        email:
+          "Invalid Email Address"
+      };
     }
 
     if (mobileNumber.split(" ").join("").length !== 10 || !mobileNumberRegex.test(mobileNumber.split(" ").join(""))) {
-      return setErrors({
+      errorsTemp = {
+        ...errorsTemp,
         mobile_number: "Mobile Number must be exactly 10 digits"
-      })
+      }
     }
+
+    setErrors(errorsTemp)
+    if (Object.keys(errorsTemp).length) return
 
     const serverResponse = await dispatch(
       thunkSignup({
