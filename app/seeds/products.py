@@ -462,6 +462,46 @@ def seed_products():
         dimensions = "32.6 cm x 46.4 cm",
         quantity = 7
     )
+    product_47 = Product(
+        museum_id = 3,
+        name = "Madame Adelaide Lip balm",
+        description = "Lip balm featuring the portrait of Madame Adelaide painted by Jean-Marc Nattier in 1756. The drawings are inspired by the bedroom of Madame Adelaide at the Versailles Castle.",
+        price = 4.95,
+        category = "Beauty",
+        num_sold = 7,
+        dimensions = "Ø 3,7 cm",
+        quantity = 10
+    )
+    product_48 = Product(
+        museum_id = 3,
+        name = "Hand cream Verbena fragrance",
+        description = "Be soft to the tips of your nails with this hand cream with the scent of verbena.",
+        price = 5.95,
+        category = "Beauty",
+        num_sold = 7,
+        dimensions = "10.5 cm x 3.8 cm",
+        quantity = 11
+    )
+    product_49 = Product(
+        museum_id = 3,
+        name = "Manicure set Marie-Antoinette - Ladies of the court",
+        description = "An elegant manicure set with motifs reminiscent of the tapestries of the Château de Versailles. The 'Dames de la Cour' range was created for the Chapelle counter in the heart of the Château de Versailles. It features portraits of great ladies on a floral background. Contains: Cuticle repellent; tweezers; scissors; file; wooden and nylon nail clippers",
+        price = 19.95,
+        category = "Beauty",
+        num_sold = 7,
+        dimensions = "10.5 cm x 3.8 cm",
+        quantity = 11
+    )
+    product_50 = Product(
+        museum_id = 3,
+        name = "2024 Small Calendar - Napoleon - 15.5 x 18 cm",
+        description = "2024 Small Calendar 15.5x18 cm featuring 12 paintings and pictures associated to the life of French Emperor Napoleon (1769-1821). 1 double page per month. Languages: English, French, German, Italian, Spanish. Printed in France, on fine papers.",
+        price = 5,
+        category = "Posters & stationery",
+        num_sold = 7,
+        dimensions = "15,5 x 18 cm",
+        quantity = 12
+    )
     db.session.add(product_1)
     db.session.add(product_2)
     db.session.add(product_3)
@@ -509,6 +549,10 @@ def seed_products():
     db.session.add(product_44)
     db.session.add(product_45)
     db.session.add(product_46)
+    db.session.add(product_47)
+    db.session.add(product_48)
+    db.session.add(product_49)
+    db.session.add(product_50)
     db.session.commit()
 
 
