@@ -242,6 +242,96 @@ def seed_products():
         dimensions = "12,2 x 17,6 x 4,9 cm",
         quantity = 13
     )
+    product_25 = Product(
+        museum_id = 1,
+        name = "Mona Lisa Poster - Leonardo da Vinci",
+        description = "This poster is a reproduction of Leonardo da Vinci's famous painting, The Mona Lisa, or Portrait of Mona Lisa. Leonardo di ser Piero Da Vinci, known as Leonardo da Vinci. Portrait of Lisa Gherardini, wife of Francesco del Giocondo, known as Mona Lisa, the Gioconda or Mona Lisa (ca. 1503 - 1506). Oil on poplar panel (H. 0,77 m. - W. 0,53 m.). Louvre Museum, Paris.",
+        price = 11,
+        category = "Posters & stationery",
+        num_sold = 7,
+        dimensions = "50 x 70 cm",
+        quantity = 17
+    )
+    product_26 = Product(
+        museum_id = 1,
+        name = "Tray Alexandre Hyacinthe Dunouy - View of Naples from Capodimonte, 1813 - 28x20 cm",
+        description = 'This tray created for the exhibition "Naples in Paris The Louvre Hosts the Museo di Capodimonte" at the musée du Louvre from June 7th 2023 to January 8th 2024 was inspired by a detail from the work by the French artist Alexandre Hyacinthe Dunouy (1757-1841), View of Naples from Capodimonte, 1813.',
+        price = 8.95,
+        category = "Decoration",
+        num_sold = 7,
+        dimensions = "28 cm x 20 cm",
+        quantity = 20
+    )
+    product_27 = Product(
+        museum_id = 1,
+        name = "Reversible Ring Medallion of Panticapaea",
+        description = "This reversible ring in gilded brass and natural stone is inspired by a gold, garnet and glass necklace from the Hellenistic period in the Louvre's Department of Greek, Etruscan and Roman Antiquities. Element of a necklace. Kerch (ancient Panticapaea), Hellenistic period (323 - 31 BC). Original gold, garnet, glass. Musée du Louvre, Paris. In the 7th century BC, Greek settlers from Ionia founded a city named Panticapaeum on the shores of the Kerch Strait (modern-day Crimea), at the top of Mount Mithridates. Situated at the junction of trade routes between Asia and Europe, Panticapaeum experienced significant growth, becoming the capital of the kings of Bosporus, occasionally referred to as the Cimmerian Bosporus (5th - 4th century BC), and minting its own coins from the middle of the 6th century BC. The upper town features a colonnaded palace, as well as the temples of Apollo, Artemis, Zeus and Demeter. The city's decline was caused by the advances of neighbouring peoples, such as the Sarmatians (from the 3rd century BC), and by economic competition in the grain trade, particularly from Egypt. Archaeological excavations began in 1830, unearthing the Acropolis, and revealing royal skeletons, numerous gold and bronze coins, stelae, vases, gold and silver ornaments, as well as jewellery - such as this medallion, which is a necklace component made of gold and garnet or red glass, featuring two loops. Keep the jewellery away from dust and moisture. Avoid contact with perfume, chemicals and cosmetics; avoid getting the jewellery wet.",
+        price = 45,
+        category = "Jewellery",
+        num_sold = 7,
+        dimensions = "1.5 cm",
+        quantity = 15
+    )
+    product_28 = Product(
+        museum_id = 2,
+        name = "Art Tote Bag",
+        description = "The Boutiques de Musées cotton tote bag! Easy to fold and transport, resistant, and 100% cotton.",
+        price = 3.20,
+        category = "Fashion & Accessories",
+        num_sold = 9,
+        dimensions = "45 x 35 cm",
+        quantity = 20
+    )
+    product_29 = Product(
+        museum_id = 2,
+        name = "Souvenir Medal Musée d'Orsay François Pompon - Polar Bear - Monnaie de Paris",
+        description = "This souvenir medal is a tribute to the famous sculpture, Polar Bear by François Pompon (1855-1933). Kept at the Musée d'Orsay. For many years, Pompon was one of the most sought-after assistants in Paris, hewing blocks of marble for Auguste Rodin and Camille Claudel. But after 1905, in reaction to Rodin's expressionism, Pompon abandoned the human figure and turned to the animals that he observed at the Jardin des Plantes. Polar Bear is the finest achievement in this vein; when it was exhibited at the Salon d'Automne in 1922, it brought the artist tardy recognition, at the age of sixty-seven.",
+        price = 3,
+        category = "Decoration",
+        num_sold = 9,
+        dimensions = "3.4 cm",
+        quantity = 20
+    )
+    product_30 = Product(
+        museum_id = 2,
+        name = "Small Notebook Vincent van Gogh - Self-portrait, 1889",
+        description = "This notebook was published for the exhibition 'Van Gogh in Auvers-sur-Oise The Final Months' from October 3rd, 2023 to February 4th, 2024 at the musée d'Orsay. The illustration on this notebook uses the gradations of blue skies from the work by Vincent Van Gogh (1853 - 1890). Self-portrait (details), 1889 Oil on canvas H. 65,0 ; W. 54,2 cm. Gift of Paul and Marguerite Gachet, 1949 © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt. Like Rembrandt and Goya, Vincent van Gogh often used himself as a model; he produced over forty-three self-portraits, paintings or drawings in ten years. Like the old masters, he observed himself critically in a mirror. Painting oneself is not an innocuous act: it is a questioning which often leads to an identity crisis. In this head-and-shoulders view, the artist is wearing a suit and not the pea jacket he usually worked in. Attention is focused on the face. His features are hard and emaciated, his green-rimmed eyes seem intransigent and anxious. The dominant colour, a mix of absinth green and pale turquoise finds a counterpoint in its complementary colour, the fiery orange of the beard and hair. The model's immobility contrasts with the undulating hair and beard, echoed and amplified in the hallucinatory arabesques of the background. Notebook 10 x 16 cm 56 pages - lined pages. Printed in France, on fine art papers. © Rmn - Grand Palais, Paris 2023",
+        price = 4.90,
+        category = "Posters & stationery",
+        num_sold = 8,
+        dimensions = "10 x 16 cm",
+        quantity = 12
+    )
+    product_31 = Product(
+        museum_id = 3,
+        name = "Key of the Royal Chapel",
+        description = "Inspired replica of the Key to the main door of the Royal chapel in the Château de Versailles elaborated by the sculptor Grettepin circa 1710. Replica made with an alloy of lead and tin can be used as a paperweight.",
+        price = 83.50,
+        category = "Posters & stationery",
+        num_sold = 8,
+        dimensions = "31.5 cm x 8.2 cm",
+        quantity = 13
+    )
+    product_32 = Product(
+        museum_id = 3,
+        name = "Marie Antoinette Bag vaporizer",
+        description = 'This bag vaporizer belongs to the "Ladies of the Court" range. This range was created for the Versailles Castle. It represents portraits of great ladies on a flowery background, reminiscent of the tapestries of the castle.',
+        price = 14.95,
+        category = "Beauty",
+        num_sold = 7,
+        dimensions = "10.5 cm x 3.8 cm",
+        quantity = 17
+    )
+    product_33 = Product(
+        museum_id = 3,
+        name = "Marie-Antoinette Monogrammed Brooch",
+        description = "Marie Antoinette (1755-1793). Versailles Jewellery Collection. A monogram, or initials, is composed of the first letter of a name and either doubled or followed by the second letter of the name, both interwoven into one character, with or without ornaments. It is used to sign but can be seen also on bronzes or furnishing or any object pertaining to the owner of the monogram. Also the initials M A can be seen, amongst other things, on the ramp of the staircases of the hall at the Petit Trianon, in the Salon doré at Versailles, on the porcelain set of the Queen's travel kit.",
+        price = 35,
+        category = "Jewellery",
+        num_sold = 6,
+        dimensions = "4.5 x 4 cm",
+        quantity = 12
+    )
     db.session.add(product_1)
     db.session.add(product_2)
     db.session.add(product_3)
@@ -267,6 +357,15 @@ def seed_products():
     db.session.add(product_22)
     db.session.add(product_23)
     db.session.add(product_24)
+    db.session.add(product_25)
+    db.session.add(product_26)
+    db.session.add(product_27)
+    db.session.add(product_28)
+    db.session.add(product_29)
+    db.session.add(product_30)
+    db.session.add(product_31)
+    db.session.add(product_32)
+    db.session.add(product_33)
     db.session.commit()
 
 
