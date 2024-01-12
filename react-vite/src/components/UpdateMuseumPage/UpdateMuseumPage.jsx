@@ -24,13 +24,23 @@ export default function UpdateMuseumPage() {
 
     const onSubmit = async (e) => {
         e.preventDefault()
+        let errorsTemp = {}
         setErrors({})
         const phoneNumberRegex = /^[0-9]*$/
         if (phone_number && phone_number.split(" ").join("").length !== 10 || phone_number && !phoneNumberRegex.test(phone_number.split(" ").join(""))) {
-            return setErrors({
+            errorsTemp = {
+                ...errorsTemp,
                 phone_number: "Phone Number must be exactly 10 digits"
-            }, 401)
-          }
+            }
+        }
+        if (name.length > 100) {
+            errorsTemp = {
+                ...errorsTemp,
+                name: "Museum name cannot be more than 100 characters"
+            }
+        }
+        setErrors(errorsTemp)
+        if (Object.keys(errorsTemp).length) return
           let returnImage
           if (image && image !== museum[0].image_url) {
             const formData = new FormData();
