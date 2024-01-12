@@ -1,3 +1,12 @@
+.landing-page-img-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.landing-page-img {
+    width: 100%
+}
+
 .best-sellers-preview-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
