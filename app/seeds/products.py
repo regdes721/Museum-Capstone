@@ -332,6 +332,176 @@ def seed_products():
         dimensions = "4.5 x 4 cm",
         quantity = 12
     )
+    product_34 = Product(
+        museum_id = 4,
+        name = "Chinese dancer - Right version",
+        description = "Reproduction patinated by hand. Mold made from an imprint of the original, statuette dated from the first half of 7th century exhibited at Guimet museum. These two dancers were cast in square-based moulds inspired by the Sui prototypes. Their originality lies in their green and brown glaze . The revival of this technique, wich was similar to the one used in glassmaking, was probably due to the Bei Qi potters of Henan . Works with lead- based glazes were extremely rare at the end of the 6th century and in the first half of the 7th century. Their silhouettes, facial features and hairstyles belong to the same ideal of beauty as the creations of the mid-7th century. Their hair is drawn up to the top of their heads and arranged like outspread butterfly wings. Their oval faces grace slender, adolescent bodies. The tight-fitting bodices enhance the delicately moulded, bowed busts. The narrow waists, supple backs and folded legs are suspended in a dance movement. Although many of the melodies of this era are well-known, it is difficult to match them with a specific choreography. At best, one may deduce that these harmonious attitudes belong more to the traditional Chinese ruan style than to the much livelier Western jian dances. Foreign contributions were indeed absorbed, but the way of moving near the ground could have come from India. Much of the dancer's talent probably lay in the manner in which she hovered apparently weightlessly held up by the swirling fabrics of her sleeve.",
+        price = 235,
+        category = "Sculpture",
+        num_sold = 7,
+        dimensions = "16 x 20 x 17 cm",
+        quantity = 7
+    )
+    product_35 = Product(
+        museum_id = 4,
+        name = "Cervid",
+        description = "Hand-patinated bronze reproduction on a metal base. Hand-patinated resin reproduction on a wooden base. Mold made from an impression of the original work. A large number of vases in the form of animals, arms and figures in bronze, as well as items of silverware, which were said to have come from the Iranian site of Amlash, appeared in antique shops around 1960. It was soon discovered that Amlash was only the village where clandestine diggers sold antiquities they found in a region of green hills overlooking the south-west of the Caspian Sea, the major site of which is Marlik. Archaeological digs were started by Professor Negahban who had discovered a royal necropolis with a culture that can be attributed to Iranian invaders from the Gorgan plain, to the south-west of the Caspian sea. These invaders had mixed with the native people who transmitted to them the traditions of the leading civilizations of western Asia, from the 13th century B.C. onwards. The two populations merged and created a highly original art.",
+        price = 160,
+        category = "Sculpture",
+        num_sold = 7,
+        dimensions = "20 x 6 x 3 cm",
+        quantity = 10
+    )
+    product_36 = Product(
+        museum_id = 4,
+        name = "Bangle bracelet Hokusai - The great wave",
+        description = 'This bracelet is inspired by a detail of one of the most famous works of the Japanese artist Katsushika Hokusai (1760-1849), "Under the wave off Kanagawa" ("the big wave") (Kanagawa oki namiura) 1830-32. Katsushika Hokusai (1760-1849), painter, draftsman, engraver and author is the most famous artist in the world. He renewed the art of printmaking with his famous works such as "Under the Wave off Kanagawa" which is the first of a serie of Thirty-six views of Mount Fuji published between 1831 and 1833. Materials: Gilded brass, colored resin. MAINTENANCE: Keep the jewel away from dust and humidity. Avoid contact with perfume, chemical products and cosmetics; avoid wetting the jewel.',
+        price = 49,
+        category = "Jewellery",
+        num_sold = 7,
+        dimensions = "1.5 cm x 6.3 cm",
+        quantity = 15
+    )
+    product_37 = Product(
+        museum_id = 1,
+        name = "Horse Chestnut - Black or colored version",
+        description = "In 1667, the newly-formed Académie Royale des Sciences undertook, on the king's orders, the production of a scholarly work: the Histoire des plantes, including a collection of engraved botanical species. The 319 engravings were produced by Nicolas Robert, Abraham Bosse and Louis de Chastillon, before being published by Denis Dodart, the king's botanist and physician. According to a standardized model, each plate includes a 1:1 illustration, a detailed description, a statement of its various properties, particularly medicinal, and the results of chemical and physiological studies. Nicolas Marchant, 'concierge and director of plant cultivation in the royal garden', brought in seeds from foreign countries to provide living models for academicians, draftsmen and engravers. This ambitious project by the Académie des Sciences, begun in the late 17th century, was never fully completed, and no complete edition was ever published. Today, these 319 copperplates are preserved by the Chalcographie du Louvre.",
+        price = 350,
+        category = "Engravings",
+        num_sold = 7,
+        dimensions = "45 cm x 63,5 cm",
+        quantity = 12
+    )
+    product_38 = Product(
+        museum_id = 1,
+        name = "Mrs Vigée-Le Brun and her daughter, Jeanne-Lucie, known as Julie",
+        description = "This painting immortalizing maternal love was painted in 1789 for the Count of Angiviller, then Director of the King's Buildings. Its author, Madame Vigée Le Brun, was the first woman to be admitted to the Royal Academy of Painting, an acceptance helped in part by the thirty portraits she made of Marie-Antoinette and by the recommendations of Louis XVI. In addition to his painting of portraits of the greats of the French crown, his salons were famous and all Paris frequented them: the Countess de Ségur, de Polignac...",
+        price = 130,
+        category = "Engravings",
+        num_sold = 7,
+        dimensions = "50 x 65 cm",
+        quantity = 13
+    )
+    product_39 = Product(
+        museum_id = 1,
+        name = "Les Sabines",
+        description = "The Intervention of the Sabine Women is a 1799 painting by the French painter Jacques-Louis David, showing a legendary episode following the abduction of the Sabine women by the founding generation of Rome. Work on the painting commenced in 1796, after his estranged wife visited him in jail. He conceived the idea of telling the story, to honour his wife, with the theme being love prevailing over conflict and the protection of children. The painting was also seen as a plea for the people to reunite after the bloodshed of the revolution. Its realization took him nearly four years.",
+        price = 550,
+        category = "Engravings",
+        num_sold = 7,
+        dimensions = "76 x 100 cm",
+        quantity = 13
+    )
+    product_40 = Product(
+        museum_id = 1,
+        name = "Paris in 1860 - Edouard Willmann",
+        description = "Willmann was a student of Frommel and a professor at the Frankfurt School of Fine Arts. As for most artists of his time, the fascination exercised by the Paris of the Second Empire, a universal place of artistic creation, inspired him to write this famous and heroic composition with a burin, offered to Chalcographie by Emperor Napoleon III. This heroic conception of the urban landscape, seen from the sky, is in the tradition of classical engravers and also announces, by the scale of the format of the leaf, the great compositions that will be the masterpieces of universal exhibitions where the mastery of a technique combined with the talent of interpretation attracted the votes of the general public.",
+        price = 350,
+        category = "Engravings",
+        num_sold = 7,
+        dimensions = "90 x 126 cm",
+        quantity = 15
+    )
+    product_41 = Product(
+        museum_id = 1,
+        name = "Birth of Venus. Fragment - Botticelli",
+        description = 'This print is a reproduction of a fragment of the painting "The Birth of Venus" by Botticelli.',
+        price = 95,
+        category = "Engravings",
+        num_sold = 8,
+        dimensions = "38 x 56 cm",
+        quantity = 8
+    )
+    product_42 = Product(
+        museum_id = 2,
+        name = "Le Tub (détail)",
+        description = "The Tub is a pastel artwork by Edgar Degas (1834–1917), painted in 1886, and housed in the Musée d'Orsay in Paris. A masterwork of Degas, it skillfully combines still life of toilet articles with a distorted perspective and plunging view, make this pastel one of the most audacious and accomplished of Degas' works.",
+        price = 39,
+        category = "Print on demand",
+        num_sold = 7,
+        dimensions = "46.4 cm x 34.7 cm",
+        quantity = 9
+    )
+    product_43 = Product(
+        museum_id = 2,
+        name = "Portrait d’Édouard Manet debout",
+        description = "Édouard Manet (23 January 1832 – 30 April 1883) was a French modernist painter. He was one of the first 19th-century artists to paint modern life, as well as a pivotal figure in the transition from Realism to Impressionism.",
+        price = 39,
+        category = "Print on demand",
+        num_sold = 7,
+        dimensions = "31.1 cm x 46.4 cm",
+        quantity = 10
+    )
+    product_44 = Product(
+        museum_id = 2,
+        name = "Van Gogh self-portrait",
+        description = "Vincent Willem van Gogh (30 March 1853 – 29 July 1890) was a Dutch Post-Impressionist painter who is among the most famous and influential figures in the history of Western art. In just over a decade he created approximately 2100 artworks, including around 860 oil paintings, most of them in the last two years of his life. They include landscapes, still lifes, portraits and self-portraits, and are characterised by bold, symbolic colours, and dramatic, impulsive and highly expressive brushwork that contributed to the foundations of modern art. Only one of his paintings was known by name to have been sold during his lifetime. Van Gogh became famous after his suicide at age 37, which followed years of poverty and mental illness.",
+        price = 39,
+        category = "Print on demand",
+        num_sold = 7,
+        dimensions = "39.5 cm x 46.4 cm",
+        quantity = 8
+    )
+    product_45 = Product(
+        museum_id = 2,
+        name = "The starry night",
+        description = "From the moment of his arrival in Arles, on 8 February 1888, Van Gogh was constantly preoccupied with the representation of 'night effects'. In April 1888, he wrote to his brother Theo: 'I need a starry night with cypresses or maybe above a field of ripe wheat.' In June, he confided to the painter Emile Bernard: 'But when shall I ever paint the Starry Sky, this painting that keeps haunting me' and, in September, in a letter to his sister, he evoked the same subject: 'Often it seems to me night is even more richly coloured than day'. During the same month of September, he finally realised his obsessive project. He first painted a corner of nocturnal sky in Cafe Terrace on the Place du Forum, Arles (Otterlo, Rijksmuseum Kröller-Muller). Next came this view of the Rhône in which he marvellously transcribed the colours he perceived in the dark. Blues prevail: Prussian blue, ultramarine and cobalt. The city gas lights glimmer an intense orange and are reflected in the water. The stars sparkle like gemstones. A few months later, just after being confined to a mental institution, Van Gogh painted another version of the same subject: Starry Night (New York, MoMA), in which the violence of his troubled psyche is fully expressed. Trees are shaped like flames while the sky and stars whirl in a cosmic vision. The Musée d'Orsay's Starry Night is more serene, an atmosphere reinforced by the presence of a couple of lovers at the bottom of the canvas.",
+        price = 39,
+        category = "Print on demand",
+        num_sold = 7,
+        dimensions = "46.4 cm x 37.7 cm",
+        quantity = 5
+    )
+    product_46 = Product(
+        museum_id = 4,
+        name = "Album de la série des Cinquante-trois relais du Tôkaidô",
+        description = "The Fifty-Three Stations of the Tōkaidō (東海道五十三次, Tōkaidō Gojūsan-tsugi), in the Hōeidō edition (1833–1834), is a series of ukiyo-e woodcut prints created by Utagawa Hiroshige after his first travel along the Tōkaidō in 1832. The Tōkaidō road, linking the shōgun's capital, Edo, to the imperial one, Kyōto, was the main travel and transport artery of old Japan. It is also the most important of the 'Five Roads' (Gokaidō)—the five major roads of Japan created or developed during the Edo period to further strengthen the control of the central shogunate administration over the whole country. Even though the Hōeidō edition is by far the best known, The Fifty-Three Stations of the Tōkaidō was such a popular subject that it led Hiroshige to create some 30 different series of woodcut prints on it, all very different one from the other by their size (ōban or chuban), their designs or even their number (some series include just a few prints). The Hōeidō edition of the Tōkaidō is Hiroshige's best known work, and the best sold ever ukiyo-e Japanese prints.[2] Coming just after Hokusai's Thirty-six Views of Mount Fuji series, it established this new major theme of ukiyo-e, the landscape print, or fūkei-ga, with a special focus on 'famous views'.",
+        price = 39,
+        category = "Print on demand",
+        num_sold = 7,
+        dimensions = "32.6 cm x 46.4 cm",
+        quantity = 7
+    )
+    product_47 = Product(
+        museum_id = 3,
+        name = "Madame Adelaide Lip balm",
+        description = "Lip balm featuring the portrait of Madame Adelaide painted by Jean-Marc Nattier in 1756. The drawings are inspired by the bedroom of Madame Adelaide at the Versailles Castle.",
+        price = 4.95,
+        category = "Beauty",
+        num_sold = 7,
+        dimensions = "Ø 3,7 cm",
+        quantity = 10
+    )
+    product_48 = Product(
+        museum_id = 3,
+        name = "Hand cream Verbena fragrance",
+        description = "Be soft to the tips of your nails with this hand cream with the scent of verbena.",
+        price = 5.95,
+        category = "Beauty",
+        num_sold = 7,
+        dimensions = "10.5 cm x 3.8 cm",
+        quantity = 11
+    )
+    product_49 = Product(
+        museum_id = 3,
+        name = "Manicure set Marie-Antoinette - Ladies of the court",
+        description = "An elegant manicure set with motifs reminiscent of the tapestries of the Château de Versailles. The 'Dames de la Cour' range was created for the Chapelle counter in the heart of the Château de Versailles. It features portraits of great ladies on a floral background. Contains: Cuticle repellent; tweezers; scissors; file; wooden and nylon nail clippers",
+        price = 19.95,
+        category = "Beauty",
+        num_sold = 7,
+        dimensions = "10.5 cm x 3.8 cm",
+        quantity = 11
+    )
+    product_50 = Product(
+        museum_id = 3,
+        name = "2024 Small Calendar - Napoleon - 15.5 x 18 cm",
+        description = "2024 Small Calendar 15.5x18 cm featuring 12 paintings and pictures associated to the life of French Emperor Napoleon (1769-1821). 1 double page per month. Languages: English, French, German, Italian, Spanish. Printed in France, on fine papers.",
+        price = 5,
+        category = "Posters & stationery",
+        num_sold = 7,
+        dimensions = "15,5 x 18 cm",
+        quantity = 12
+    )
     db.session.add(product_1)
     db.session.add(product_2)
     db.session.add(product_3)
@@ -366,6 +536,23 @@ def seed_products():
     db.session.add(product_31)
     db.session.add(product_32)
     db.session.add(product_33)
+    db.session.add(product_34)
+    db.session.add(product_35)
+    db.session.add(product_36)
+    db.session.add(product_37)
+    db.session.add(product_38)
+    db.session.add(product_39)
+    db.session.add(product_40)
+    db.session.add(product_41)
+    db.session.add(product_42)
+    db.session.add(product_43)
+    db.session.add(product_44)
+    db.session.add(product_45)
+    db.session.add(product_46)
+    db.session.add(product_47)
+    db.session.add(product_48)
+    db.session.add(product_49)
+    db.session.add(product_50)
     db.session.commit()
 
 
