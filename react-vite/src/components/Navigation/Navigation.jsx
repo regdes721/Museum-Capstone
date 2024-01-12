@@ -114,7 +114,7 @@ function Navigation() {
       </div>
       <nav>
         <div className="nav-left">
-          <button className="nav-left-button" onClick={toggleMenu2}>MENU</button>
+          <button className="nav-left-button" onClick={toggleMenu2}><i className="fa-solid fa-bars"></i> MENU</button>
           {showMenu2 &&
             <ul className={ulClassName2} ref={ulRef}>
               <NavLink to="/products/posters-stationery" className="no-underline nav-menu font-text"><li onClick={closeMenu2}>Posters & Stationary</li></NavLink>

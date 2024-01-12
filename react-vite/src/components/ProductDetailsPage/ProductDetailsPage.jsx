@@ -74,7 +74,7 @@ export default function ProductDetailsPage() {
                     <div className="font-text">
                         <h2 className="product-details-product-name">{product[0]?.name}</h2>
                         <p className="product-details-product-description ">{product[0]?.description}</p>
-                        <p className="product-details-product-price">€{product[0]?.price}</p>
+                        <p className="product-details-product-price">€{product[0]?.price.toFixed(2)}</p>
                         {/* <button className="product-details-addcart-button" onClick={() => (alert(`Feature Coming Soon...`))}>ADD TO CART</button> */}
                         {sessionUser && sessionUser.id === product[0].museum.owner_id &&
                         <div className="product-details-row-buttons product-details-row2-buttons">

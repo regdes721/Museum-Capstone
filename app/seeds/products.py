@@ -182,6 +182,156 @@ def seed_products():
         dimensions = "2.3 cm x 2.1 cm",
         quantity = 8
     )
+    product_19 = Product(
+        museum_id = 3,
+        name = "Versailles, a castle for women",
+        description = "Written in French.Between pomp, etiquette, grandiose parties and daily life, representation and intimacy, work, service, petty intrigues and grand politics, what kind of Versailles did women live in for over three centuries? This guide offers to follow them through the castle and the estate: from Marie-Thérèse of Austria, the self-effacing wife of Louis XIV, to the king's influential mistresses, from the mischievousness of the young Marie-Adélaïde of Savoy to the sovereign poise of Marie Leszczynska, from her eight daughters - the irreducible Mesdames - to Marie-Antoinette, dauphine and then queen, without forgetting, as far as possible, the friends, the superintendents, the ladies-in-waiting, the ladies-in-waiting and the palace ladies, the merchants and the artists. Through these characters, sometimes in the shadows, sometimes in the shadows, sometimes in full light, thanks to the portraits, settings and objects, the reader is taken on a journey of discovery of another Versailles, off the beaten track. This book, which combines period works and contemporary views, is punctuated by thematic points that shed light on a personality, highlight a particular fact, or give a glimpse of the unexpected aspect of a place steeped in history.Written in French. 176 pages / 150 illustrations. Coédition Réunion des musées nationaux - Grand Palais / Château de Versailles",
+        price = 20,
+        category = "Books",
+        num_sold = 8,
+        dimensions = "15,7 x 23,3 x 1,3 cm",
+        quantity = 9
+    )
+    product_20 = Product(
+        museum_id = 3,
+        name = "Versailles and antiquity - Exhibition catalogue",
+        description = 'Written in French.This book, produced as part of the "Versailles and Antiquity" exhibition, reveals masterpieces, both masterly and refined, that extend the time of mythology to us. Exhibition at the Château de Versailles, 2012-2013. Written in French. 336 pages Rmn-Grand Palais Publishers',
+        price = 19.90,
+        category = "Books",
+        num_sold = 11,
+        dimensions = "24,6 x 30,9 x 2,8 cm",
+        quantity = 10
+    )
+    product_21 = Product(
+        museum_id = 3,
+        name = "Keyring Royal Chapel - Château de versailles",
+        description = "This keyring is inspired by the Key to the main door of the Royal chapel in the Château de Versailles elaborated by the sculptor Grettepin circa 1710.",
+        price = 14.95,
+        category = "Fashion & Accessories",
+        num_sold = 3,
+        dimensions = "31.5 cm x 8.2 cm",
+        quantity = 17
+    )
+    product_22 = Product(
+        museum_id = 4,
+        name = "Buddha",
+        description = "This is the reproduction of a 19th-century bronze from Cambodia, the statuette Ajuthia of teaching Buddha. Sitting up straight and cross-legged, the Buddha put his hands flat one over the other. The joint hands on his lap in this position indicate that he is meditating. It is indeed a mûdra, a codified gesture that gives an indication of the sense of the whole work. Recognisable thanks to certain traits that distinguish him from ordinary mortals, the Buddha is here characterised by a cranial protuberance (usnisa) under his curly hair.",
+        price = 120,
+        category = "Sculpture",
+        num_sold = 7,
+        dimensions = "24 x 11 x 5,5 cm",
+        quantity = 7
+    )
+    product_23 = Product(
+        museum_id = 4,
+        name = "Asian medicines The art of balance - Exhibition catalogue",
+        description = "Written in French. Whether we consider Indian medicine, Chinese medicine or the medical tradition of the Himalayan world, they are all characterised by a primarily preventive approach and a global care of the patient, with the aim of maintaining the balance of the energy flows that run through the body. Through more than two hundred works, doctors, academics, art historians and practitioners invite us to discover these three great medical traditions where meditation and shamanism, energetic practices and pharmacopoeia, massage and acupuncture, astrology and exorcism meet. Exhibition « Asian medicines, the art of balance » at the musée national des arts asiatiques - Guimet from May 17th 2023 to September 18th 2023. Written in French. 288 pages / 199 illustrations Coedited by Musée national des arts asiatiques - Guimet, Paris / In Fine éditions d'art",
+        price = 37,
+        category = "Books",
+        num_sold = 6,
+        dimensions = "22,7 x 28,7 x 3 cm",
+        quantity = 10
+    )
+    product_24 = Product(
+        museum_id = 4,
+        name = "Cats by the great masters of Japanese printmaking (box set)",
+        description = "Written in French. A true celebration of cats, this boxed set, accompanied by an explanatory booklet, displays in accordion format more than sixty works by the greatest masters of Japanese printmaking. In Japan, the cat, present in folklore, poetry and Kabuki plays, is an emblematic figure. Sometimes adored for its gentleness, beauty and role as a good luck charm (the Maneki-neko), sometimes feared for its cruelty and supernatural powers, becoming the Bakeneko, a monstrous cat, vampire or sorcerer, it has always fascinated. From Hokusai to Hiroshige, via Yoshitoshi and Kuniyoshi, these prints highlight this mysterious and fascinating feline, of a bewitching beauty. Written in French. 226 pages Éditions Hazan",
+        price = 24.95,
+        category = "Books",
+        num_sold = 7,
+        dimensions = "12,2 x 17,6 x 4,9 cm",
+        quantity = 13
+    )
+    product_25 = Product(
+        museum_id = 1,
+        name = "Mona Lisa Poster - Leonardo da Vinci",
+        description = "This poster is a reproduction of Leonardo da Vinci's famous painting, The Mona Lisa, or Portrait of Mona Lisa. Leonardo di ser Piero Da Vinci, known as Leonardo da Vinci. Portrait of Lisa Gherardini, wife of Francesco del Giocondo, known as Mona Lisa, the Gioconda or Mona Lisa (ca. 1503 - 1506). Oil on poplar panel (H. 0,77 m. - W. 0,53 m.). Louvre Museum, Paris.",
+        price = 11,
+        category = "Posters & stationery",
+        num_sold = 7,
+        dimensions = "50 x 70 cm",
+        quantity = 17
+    )
+    product_26 = Product(
+        museum_id = 1,
+        name = "Tray Alexandre Hyacinthe Dunouy - View of Naples from Capodimonte, 1813 - 28x20 cm",
+        description = 'This tray created for the exhibition "Naples in Paris The Louvre Hosts the Museo di Capodimonte" at the musée du Louvre from June 7th 2023 to January 8th 2024 was inspired by a detail from the work by the French artist Alexandre Hyacinthe Dunouy (1757-1841), View of Naples from Capodimonte, 1813.',
+        price = 8.95,
+        category = "Decoration",
+        num_sold = 7,
+        dimensions = "28 cm x 20 cm",
+        quantity = 20
+    )
+    product_27 = Product(
+        museum_id = 1,
+        name = "Reversible Ring Medallion of Panticapaea",
+        description = "This reversible ring in gilded brass and natural stone is inspired by a gold, garnet and glass necklace from the Hellenistic period in the Louvre's Department of Greek, Etruscan and Roman Antiquities. Element of a necklace. Kerch (ancient Panticapaea), Hellenistic period (323 - 31 BC). Original gold, garnet, glass. Musée du Louvre, Paris. In the 7th century BC, Greek settlers from Ionia founded a city named Panticapaeum on the shores of the Kerch Strait (modern-day Crimea), at the top of Mount Mithridates. Situated at the junction of trade routes between Asia and Europe, Panticapaeum experienced significant growth, becoming the capital of the kings of Bosporus, occasionally referred to as the Cimmerian Bosporus (5th - 4th century BC), and minting its own coins from the middle of the 6th century BC. The upper town features a colonnaded palace, as well as the temples of Apollo, Artemis, Zeus and Demeter. The city's decline was caused by the advances of neighbouring peoples, such as the Sarmatians (from the 3rd century BC), and by economic competition in the grain trade, particularly from Egypt. Archaeological excavations began in 1830, unearthing the Acropolis, and revealing royal skeletons, numerous gold and bronze coins, stelae, vases, gold and silver ornaments, as well as jewellery - such as this medallion, which is a necklace component made of gold and garnet or red glass, featuring two loops. Keep the jewellery away from dust and moisture. Avoid contact with perfume, chemicals and cosmetics; avoid getting the jewellery wet.",
+        price = 45,
+        category = "Jewellery",
+        num_sold = 7,
+        dimensions = "1.5 cm",
+        quantity = 15
+    )
+    product_28 = Product(
+        museum_id = 2,
+        name = "Art Tote Bag",
+        description = "The Boutiques de Musées cotton tote bag! Easy to fold and transport, resistant, and 100% cotton.",
+        price = 3.20,
+        category = "Fashion & Accessories",
+        num_sold = 9,
+        dimensions = "45 x 35 cm",
+        quantity = 20
+    )
+    product_29 = Product(
+        museum_id = 2,
+        name = "Souvenir Medal Musée d'Orsay François Pompon - Polar Bear - Monnaie de Paris",
+        description = "This souvenir medal is a tribute to the famous sculpture, Polar Bear by François Pompon (1855-1933). Kept at the Musée d'Orsay. For many years, Pompon was one of the most sought-after assistants in Paris, hewing blocks of marble for Auguste Rodin and Camille Claudel. But after 1905, in reaction to Rodin's expressionism, Pompon abandoned the human figure and turned to the animals that he observed at the Jardin des Plantes. Polar Bear is the finest achievement in this vein; when it was exhibited at the Salon d'Automne in 1922, it brought the artist tardy recognition, at the age of sixty-seven.",
+        price = 3,
+        category = "Decoration",
+        num_sold = 9,
+        dimensions = "3.4 cm",
+        quantity = 20
+    )
+    product_30 = Product(
+        museum_id = 2,
+        name = "Small Notebook Vincent van Gogh - Self-portrait, 1889",
+        description = "This notebook was published for the exhibition 'Van Gogh in Auvers-sur-Oise The Final Months' from October 3rd, 2023 to February 4th, 2024 at the musée d'Orsay. The illustration on this notebook uses the gradations of blue skies from the work by Vincent Van Gogh (1853 - 1890). Self-portrait (details), 1889 Oil on canvas H. 65,0 ; W. 54,2 cm. Gift of Paul and Marguerite Gachet, 1949 © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt. Like Rembrandt and Goya, Vincent van Gogh often used himself as a model; he produced over forty-three self-portraits, paintings or drawings in ten years. Like the old masters, he observed himself critically in a mirror. Painting oneself is not an innocuous act: it is a questioning which often leads to an identity crisis. In this head-and-shoulders view, the artist is wearing a suit and not the pea jacket he usually worked in. Attention is focused on the face. His features are hard and emaciated, his green-rimmed eyes seem intransigent and anxious. The dominant colour, a mix of absinth green and pale turquoise finds a counterpoint in its complementary colour, the fiery orange of the beard and hair. The model's immobility contrasts with the undulating hair and beard, echoed and amplified in the hallucinatory arabesques of the background. Notebook 10 x 16 cm 56 pages - lined pages. Printed in France, on fine art papers. © Rmn - Grand Palais, Paris 2023",
+        price = 4.90,
+        category = "Posters & stationery",
+        num_sold = 8,
+        dimensions = "10 x 16 cm",
+        quantity = 12
+    )
+    product_31 = Product(
+        museum_id = 3,
+        name = "Key of the Royal Chapel",
+        description = "Inspired replica of the Key to the main door of the Royal chapel in the Château de Versailles elaborated by the sculptor Grettepin circa 1710. Replica made with an alloy of lead and tin can be used as a paperweight.",
+        price = 83.50,
+        category = "Posters & stationery",
+        num_sold = 8,
+        dimensions = "31.5 cm x 8.2 cm",
+        quantity = 13
+    )
+    product_32 = Product(
+        museum_id = 3,
+        name = "Marie Antoinette Bag vaporizer",
+        description = 'This bag vaporizer belongs to the "Ladies of the Court" range. This range was created for the Versailles Castle. It represents portraits of great ladies on a flowery background, reminiscent of the tapestries of the castle.',
+        price = 14.95,
+        category = "Beauty",
+        num_sold = 7,
+        dimensions = "10.5 cm x 3.8 cm",
+        quantity = 17
+    )
+    product_33 = Product(
+        museum_id = 3,
+        name = "Marie-Antoinette Monogrammed Brooch",
+        description = "Marie Antoinette (1755-1793). Versailles Jewellery Collection. A monogram, or initials, is composed of the first letter of a name and either doubled or followed by the second letter of the name, both interwoven into one character, with or without ornaments. It is used to sign but can be seen also on bronzes or furnishing or any object pertaining to the owner of the monogram. Also the initials M A can be seen, amongst other things, on the ramp of the staircases of the hall at the Petit Trianon, in the Salon doré at Versailles, on the porcelain set of the Queen's travel kit.",
+        price = 35,
+        category = "Jewellery",
+        num_sold = 6,
+        dimensions = "4.5 x 4 cm",
+        quantity = 12
+    )
     db.session.add(product_1)
     db.session.add(product_2)
     db.session.add(product_3)
@@ -201,6 +351,21 @@ def seed_products():
     db.session.add(product_16)
     db.session.add(product_17)
     db.session.add(product_18)
+    db.session.add(product_19)
+    db.session.add(product_20)
+    db.session.add(product_21)
+    db.session.add(product_22)
+    db.session.add(product_23)
+    db.session.add(product_24)
+    db.session.add(product_25)
+    db.session.add(product_26)
+    db.session.add(product_27)
+    db.session.add(product_28)
+    db.session.add(product_29)
+    db.session.add(product_30)
+    db.session.add(product_31)
+    db.session.add(product_32)
+    db.session.add(product_33)
     db.session.commit()
 
 
