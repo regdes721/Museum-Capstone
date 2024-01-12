@@ -17,8 +17,8 @@ export default function LandingPage() {
 
     return (
         <div>
-            <div>
-                <img src="https://www.boutiquesdemusees.fr/uploads/animation/5981_homel.jpg?m=1703261556" />
+            <div className="landing-page-img-container">
+                <img src="https://www.boutiquesdemusees.fr/uploads/animation/5981_homel.jpg?m=1703261556" className="landing-page-img" />
             </div>
             <div className="all-museums-container font-text">
                 <h2>Best Sellers</h2>
