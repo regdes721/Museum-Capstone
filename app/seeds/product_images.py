@@ -139,6 +139,37 @@ def seed_product_images():
         image_url = "https://www.boutiquesdemusees.fr/uploads/photos/21659/55549_xl.jpg",
         preview = True
     )
+    product_image_28 = ProductImage(
+        product_id = 19,
+        image_url = "https://www.boutiquesdemusees.fr/uploads/photos/37687/82462_xl.jpg",
+        preview = True
+    )
+    product_image_29 = ProductImage(
+        product_id = 20,
+        image_url = "https://www.boutiquesdemusees.fr/uploads/photos/23365/55499_xl.jpg",
+        preview = True
+    )
+    product_image_30 = ProductImage(
+        product_id = 21,
+        image_url = "https://www.boutiquesdemusees.fr/uploads/photos/31063/72255_xl.jpg",
+        preview = True
+    )
+    product_image_31 = ProductImage(
+        product_id = 22,
+        image_url = "https://www.boutiquesdemusees.fr/uploads/photos/720/696_xl.jpg",
+        preview = True
+    )
+    product_image_32 = ProductImage(
+        product_id = 23,
+        image_url = "https://www.boutiquesdemusees.fr/uploads/photos/38808/86201_xl.jpg",
+        preview = True
+    )
+    product_image_33 = ProductImage(
+        product_id = 24,
+        image_url = "https://www.boutiquesdemusees.fr/uploads/photos/34475/77561_xl.jpg",
+        preview = True
+    )
+
     db.session.add(product_image_1)
     db.session.add(product_image_2)
     db.session.add(product_image_3)
@@ -166,6 +197,12 @@ def seed_product_images():
     db.session.add(product_image_25)
     db.session.add(product_image_26)
     db.session.add(product_image_27)
+    db.session.add(product_image_28)
+    db.session.add(product_image_29)
+    db.session.add(product_image_30)
+    db.session.add(product_image_31)
+    db.session.add(product_image_32)
+    db.session.add(product_image_33)
     db.session.commit()
 
 
