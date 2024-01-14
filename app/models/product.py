@@ -2,6 +2,8 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from .cart_product import cart_products
+from .order_product import order_products
 
 class Product(db.Model, UserMixin):
     __tablename__ = 'products'
@@ -23,6 +25,18 @@ class Product(db.Model, UserMixin):
     # relationship attributes
     museum = db.relationship("Museum", back_populates="products")
     product_images = db.relationship("ProductImage", back_populates = "product", cascade="all, delete")
+
+    cart = db.relationship(
+        "Cart",
+        secondary=cart_products,
+        back_populates="products"
+    )
+
+    order = db.relationship(
+        "Order",
+        secondary=order_products,
+        back_populates="products"
+    )
 
     def to_dict(self, museum=False):
         dictionary = {

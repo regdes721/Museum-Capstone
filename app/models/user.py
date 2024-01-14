@@ -20,6 +20,8 @@ class User(db.Model, UserMixin):
 
     # relationship attributes
     museums_owner = db.relationship("Museum", back_populates="user")
+    cart = db.relationship("Cart", back_populates="user")
+    orders = db.relationship("Order", back_populates="user")
 
     @property
     def password(self):
