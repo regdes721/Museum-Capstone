@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLoadCart } from "../../redux/carts";
 
@@ -27,13 +28,22 @@ export default function CartPage() {
             <p><i className="fa-solid fa-check"></i> recalculate the total amount of your cart.</p>
             <h3>How to fill your cart?</h3>
             <p>You're browsing our e-store. Add all desired items in your cart in one click by using the Add to Cart button.</p>
-            <button>CONTINUE SHOPPING</button>
+            <NavLink to="/"><button>CONTINUE SHOPPING</button></NavLink>
         </div>
     )
 
     return (
         <div>
             <h1>My Cart</h1>
+            <NavLink to="/"><button>CONTINUE SHOPPING</button></NavLink>
+            <button>ORDER</button>
+            {cart[0].products.map((product) => (
+                <div>
+                    <img src={product.product_images[0].image_url} />
+                    <p>{product.name}</p>
+                    <p>Total: €</p>
+                </div>
+            ))}
         </div>
     )
 }
