@@ -32,18 +32,21 @@ def create_cart():
 def add_to_cart(product_id):
     product = Product.query.get(product_id)
     cart = Cart.query.filter(Cart.user_id == int(session['_user_id'])).first()
-    if cart and product and product.to_dict()['quantity'] > 0:
-        # confused about the line below - does it work? Is there something better???
-        db.session.execute(cart_products.insert().values(cart_id = cart.to_dict()['id'], product_id=product_id, quantity = 1))
-        db.session.commit()
-        return 'Item added to cart successfully'
-    # How to query cart_products table to see if product is already in the cart?
     if not cart:
         return {'errors': {'message': "Cart couldn't be found"}}
     if not product:
         return {'errors': {'message': "Product couldn't be found"}}
     if product.to_dict()['quantity'] <= 0:
         return {'errors': {'message': "Product quantity cannot be less than or equal to 0"}}
+
+    existing_cart_item = db.session.query(cart_products).filter_by(cart_id=cart.id, product_id=product_id).first()
+    if existing_cart_item:
+        db.session.execute(cart_products.update().where(cart_products.c.id == existing_cart_item.id).values(quantity=existing_cart_item.quantity + 1))
+    else:
+        db.session.execute(cart_products.insert().values(cart_id=cart.id, product_id=product_id, quantity = 1))
+    db.session.commit()
+    return 'Item added to cart successfully'
+
 
 @cart_routes.route('/products/<int:product_id>', methods=['PUT'])
 def update_cart(product_id):
