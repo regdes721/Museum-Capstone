@@ -13,6 +13,7 @@ import ProductCategoryPage from '../components/ProductCategoryPage';
 import ProductDetailsPage from '../components/ProductDetailsPage';
 import CreateProductPage from '../components/CreateProductPage';
 import UpdateProductPage from '../components/UpdateProductPage';
+import CartPage from '../components/CartPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: "best-sellers",
         element: <BestSellersPage />
+      },
+      {
+        path: "cart",
+        element: <CartPage />
       }
     ],
   },

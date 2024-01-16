@@ -28,30 +28,11 @@ function Navigation() {
     setShowMenu2(!showMenu2);
   };
 
-  // useEffect(() => {
-  //   if (!showMenu && !showMenu2) return;
-
-  //   const closeMenu = (e) => {
-  //     if (ulRef.current && !ulRef.current.contains(e.target)) {
-  //       setShowMenu(false);
-  //     }
-  //   };
-
-  //   const closeMenu2 = (e) => {
-  //     if (ulRef.current && !ulRef.current.contains(e.target)) {
-  //       setShowMenu2(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("click", closeMenu);
-
-  //   document.addEventListener("click", closeMenu2);
-
-  //   return () => {
-  //     document.removeEventListener("click", closeMenu);
-  //     document.removeEventListener("click", closeMenu2);
-  //   }
-  // }, [showMenu, showMenu2]);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!sessionUser) alert(`Please log in to view the cart`)
+    else navigate('/cart')
+  }
 
   useEffect(() => {
     if (!showMenu) return;
@@ -133,6 +114,7 @@ function Navigation() {
         </div>
         <NavLink to="/" className='no-underline'><h1 className="nav-title font-header">Museum Central</h1></NavLink>
         <div className="nav-right">
+          <button className="nav-right-button" onClick={handleSubmit}><i className="fa-solid fa-cart-shopping"></i></button>
           {/* <button className="nav-search" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-magnifying-glass"></i></button>
           <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-regular fa-heart"></i></button>
           <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-cart-shopping"></i></button> */}

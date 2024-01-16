@@ -16,7 +16,7 @@ def cart():
     if cart:
         return cart.to_dict()
     if not cart:
-        return {'errors': {'message': "Cart couldn't be found"}}
+        return {'errors': {'message': "Cart couldn't be found"}}, 400
 
 @cart_routes.route('', methods=['POST'])
 @login_required

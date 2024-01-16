@@ -25,7 +25,8 @@ class Cart(db.Model, UserMixin):
     def to_dict(self):
         dictionary = {
             'id': self.id,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'products': [product.to_dict() for product in self.products]
         }
 
         return dictionary
