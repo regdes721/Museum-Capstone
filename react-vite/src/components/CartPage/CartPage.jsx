@@ -1,19 +1,23 @@
 import { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkLoadCart } from "../../redux/carts";
+import { thunkLoadCart, thunkLoadCartProducts } from "../../redux/carts";
 
 export default function CartPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const cartObj = useSelector(state => state.cart.singleCart)
     const cart = Object.values(cartObj)
+    const cartProducts = useSelector(state => state.cart.cart_products)
 
     console.log("cartObj", cartObj)
     console.log("cart", cart)
+    console.log("cart products", cartProducts)
+    console.log("test", cartProducts && cartProducts.length > 0 && cartProducts.filter((cart) => cart.product_id === 1)[0].quantity)
 
     useEffect(() => {
         dispatch(thunkLoadCart())
+        dispatch(thunkLoadCartProducts())
     }, [dispatch])
 
     if (!cart[0] || cart[0].user_id != sessionUser.id || cart[0].products.length === 0) return (
@@ -41,7 +45,8 @@ export default function CartPage() {
                 <div>
                     <img src={product.product_images[0].image_url} />
                     <p>{product.name}</p>
-                    <p>Total: €</p>
+                    <p>Total: €{(product.price * cartProducts.filter((cart) => cart.product_id === product.id)[0].quantity).toFixed(2)}</p>
+
                 </div>
             ))}
         </div>
