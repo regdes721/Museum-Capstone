@@ -92,12 +92,12 @@ def delete_cart_item(product_id):
     db.session.commit()
     return 'Cart item deleted successfully'
 
-@cart_routes.route('/', methods=['DELETE'])
+@cart_routes.route('', methods=['DELETE'])
 def delete_cart():
     cart = Cart.query.filter(Cart.user_id == int(session['_user_id'])).first()
     if cart:
         db.session.delete(cart)
         db.session.commit()
-        return
+        return 'Cart deleted successfully'
     if not cart:
         return {'errors': {'message': "Cart couldn't be found"}}
