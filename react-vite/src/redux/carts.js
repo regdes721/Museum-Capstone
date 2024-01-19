@@ -38,6 +38,13 @@ export const thunkLoadCartProducts = () => async (dispatch) => {
     }
 }
 
+export const thunkDeleteCartProduct = (productId) => async (dispatch) => {
+    const response = await fetch(`api/carts/products/${productId}`, {
+        method: "DELETE"
+    })
+    return response
+}
+
 const initialState = { singleCart: {}, cart_products: [] };
 
 const cartReducer = (state = initialState, action) => {
