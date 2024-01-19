@@ -11,9 +11,9 @@ export default function CartPage() {
     const cartProducts = useSelector(state => state.cart.cart_products)
     const [totalPrice, setTotalPrice] = useState(0);
 
-    console.log("cartObj", cartObj)
-    console.log("cart", cart)
-    console.log("cart products", cartProducts)
+    // console.log("cartObj", cartObj)
+    // console.log("cart", cart)
+    // console.log("cart products", cartProducts)
 
     const handleDelete = async (productId) => {
         await dispatch(thunkDeleteCartProduct(productId))

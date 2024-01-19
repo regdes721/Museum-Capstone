@@ -2,7 +2,9 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
+import { thunkLoadMuseums } from "../../redux/museums"
 import { thunkLoadProductDetails } from "../../redux/products"
+import { thunkLoadCart, thunkLoadCartProducts } from "../../redux/carts"
 import DeleteProductModal from "../DeleteProductModal"
 import './ProductDetailsPage.css'
 
@@ -12,6 +14,8 @@ export default function ProductDetailsPage() {
     const sessionUser = useSelector((state) => state.session.user);
     const productDetailsObj = useSelector(state => state.products.singleProduct);
     const product = Object.values(productDetailsObj)
+    const cartObj = useSelector(state => state.cart.singleCart)
+    const cart = Object.values(cartObj)
     let category;
     if (product.length > 0 && product[0].category === "Kids") {
         category = "kids"
@@ -46,6 +50,15 @@ export default function ProductDetailsPage() {
 
     console.log(product)
 
+    const handleAdd = async (e) => {
+        e.preventDefault();
+        console.log("Calling handleAdd");
+        await dispatch(thunkLoadCart());
+        console.log("thunkLoadCart dispatched");
+        // if (!cart[0]) console.log("No Cart")
+        // else console.log("Cart")
+    }
+
     useEffect(() => {
         dispatch(thunkLoadProductDetails(productId))
     }, [dispatch, productId])
@@ -75,7 +88,7 @@ export default function ProductDetailsPage() {
                         <h2 className="product-details-product-name">{product[0]?.name}</h2>
                         <p className="product-details-product-description ">{product[0]?.description}</p>
                         <p className="product-details-product-price">€{product[0]?.price.toFixed(2)}</p>
-                        {/* <button className="product-details-addcart-button" onClick={() => (alert(`Feature Coming Soon...`))}>ADD TO CART</button> */}
+                        {sessionUser && <button className="product-details-addcart-button" onClick={handleAdd}>ADD TO CART</button>}
                         {sessionUser && sessionUser.id === product[0].museum.owner_id &&
                         <div className="product-details-row-buttons product-details-row2-buttons">
                             <NavLink to={`/products/${product[0].id}/edit`}><button className="nav-left-button">UPDATE PRODUCT</button></NavLink>

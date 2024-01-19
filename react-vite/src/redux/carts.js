@@ -16,14 +16,40 @@ export const loadCartProducts = (cart) => {
 }
 
 export const thunkLoadCart = () => async (dispatch) => {
-    const response = await fetch('api/carts/')
-    const cart = await response.json();
-    if (response.ok) {
-        dispatch(loadCart(cart));
-        return cart
-    } else {
-        return cart
+    console.log('Thunk starting...');
+    try {
+        const response = await fetch('api/carts/', {
+            headers: {
+                'Accept': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            console.error('Non-OK response:', response);
+            // Handle non-OK response here
+            return;
+        }
+
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const cart = await response.json();
+            console.log('Parsed cart:', cart);
+            dispatch(loadCart(cart));
+            return cart;
+        } else {
+            console.error('Invalid content type:', contentType);
+            // Handle invalid content type here
+        }
+    } catch (error) {
+        console.error('Error in thunkLoadCart:', error);
     }
+    // const response = await fetch('api/carts/')
+    // const cart = await response.json();
+    // if (response.ok) {
+    //     dispatch(loadCart(cart));
+    //     return cart
+    // } else {
+    //     return cart
+    // }
 }
 
 export const thunkLoadCartProducts = () => async (dispatch) => {
@@ -38,11 +64,23 @@ export const thunkLoadCartProducts = () => async (dispatch) => {
     }
 }
 
+export const thunkAddToCart = (productId) => async (dispatch) => {
+    const response = await fetch(`api/carts/products/${productId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json()
+    return data
+}
+
 export const thunkDeleteCartProduct = (productId) => async (dispatch) => {
     const response = await fetch(`api/carts/products/${productId}`, {
         method: "DELETE"
     })
-    return response
+    const data = await response.json()
+    return data
 }
 
 const initialState = { singleCart: {}, cart_products: [] };
