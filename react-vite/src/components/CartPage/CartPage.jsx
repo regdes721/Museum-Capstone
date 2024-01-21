@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLoadCart, thunkLoadCartProducts, thunkDeleteCartProduct } from "../../redux/carts";
+import './CartPage.css'
 
 export default function CartPage() {
     const dispatch = useDispatch();
@@ -37,18 +38,21 @@ export default function CartPage() {
       }, [cart, cartProducts]);
 
     if (!cart[0] || cart[0].user_id != sessionUser.id || cart[0].products.length === 0) return (
-        <div>
-            <h1>Your cart is empty</h1>
-            <h2>Throughout your visit, you can use the Add to Cart button to easily select the desired items for further review. When you put everything you want in the cart, you can proceed to the order confirmation.</h2>
-            <h3>For any item added to the cart, you can set:</h3>
-            <p><i className="fa-solid fa-check"></i> amount of this item you want,</p>
-            <h3>At any time, you can:</h3>
-            <p><i className="fa-solid fa-check"></i> view your cart,</p>
-            <p><i className="fa-solid fa-check"></i> remove items from the cart,</p>
-            <p><i className="fa-solid fa-check"></i> recalculate the total amount of your cart.</p>
-            <h3>How to fill your cart?</h3>
-            <p>You're browsing our e-store. Add all desired items in your cart in one click by using the Add to Cart button.</p>
-            <NavLink to="/"><button>CONTINUE SHOPPING</button></NavLink>
+        <div className="all-museums-container">
+            <div className="cart-header">
+                <NavLink to="/" className='no-underline font-text'><p className="all-museums-header-p"><i className="fa-solid fa-angle-left"></i> Home</p></NavLink>
+                <h1 className="font-header all-museums-header-title">Your cart is empty</h1>
+                <h2 className="font-text cart-font-weight">Throughout your visit, you can use the Add to Cart button to easily select the desired items for further review. When you put everything you want in the cart, you can proceed to the order confirmation.</h2>
+                <h3 className="font-text">For any item added to the cart, you can set:</h3>
+                <p className="font-text"><i className="fa-solid fa-check"></i> amount of this item you want,</p>
+                <h3 className="font-text">At any time, you can:</h3>
+                <p className="font-text"><i className="fa-solid fa-check"></i> view your cart,</p>
+                <p className="font-text"><i className="fa-solid fa-check"></i> remove items from the cart,</p>
+                <p className="font-text"><i className="fa-solid fa-check"></i> recalculate the total amount of your cart.</p>
+                <h3 className="font-text">How to fill your cart?</h3>
+                <p className="font-text">{"You're browsing our e-store. Add all desired items in your cart in one click by using the Add to Cart button."}</p>
+                <NavLink to="/"><button className="product-details-addcart-button">CONTINUE SHOPPING</button></NavLink>
+            </div>
         </div>
     )
 
