@@ -57,12 +57,19 @@ export default function CartPage() {
     )
 
     return (
-        <div>
-            <h1>My Cart</h1>
-            <NavLink to="/"><button>CONTINUE SHOPPING</button></NavLink>
-            <button>ORDER</button>
+        <div className="all-museums-container">
+            <div className="cart-header">
+                <NavLink to="/" className='no-underline font-text'><p className="all-museums-header-p"><i className="fa-solid fa-angle-left"></i> Home</p></NavLink>
+            </div>
+            <div className="cart-header-active">
+                <h1 className="font-header all-museums-header-title">My Cart</h1>
+                <div className="nav-left">
+                    <NavLink to="/"><button className="nav-left-button">CONTINUE SHOPPING</button></NavLink>
+                    <button className="cart-header-order-button">ORDER</button>
+                </div>
+            </div>
             {cart[0].products.map((product) => (
-                <div key={product.id}>
+                <div key={product.id} className="cart-details-container">
                     <img src={product.product_images[0].image_url} />
                     <p>{product.name}</p>
                     {cartProducts && cartProducts.length > 0 && (

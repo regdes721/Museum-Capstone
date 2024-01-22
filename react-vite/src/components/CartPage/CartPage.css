@@ -5,3 +5,26 @@
 .cart-font-weight {
     font-weight: 400;
 }
+
+.cart-header-active {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.cart-header-order-button {
+    border: 1px solid #0A49FA;
+    background-color: #0A49FA;
+    color: white;
+    padding: 5px 10px;
+}
+
+.cart-header-order-button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #0A49FA;
+}
+
+.cart-details-container {
+    background-color: #E5E5E5;
+}
