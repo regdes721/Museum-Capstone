@@ -1,16 +1,17 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams, NavLink } from "react-router-dom"
+import { useParams, NavLink, useNavigate } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
 import { thunkLoadMuseums } from "../../redux/museums"
 import { thunkLoadProductDetails } from "../../redux/products"
-import { thunkLoadCart, thunkLoadCartProducts } from "../../redux/carts"
+import { thunkLoadCart, thunkAddToCart, thunkCreateCart } from "../../redux/carts"
 import DeleteProductModal from "../DeleteProductModal"
 import './ProductDetailsPage.css'
 
 export default function ProductDetailsPage() {
     const { productId } = useParams()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const sessionUser = useSelector((state) => state.session.user);
     const productDetailsObj = useSelector(state => state.products.singleProduct);
     const product = Object.values(productDetailsObj)
@@ -53,15 +54,27 @@ export default function ProductDetailsPage() {
     const handleAdd = async (e) => {
         e.preventDefault();
         console.log("Calling handleAdd");
-        await dispatch(thunkLoadCart());
-        console.log("thunkLoadCart dispatched");
-        // if (!cart[0]) console.log("No Cart")
-        // else console.log("Cart")
+        dispatch(thunkLoadCart())
+        // await dispatch(thunkLoadCart());
+        // console.log("thunkLoadCart dispatched");
+        if (!cart[0] || cart[0].user_id != sessionUser.id ) {
+            console.log("No Cart")
+            await dispatch(thunkCreateCart())
+            console.log("Now there is a cart!")
+            await dispatch(thunkAddToCart(productId))
+            navigate('/cart')
+        }
+        else {
+            console.log("Cart")
+            dispatch(thunkAddToCart(productId))
+            navigate('/cart')
+        }
     }
 
     useEffect(() => {
         dispatch(thunkLoadProductDetails(productId))
-    }, [dispatch, productId])
+        dispatch(thunkLoadCart())
+    }, [dispatch, productId, sessionUser])
 
     return (
         <div className="all-museums-container">

@@ -67,7 +67,7 @@ def add_to_cart(product_id):
         new_cart_item = CartProduct(cart_id=cart.id, product_id=product_id, quantity=1)
         db.session.add(new_cart_item)
     db.session.commit()
-    return 'Item added to cart successfully'
+    return {'message': 'Item added to cart successfully'}
 
 
 @cart_routes.route('/products/<int:product_id>', methods=['PUT'])

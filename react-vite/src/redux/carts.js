@@ -1,5 +1,6 @@
 const LOAD_CART = 'carts/loadCart';
 const LOAD_CART_PRODUCTS = 'carts/loadCartProducts'
+const CREATE_CART = 'carts/createCart'
 
 export const loadCart = (cart) => {
     return {
@@ -15,10 +16,17 @@ export const loadCartProducts = (cart) => {
     }
 }
 
+export const createCart = (cart) => {
+    return {
+        type: CREATE_CART,
+        cart
+    }
+}
+
 export const thunkLoadCart = () => async (dispatch) => {
     console.log('Thunk starting...');
     try {
-        const response = await fetch('api/carts/', {
+        const response = await fetch('/api/carts/', {
             headers: {
                 'Accept': 'application/json',
             },
@@ -53,7 +61,7 @@ export const thunkLoadCart = () => async (dispatch) => {
 }
 
 export const thunkLoadCartProducts = () => async (dispatch) => {
-    const response = await fetch('api/carts/cart_products')
+    const response = await fetch('/api/carts/cart_products')
     const cart = await response.json();
     console.log("thunk cart", cart)
     if (response.ok) {
@@ -64,8 +72,24 @@ export const thunkLoadCartProducts = () => async (dispatch) => {
     }
 }
 
+export const thunkCreateCart = () => async (dispatch) => {
+    const response = await fetch('/api/carts', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json()
+    if (response.ok) {
+        dispatch(createCart(data))
+        return data
+    } else {
+        return data
+    }
+}
+
 export const thunkAddToCart = (productId) => async (dispatch) => {
-    const response = await fetch(`api/carts/products/${productId}`, {
+    const response = await fetch(`/api/carts/products/${productId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -76,7 +100,7 @@ export const thunkAddToCart = (productId) => async (dispatch) => {
 }
 
 export const thunkDeleteCartProduct = (productId) => async (dispatch) => {
-    const response = await fetch(`api/carts/products/${productId}`, {
+    const response = await fetch(`/api/carts/products/${productId}`, {
         method: "DELETE"
     })
     const data = await response.json()
@@ -95,6 +119,11 @@ const cartReducer = (state = initialState, action) => {
         case LOAD_CART_PRODUCTS: {
             const cart_products = action.cart
             return { ...state, cart_products }
+        }
+        case CREATE_CART: {
+            const singleCart = {}
+            singleCart[action.cart.id] = action.cart
+            return { ...state, singleCart }
         }
         default:
             return state;
