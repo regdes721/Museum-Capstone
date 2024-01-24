@@ -70,15 +70,17 @@ export default function CartPage() {
             </div>
             {cart[0].products.map((product) => (
                 <div key={product.id} className="cart-details-container">
-                    <img src={product.product_images[0].image_url} />
-                    <p>{product.name}</p>
+                    <img src={product.product_images[0].image_url} className="cart-details-img" />
                     {cartProducts && cartProducts.length > 0 && (
-                        <>
+                        <div className="cart-details-info">
+                            <p className="font-text">{product.name}</p>
                             <p>{cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0}</p>
-                            <p>Total: €{(product.price * (cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0)).toFixed(2)}</p>
-                        </>
+                            <p className="font-text">Total: €{(product.price * (cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0)).toFixed(2)}</p>
+                        </div>
                     )}
-                    <p onClick={() => handleDelete(product.id)}>Delete</p>
+                    <div className="cart-details-delete">
+                        <p onClick={() => handleDelete(product.id)}>Delete</p>
+                    </div>
                 </div>
             ))}
             <div>

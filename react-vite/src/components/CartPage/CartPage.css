@@ -27,4 +27,22 @@
 
 .cart-details-container {
     background-color: #E5E5E5;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    margin-top: 1px;
+    padding: 20px;
+}
+
+.cart-details-img {
+    border-radius: 50%;
+    width: 100%;
+}
+
+.cart-details-info {
+    margin-left: 40px
+}
+
+.cart-details-delete {
+    display: flex;
+    justify-content: flex-end;
 }

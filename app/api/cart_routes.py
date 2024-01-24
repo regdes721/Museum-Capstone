@@ -92,7 +92,7 @@ def update_cart(product_id):
         # existing_cart_item.c.quantity = data['quantity']
         existing_cart_item.quantity = form.data['quantity']
         db.session.commit()
-        return 'Item quantity in cart updated successfully'
+        return {'message': 'Item quantity in cart updated successfully'}
     elif not form.validate_on_submit():
         return {'errors': form.errors}, 401
     return {'errors': {'message': 'Unauthorized'}}, 403
@@ -112,7 +112,7 @@ def delete_cart_item(product_id):
 
     db.session.delete(existing_cart_item)
     db.session.commit()
-    return 'Cart item deleted successfully'
+    return {'message': 'Cart item deleted successfully'}
 
 @cart_routes.route('', methods=['DELETE'])
 def delete_cart():
@@ -120,6 +120,6 @@ def delete_cart():
     if cart:
         db.session.delete(cart)
         db.session.commit()
-        return 'Cart deleted successfully'
+        return {'message': 'Cart deleted successfully'}
     if not cart:
         return {'errors': {'message': "Cart couldn't be found"}}
