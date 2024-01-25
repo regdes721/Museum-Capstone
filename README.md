@@ -75,7 +75,7 @@ This is a concise list of what was utilized to develop this project.
 
 ## 📷 Landing Page:
 
-You will be able to test the features without sign up by clicking on one of the "Demo User" buttons in the Signup Page. You will then be directed to the landing page, where you can create a server, join a server, or open a server.
+You will be able to test the features without sign up by clicking on the "Demo User" button in the Login Modal. You will then be directed to the landing page, where you can create a musuem, create a product for a museum that you own, or add products to your cart.
 
 ## ⚠️ Technical implementation details
 

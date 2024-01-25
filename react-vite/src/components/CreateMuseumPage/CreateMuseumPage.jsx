@@ -18,6 +18,7 @@ export default function CreateMuseumPage() {
     const [email, setEmail] = useState(null)
     const [museum_website, setMuseumWebsite] = useState('')
     const [errors, setErrors] = useState('')
+    console.log(image)
 
     useEffect(() => {
         if (!sessionUser) { navigate("/") }
