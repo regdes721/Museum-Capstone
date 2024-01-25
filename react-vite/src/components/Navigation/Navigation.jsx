@@ -28,30 +28,11 @@ function Navigation() {
     setShowMenu2(!showMenu2);
   };
 
-  // useEffect(() => {
-  //   if (!showMenu && !showMenu2) return;
-
-  //   const closeMenu = (e) => {
-  //     if (ulRef.current && !ulRef.current.contains(e.target)) {
-  //       setShowMenu(false);
-  //     }
-  //   };
-
-  //   const closeMenu2 = (e) => {
-  //     if (ulRef.current && !ulRef.current.contains(e.target)) {
-  //       setShowMenu2(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("click", closeMenu);
-
-  //   document.addEventListener("click", closeMenu2);
-
-  //   return () => {
-  //     document.removeEventListener("click", closeMenu);
-  //     document.removeEventListener("click", closeMenu2);
-  //   }
-  // }, [showMenu, showMenu2]);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!sessionUser) alert(`Please log in to view the cart`)
+    else navigate('/cart')
+  }
 
   useEffect(() => {
     if (!showMenu) return;
@@ -98,15 +79,21 @@ function Navigation() {
   return (
     <header>
       <div className="header-section-1">
-        <NavLink to="https://pro.boutiquesdemusees.fr/en/" className="no-underline"><h3 className="font-header">Professional Access <i className="fa-solid fa-angle-right"></i></h3></NavLink>
+        <NavLink to="https://pro.boutiquesdemusees.fr/en/" className="no-underline" target="_blank"><h3 className="font-header">Professional Access <i className="fa-solid fa-angle-right"></i></h3></NavLink>
         {!sessionUser && (
-          <OpenModalMenuItem
-          itemText="Log In"
-          modalComponent={<LoginFormModal />}
-        />
+          <div className="header-section-1a">
+            <NavLink to="https://github.com/regdes721" target="_blank" className="nav-title"><i className="fab fa-github"> </i></NavLink>
+            <NavLink to="https://www.linkedin.com/in/reginalddesrosiers/" target="_blank" className="nav-title"><i className="fab fa-fw fa-linkedin-in"></i></NavLink>
+            <OpenModalMenuItem
+            itemText="Log In"
+            modalComponent={<LoginFormModal />}
+            />
+          </div>
         )}
         {sessionUser && (
           <div className="header-section-1a">
+            <NavLink to="https://github.com/regdes721" target="_blank" className="nav-title"><i className="fab fa-github"> </i></NavLink>
+            <NavLink to="https://www.linkedin.com/in/reginalddesrosiers/" target="_blank" className="nav-title"><i className="fab fa-fw fa-linkedin-in"></i></NavLink>
             {/* <h3 onClick={() => (alert(`Feature Coming Soon...`))}>My account</h3> */}
             <h3 onClick={logout} className="cursor-pointer">Sign out</h3>
           </div>
@@ -133,6 +120,7 @@ function Navigation() {
         </div>
         <NavLink to="/" className='no-underline'><h1 className="nav-title font-header">Museum Central</h1></NavLink>
         <div className="nav-right">
+          <button className="nav-right-button" onClick={handleSubmit}><i className="fa-solid fa-cart-shopping"></i></button>
           {/* <button className="nav-search" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-magnifying-glass"></i></button>
           <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-regular fa-heart"></i></button>
           <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-cart-shopping"></i></button> */}
