@@ -46,3 +46,16 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.cart-price {
+    font-weight: 900;
+}
+
+.cart-section-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-final-price {
+    font-size: 25px;
+}

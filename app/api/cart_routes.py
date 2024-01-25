@@ -90,7 +90,7 @@ def update_cart(product_id):
     if form.validate_on_submit():
         data = form.data
         # existing_cart_item.c.quantity = data['quantity']
-        existing_cart_item.quantity = form.data['quantity']
+        existing_cart_item.quantity = data['quantity']
         db.session.commit()
         return {'message': 'Item quantity in cart updated successfully'}
     elif not form.validate_on_submit():

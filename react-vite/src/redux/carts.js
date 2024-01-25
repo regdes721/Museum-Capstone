@@ -106,6 +106,21 @@ export const thunkAddToCart = (productId) => async (dispatch) => {
     return data
 }
 
+export const thunkEditCartProduct = (form) => async (dispatch) => {
+    const { productId, quantity } = form
+    const response = await fetch(`/api/carts/products/${productId}`, {
+        method: "PUT",
+        body: JSON.stringify({
+            quantity
+        }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json()
+    return data
+}
+
 export const thunkDeleteCartProduct = (productId) => async (dispatch) => {
     const response = await fetch(`/api/carts/products/${productId}`, {
         method: "DELETE"

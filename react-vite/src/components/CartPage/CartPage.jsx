@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkLoadCart, thunkLoadCartProducts, thunkDeleteCartProduct, thunkDeleteCart } from "../../redux/carts";
+import { thunkLoadCart, thunkLoadCartProducts, thunkEditCartProduct, thunkDeleteCartProduct, thunkDeleteCart } from "../../redux/carts";
 import './CartPage.css'
 
 export default function CartPage() {
@@ -12,10 +12,22 @@ export default function CartPage() {
     const cart = Object.values(cartObj)
     const cartProducts = useSelector(state => state.cart.cart_products)
     const [totalPrice, setTotalPrice] = useState(0);
-
+    const [productId, setProductId] = useState(0)
+    const [quantity, setQuantity] = useState(0)
+    console.log("productId", productId)
+    console.log("quantity", quantity)
     // console.log("cartObj", cartObj)
     // console.log("cart", cart)
     // console.log("cart products", cartProducts)
+
+    // const handleEdit = async () => {
+    //     const form = {
+    //         productId,
+    //         quantity
+    //     }
+    //     await dispatch(thunkEditCartProduct(form))
+    //     await dispatch(thunkLoadCartProducts())
+    // }
 
     const handleDelete = async (productId) => {
         await dispatch(thunkDeleteCartProduct(productId))
@@ -80,26 +92,66 @@ export default function CartPage() {
                     {cartProducts && cartProducts.length > 0 && (
                         <div className="cart-details-info">
                             <p className="font-text">{product.name}</p>
+                            <form onSubmit={(e) => e.preventDefault()}>
+                                <select name="quantity" value={cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0} onChange={async (e) => {
+                                    e.preventDefault();
+                                    setProductId(product.id);
+                                    setQuantity(e.target.value);
+
+                                    try {
+                                        await dispatch(thunkEditCartProduct({ productId, quantity }));
+                                        await dispatch(thunkLoadCartProducts());
+                                    } catch (error) {
+                                        console.error("Error updating cart:", error);
+                                    }
+                                }} id="">
+                                    <option value={1}>1</option>
+                                    <option value={2}>2</option>
+                                    <option value={3}>3</option>
+                                    <option value={4}>4</option>
+                                    <option value={5}>5</option>
+                                    <option value={6}>6</option>
+                                    <option value={7}>7</option>
+                                    <option value={8}>8</option>
+                                    <option value={9}>9</option>
+                                    <option value={10}>10</option>
+                                    <option value={11}>11</option>
+                                    <option value={12}>12</option>
+                                    <option value={13}>13</option>
+                                    <option value={14}>14</option>
+                                    <option value={15}>15</option>
+                                    <option value={16}>16</option>
+                                    <option value={17}>17</option>
+                                    <option value={18}>18</option>
+                                    <option value={19}>19</option>
+                                    <option value={20}>20</option>
+                                </select>
+                            </form>
                             <p>{cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0}</p>
-                            <p className="font-text">Total: €{(product.price * (cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0)).toFixed(2)}</p>
+                            <p className="font-text cart-price">Total: €{(product.price * (cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0)).toFixed(2)}</p>
                         </div>
                     )}
                     <div className="cart-details-delete">
-                        <p onClick={() => handleDelete(product.id)}>Delete</p>
+                        <p className="font-text" onClick={() => handleDelete(product.id)}>Delete</p>
                     </div>
                 </div>
             ))}
-            <div>
-                <p>Secure payment</p>
-                <p>International delivery</p>
-                <p>Shipping in 1-2 business days according to the method of delivery chosen</p>
-                <p>14 days to change your mind</p>
+            <div className="cart-section-2">
+                <div>
+                    <p className="font-text"><i className="fa-solid fa-check"></i> Secure payment</p>
+                    <p className="font-text"><i className="fa-solid fa-check"></i> International delivery</p>
+                    <p className="font-text"><i className="fa-solid fa-check"></i> Shipping in 1-2 business days according to the method of delivery chosen</p>
+                    <p className="font-text"><i className="fa-solid fa-check"></i> 14 days to change your mind</p>
+                </div>
+                <div>
+                    <p className="cart-price cart-final-price font-text">Total: €{totalPrice.toFixed(2)}</p>
+                </div>
             </div>
-            <div>
-                <p>Total: €{totalPrice.toFixed(2)}</p>
-            </div>
-            <div>
-                <button onClick={handleDeleteCart}>ORDER</button>
+            <div className="cart-section-2">
+                <NavLink to="/" className='no-underline font-text'><p className="all-museums-header-p"><i className="fa-solid fa-angle-left"></i> Continue shopping</p></NavLink>
+                <div>
+                    <button onClick={handleDeleteCart} className="cart-header-order-button">ORDER</button>
+                </div>
             </div>
         </div>
     )
