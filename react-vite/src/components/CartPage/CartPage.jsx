@@ -138,10 +138,10 @@ export default function CartPage() {
             ))}
             <div className="cart-section-2">
                 <div>
-                    <p className="font-text"><i className="fa-solid fa-check"></i> Secure payment</p>
-                    <p className="font-text"><i className="fa-solid fa-check"></i> International delivery</p>
-                    <p className="font-text"><i className="fa-solid fa-check"></i> Shipping in 1-2 business days according to the method of delivery chosen</p>
-                    <p className="font-text"><i className="fa-solid fa-check"></i> 14 days to change your mind</p>
+                    <p className="font-text cart-details-checks"><i className="fa-solid fa-check"></i> Secure payment</p>
+                    <p className="font-text cart-details-checks"><i className="fa-solid fa-check"></i> International delivery</p>
+                    <p className="font-text cart-details-checks"><i className="fa-solid fa-check"></i> Shipping in 1-2 business days according to the method of delivery chosen</p>
+                    <p className="font-text cart-details-checks"><i className="fa-solid fa-check"></i> 14 days to change your mind</p>
                 </div>
                 <div>
                     <p className="cart-price cart-final-price font-text">Total: €{totalPrice.toFixed(2)}</p>

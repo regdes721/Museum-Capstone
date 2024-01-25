@@ -47,6 +47,21 @@
     justify-content: flex-end;
 }
 
+.cart-details-delete p {
+    color: #A7A7A7;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cart-details-delete p:hover {
+    color: #515351;
+}
+
+.cart-details-checks {
+    color: #9D9B9A;
+    font-size: 14px;
+}
+
 .cart-price {
     font-weight: 900;
 }
