@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkLoadCart, thunkLoadCartProducts, thunkDeleteCartProduct } from "../../redux/carts";
+import { thunkLoadCart, thunkLoadCartProducts, thunkDeleteCartProduct, thunkDeleteCart } from "../../redux/carts";
 import './CartPage.css'
 
 export default function CartPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const sessionUser = useSelector(state => state.session.user);
     const cartObj = useSelector(state => state.cart.singleCart)
     const cart = Object.values(cartObj)
@@ -19,6 +20,11 @@ export default function CartPage() {
     const handleDelete = async (productId) => {
         await dispatch(thunkDeleteCartProduct(productId))
         await dispatch(thunkLoadCart())
+    }
+
+    const handleDeleteCart = async () => {
+        await dispatch(thunkDeleteCart())
+        navigate('/')
     }
 
     useEffect(() => {
@@ -65,7 +71,7 @@ export default function CartPage() {
                 <h1 className="font-header all-museums-header-title">My Cart</h1>
                 <div className="nav-left">
                     <NavLink to="/"><button className="nav-left-button">CONTINUE SHOPPING</button></NavLink>
-                    <button className="cart-header-order-button">ORDER</button>
+                    <button className="cart-header-order-button" onClick={handleDeleteCart}>ORDER</button>
                 </div>
             </div>
             {cart[0].products.map((product) => (
@@ -93,7 +99,7 @@ export default function CartPage() {
                 <p>Total: €{totalPrice.toFixed(2)}</p>
             </div>
             <div>
-                <button>ORDER</button>
+                <button onClick={handleDeleteCart}>ORDER</button>
             </div>
         </div>
     )

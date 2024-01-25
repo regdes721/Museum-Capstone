@@ -1,6 +1,7 @@
 const LOAD_CART = 'carts/loadCart';
 const LOAD_CART_PRODUCTS = 'carts/loadCartProducts'
 const CREATE_CART = 'carts/createCart'
+const DELETE_CART = 'carts/deleteCart'
 
 export const loadCart = (cart) => {
     return {
@@ -20,6 +21,12 @@ export const createCart = (cart) => {
     return {
         type: CREATE_CART,
         cart
+    }
+}
+
+export const deleteCart = () => {
+    return {
+        type: DELETE_CART
     }
 }
 
@@ -107,6 +114,17 @@ export const thunkDeleteCartProduct = (productId) => async (dispatch) => {
     return data
 }
 
+export const thunkDeleteCart = () => async (dispatch) => {
+    const response = await fetch(`/api/carts`, {
+        method: "DELETE"
+    })
+    const data = await response.json()
+    if (response.ok) {
+        dispatch(deleteCart())
+    }
+    return data
+}
+
 const initialState = { singleCart: {}, cart_products: [] };
 
 const cartReducer = (state = initialState, action) => {
@@ -124,6 +142,11 @@ const cartReducer = (state = initialState, action) => {
             const singleCart = {}
             singleCart[action.cart.id] = action.cart
             return { ...state, singleCart }
+        }
+        case DELETE_CART: {
+            const singleCart = {}
+            const cart_products = []
+            return { ...state, singleCart, cart_products }
         }
         default:
             return state;
