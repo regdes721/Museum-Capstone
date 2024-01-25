@@ -12,10 +12,10 @@ export default function CartPage() {
     const cart = Object.values(cartObj)
     const cartProducts = useSelector(state => state.cart.cart_products)
     const [totalPrice, setTotalPrice] = useState(0);
-    const [productId, setProductId] = useState(0)
-    const [quantity, setQuantity] = useState(0)
-    console.log("productId", productId)
-    console.log("quantity", quantity)
+    // const [productId, setProductId] = useState(0)
+    // const [quantity, setQuantity] = useState(0)
+    // console.log("productId", productId)
+    // console.log("quantity", quantity)
     // console.log("cartObj", cartObj)
     // console.log("cart", cart)
     // console.log("cart products", cartProducts)
@@ -95,8 +95,8 @@ export default function CartPage() {
                             <form onSubmit={(e) => e.preventDefault()}>
                                 <select name="quantity" value={cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0} onChange={async (e) => {
                                     e.preventDefault();
-                                    setProductId(product.id);
-                                    setQuantity(e.target.value);
+                                    const productId = product.id
+                                    const quantity = e.target.value
 
                                     try {
                                         await dispatch(thunkEditCartProduct({ productId, quantity }));
