@@ -18,8 +18,8 @@ export default function LandingPage() {
     return (
         <div>
             <div className="landing-page-img-container">
-                <img src="https://www.boutiquesdemusees.fr/uploads/animation/5981_homel.jpg?m=1703261556" className="landing-page-img" />
-                {/* <img src='../../../../images/landing-page-img.jpg' className="landing-page-img" /> */}
+                {/* <img src="https://www.boutiquesdemusees.fr/uploads/animation/5981_homel.jpg?m=1703261556" className="landing-page-img" /> */}
+                <img src='https://museum-central-bucket.s3.amazonaws.com/18fa0617a3e047a88a2fff217705e500.jpg' className="landing-page-img" />
             </div>
             <div className="all-museums-container font-text">
                 <h2>Best Sellers</h2>
