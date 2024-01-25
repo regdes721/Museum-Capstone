@@ -79,15 +79,21 @@ function Navigation() {
   return (
     <header>
       <div className="header-section-1">
-        <NavLink to="https://pro.boutiquesdemusees.fr/en/" className="no-underline"><h3 className="font-header">Professional Access <i className="fa-solid fa-angle-right"></i></h3></NavLink>
+        <NavLink to="https://pro.boutiquesdemusees.fr/en/" className="no-underline" target="_blank"><h3 className="font-header">Professional Access <i className="fa-solid fa-angle-right"></i></h3></NavLink>
         {!sessionUser && (
-          <OpenModalMenuItem
-          itemText="Log In"
-          modalComponent={<LoginFormModal />}
-        />
+          <div className="header-section-1a">
+            <NavLink to="https://github.com/regdes721" target="_blank" className="nav-title"><i className="fab fa-github"> </i></NavLink>
+            <NavLink to="https://www.linkedin.com/in/reginalddesrosiers/" target="_blank" className="nav-title"><i className="fab fa-fw fa-linkedin-in"></i></NavLink>
+            <OpenModalMenuItem
+            itemText="Log In"
+            modalComponent={<LoginFormModal />}
+            />
+          </div>
         )}
         {sessionUser && (
           <div className="header-section-1a">
+            <NavLink to="https://github.com/regdes721" target="_blank" className="nav-title"><i className="fab fa-github"> </i></NavLink>
+            <NavLink to="https://www.linkedin.com/in/reginalddesrosiers/" target="_blank" className="nav-title"><i className="fab fa-fw fa-linkedin-in"></i></NavLink>
             {/* <h3 onClick={() => (alert(`Feature Coming Soon...`))}>My account</h3> */}
             <h3 onClick={logout} className="cursor-pointer">Sign out</h3>
           </div>

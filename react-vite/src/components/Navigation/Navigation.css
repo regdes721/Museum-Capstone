@@ -39,12 +39,14 @@ header {
   border-bottom: 1px solid #A7A7A7;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .header-section-1a {
   display: flex;
   justify-content: space-between;
-  gap: 10px
+  gap: 20px;
+  align-items: center;
 }
 
 .cursor-pointer {
