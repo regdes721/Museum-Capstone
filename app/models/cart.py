@@ -18,7 +18,7 @@ class Cart(db.Model, UserMixin):
     user = db.relationship("User", back_populates="cart")
     products = db.relationship(
         "Product",
-        secondary="cart_products",
+        secondary=CartProduct.__table__,
         back_populates="cart"
     )
     # products = db.relationship(
