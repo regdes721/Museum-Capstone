@@ -39,3 +39,4 @@ class CartProduct(db.Model, UserMixin):
             'product_id': self.product_id,
             'quantity': self.quantity,
         }
+
