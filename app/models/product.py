@@ -3,7 +3,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 from .cart_product import CartProduct
-from .cart import Cart
 from .order_product import order_products
 
 class Product(db.Model, UserMixin):
@@ -29,7 +28,7 @@ class Product(db.Model, UserMixin):
 
     cart = db.relationship(
         "Cart",
-        secondary=CartProduct,
+        secondary="cart_products",
         back_populates="products"
     )
 
