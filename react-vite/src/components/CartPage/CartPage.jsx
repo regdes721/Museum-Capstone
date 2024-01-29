@@ -88,10 +88,10 @@ export default function CartPage() {
             </div>
             {cart[0].products.map((product) => (
                 <div key={product.id} className="cart-details-container">
-                    <img src={product.product_images[0].image_url} className="cart-details-img" />
+                    <NavLink to={`/products/${product.id}/details`}><img src={product.product_images[0].image_url} className="cart-details-img" /></NavLink>
                     {cartProducts && cartProducts.length > 0 && (
                         <div className="cart-details-info">
-                            <p className="font-text">{product.name}</p>
+                            <NavLink to={`/products/${product.id}/details`} className="no-underline"><p className="font-text">{product.name}</p></NavLink>
                             <form onSubmit={(e) => e.preventDefault()}>
                                 <select name="quantity" value={cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0} onChange={async (e) => {
                                     e.preventDefault();
