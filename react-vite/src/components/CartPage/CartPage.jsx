@@ -127,7 +127,7 @@ export default function CartPage() {
                                     <option value={20}>20</option>
                                 </select>
                             </form>
-                            <p>{cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0}</p>
+                            {/* <p>{cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0}</p> */}
                             <p className="font-text cart-price">Total: €{(product.price * (cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0)).toFixed(2)}</p>
                         </div>
                     )}

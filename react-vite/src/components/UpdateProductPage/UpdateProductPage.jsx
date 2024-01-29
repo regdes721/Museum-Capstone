@@ -95,7 +95,7 @@ export default function UpdateProductPage() {
 
     return (
         <form onSubmit={handleSubmit} encType="multipart/form-data" className='create-museum-container'>
-            <h1 className="font-header all-museums-header-title">Create a Product</h1>
+            <h1 className="font-header all-museums-header-title">Update Product</h1>
             <div>
                 <h2 className='font-text'>
                     Museum
