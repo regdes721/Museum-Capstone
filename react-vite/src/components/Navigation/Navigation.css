@@ -32,7 +32,13 @@
 }
 
 header {
-  margin: 0 15%
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.header-margin-div {
+  margin: 0 15%;
 }
 
 .header-section-1 {
