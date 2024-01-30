@@ -70,7 +70,10 @@ export default function CreateProductPage() {
     }, [sessionUser, navigate]);
 
     if (userMuseums.length === 0) return (
-        <NavLink to="/museums/new"><h1>Click here to create a museum</h1></NavLink>
+        <h1 className="all-museums-container font-text">Only logged in users that have created at least one museum can create Products.
+        <br></br>
+        <br></br>
+        <a href="/museums/new" className="no-underline nav-menu">Click here to create a museum</a></h1>
     )
 
     return (
