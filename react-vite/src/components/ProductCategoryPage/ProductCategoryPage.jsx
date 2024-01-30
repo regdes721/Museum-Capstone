@@ -6,8 +6,8 @@ import { thunkLoadProducts } from "../../redux/products";
 export default function ProductCategoryPage() {
     const { category } = useParams()
     const dispatch = useDispatch()
-    const [loading, setLoading] = useState(false)
     const [sortedProducts, setSortedProducts] = useState([])
+    const [loading, setLoading] = useState(true)
     const productObj = useSelector(state => state.products.allProducts)
     const products = Object.values(productObj)
     console.log(sortedProducts)
@@ -15,42 +15,42 @@ export default function ProductCategoryPage() {
 
     useEffect(() => {
         dispatch(thunkLoadProducts())
-    }, [dispatch])
+    }, [])
 
     useEffect(() => {
-        // dispatch(thunkLoadProducts())
-        if (products && category === "kids") {
+        setLoading(true)
+        if (products.length > 0 && category === "kids") {
             setSortedProducts(products.filter((product) => product.category === "Kids"))
         }
-        if (products && category === "sculpture") {
+        if (products.length > 0 && category === "sculpture") {
             setSortedProducts(products.filter((product) => product.category === "Sculpture"))
         }
-        if (products && category === "fashion-accessories") {
+        if (products.length > 0 && category === "fashion-accessories") {
             setSortedProducts(products.filter((product) => product.category === "Fashion & Accessories"))
         }
-        if (products && category === "jewellery") {
+        if (products.length > 0 && category === "jewellery") {
             setSortedProducts(products.filter((product) => product.category === "Jewellery"))
         }
-        if (products && category === "books") {
+        if (products.length > 0 && category === "books") {
             setSortedProducts(products.filter((product) => product.category === "Books"))
         }
-        if (products && category === "decoration") {
+        if (products.length > 0 && category === "decoration") {
             setSortedProducts(products.filter((product) => product.category === "Decoration"))
         }
-        if (products && category === "posters-stationery") {
+        if (products.length > 0 && category === "posters-stationery") {
             setSortedProducts(products.filter((product) => product.category === "Posters & stationery"))
         }
-        if (products && category === "beauty") {
+        if (products.length > 0 && category === "beauty") {
             setSortedProducts(products.filter((product) => product.category === "Beauty"))
         }
-        if (products && category === "engravings") {
+        if (products.length > 0 && category === "engravings") {
             setSortedProducts(products.filter((product) => product.category === "Engravings"))
         }
-        if (products && category === "print-on-demand") {
+        if (products.length > 0 && category === "print-on-demand") {
             setSortedProducts(products.filter((product) => product.category === "Print on demand"))
         }
-        // if (sortedProducts.length > 0) setLoading(false)
-    }, [category])
+        if (sortedProducts.length) setLoading(false)
+    }, [category, productObj])
 
     return (
         loading ? <h1>Loading...</h1> :
