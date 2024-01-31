@@ -6,10 +6,10 @@ import { thunkLoadProducts } from "../../redux/products";
 export default function ProductCategoryPage() {
     const { category } = useParams()
     const dispatch = useDispatch()
-    const [sortedProducts, setSortedProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const productObj = useSelector(state => state.products.allProducts)
     const products = Object.values(productObj)
+    const [sortedProducts, setSortedProducts] = useState([])
     console.log(sortedProducts)
     console.log("category", category)
 
@@ -19,6 +19,7 @@ export default function ProductCategoryPage() {
 
     useEffect(() => {
         setLoading(true)
+        setSortedProducts([])
         if (products.length > 0 && category === "kids") {
             setSortedProducts(products.filter((product) => product.category === "Kids"))
         }
@@ -54,7 +55,7 @@ export default function ProductCategoryPage() {
 
     useEffect(() => {
         if (sortedProducts.length > 0) {
-            setLoading(false)
+            setTimeout(() => {setLoading(false)}, 500)
         }
     }, [sortedProducts])
 
@@ -67,8 +68,8 @@ export default function ProductCategoryPage() {
             </div>
             <div className="best-sellers-preview-grid font-text">
                 {sortedProducts && sortedProducts.length > 0 && sortedProducts.map((product) =>
-                    <NavLink to={`/products/${product.id}/details`} className='no-underline'><div className="best-sellers-preview-container">
-                        <img src={product?.product_images[0].image_url}className="best-sellers-preview-img" />
+                    <NavLink to={`/products/${product.id}/details`} className='no-underline' key={product.id}><div className="best-sellers-preview-container">
+                        <img src={product?.product_images[0].image_url} height={350} width={300} className="best-sellers-preview-img" />
                         <div className="best-sellers-preview-name">
                             <h3>{product?.name}</h3>
                         </div>
