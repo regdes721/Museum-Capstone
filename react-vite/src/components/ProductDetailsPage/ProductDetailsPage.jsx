@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink, useNavigate } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
@@ -12,6 +12,7 @@ export default function ProductDetailsPage() {
     const { productId } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(true)
     const sessionUser = useSelector((state) => state.session.user);
     const productDetailsObj = useSelector(state => state.products.singleProduct);
     const product = Object.values(productDetailsObj)
@@ -76,7 +77,14 @@ export default function ProductDetailsPage() {
         dispatch(thunkLoadCart())
     }, [dispatch, productId, sessionUser])
 
+    useEffect(() => {
+        if (product.length > 0) {
+            setTimeout(() => {setLoading(false)}, 500)
+        }
+    }, [product])
+
     return (
+        loading ? <h1>Loading...</h1> :
         <div className="all-museums-container">
             {!product || product.length === 0 ?
             <div className="museums-best-sellers-header">
