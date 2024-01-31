@@ -84,7 +84,11 @@ export default function ProductDetailsPage() {
     }, [product])
 
     return (
-        loading ? <h1>Loading...</h1> :
+        loading ?
+        <div className="spinner-container">
+            <div className="spinner"></div>
+        </div>
+        :
         <div className="all-museums-container">
             {!product || product.length === 0 ?
             <div className="museums-best-sellers-header">

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { thunkLoadMuseumDetails} from "../../redux/museums";
@@ -9,6 +9,7 @@ import './MuseumDetailsPage.css'
 const MuseumDetailsPage = () => {
     const { museumId } = useParams();
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true)
     const museumDetailsObj = useSelector(state => state.museums.singleMuseum);
     const museum = Object.values(museumDetailsObj)
     let museumProducts;
@@ -35,7 +36,18 @@ const MuseumDetailsPage = () => {
         dispatch(thunkLoadMuseumDetails(museumId))
     }, [dispatch, museumId])
 
+    useEffect(() => {
+        if (museum.length > 0) {
+            setTimeout(() => {setLoading(false)}, 500)
+        }
+    }, [museum])
+
     return (
+        loading ?
+        <div className="spinner-container">
+            <div className="spinner"></div>
+        </div>
+        :
         <div className="museum-details-container">
             <div>
                 {museum.length === 1 ? <img src={museum[0].image_url} className="museum-details-img" /> : null}
