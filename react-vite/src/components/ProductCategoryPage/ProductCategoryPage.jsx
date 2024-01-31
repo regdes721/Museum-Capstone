@@ -60,7 +60,11 @@ export default function ProductCategoryPage() {
     }, [sortedProducts])
 
     return (
-        loading ? <h1>Loading...</h1> :
+        loading ?
+        <div className="spinner-container">
+            <div className="spinner"></div>
+        </div>
+         :
         <div className="all-museums-container">
             <div className="museums-best-sellers-header">
                 <p><NavLink to="/" className='no-underline font-text'><span> <i className="fa-solid fa-angle-left"></i> Home</span></NavLink></p>
@@ -69,7 +73,7 @@ export default function ProductCategoryPage() {
             <div className="best-sellers-preview-grid font-text">
                 {sortedProducts && sortedProducts.length > 0 && sortedProducts.map((product) =>
                     <NavLink to={`/products/${product.id}/details`} className='no-underline' key={product.id}><div className="best-sellers-preview-container">
-                        <img src={product?.product_images[0].image_url} height={350} width={300} className="best-sellers-preview-img" />
+                        <img src={product?.product_images[0].image_url}  className="best-sellers-preview-img" />
                         <div className="best-sellers-preview-name">
                             <h3>{product?.name}</h3>
                         </div>
