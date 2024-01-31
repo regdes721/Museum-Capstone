@@ -49,8 +49,14 @@ export default function ProductCategoryPage() {
         if (products.length > 0 && category === "print-on-demand") {
             setSortedProducts(products.filter((product) => product.category === "Print on demand"))
         }
-        if (sortedProducts.length) setLoading(false)
+        // if (sortedProducts.length) setLoading(false)
     }, [category, productObj])
+
+    useEffect(() => {
+        if (sortedProducts.length > 0) {
+            setLoading(false)
+        }
+    }, [sortedProducts])
 
     return (
         loading ? <h1>Loading...</h1> :
