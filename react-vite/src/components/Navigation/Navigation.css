@@ -114,6 +114,21 @@ nav {
   cursor: pointer;
 }
 
+.cart-button-quantity {
+  border: none;
+  background-color: #0A49FA;
+  color: white;
+  padding: 5px 5px;
+}
+
+.cart-button-quantity:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #0A49FA;
+  border: 1px solid #0A49FA;
+  padding: 4px 4px;
+}
+
 .nav-plus-button {
   background-color: #E5E5E5;
   border: none;

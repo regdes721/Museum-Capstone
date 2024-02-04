@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from "./ProfileButton";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
+import { thunkLoadCart, thunkLoadCartProducts } from "../../redux/carts";
 import * as sessionActions from '../../redux/session';
 import "./Navigation.css";
 
@@ -11,6 +12,10 @@ function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const cartObj = useSelector(state => state.cart.singleCart)
+  const cart = Object.values(cartObj)
+  const cartProducts = useSelector(state => state.cart.cart_products)
+  const [quantity, setQuantity] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
   const [showMenu2, setShowMenu2] = useState(false);
   const ulRef = useRef();
@@ -65,6 +70,22 @@ function Navigation() {
       document.removeEventListener("click", closeMenu2);
     }
   }, [showMenu2]);
+
+  useEffect(() => {
+    dispatch(thunkLoadCart())
+    dispatch(thunkLoadCartProducts())
+}, [dispatch, sessionUser])
+
+  useEffect(() => {
+    let sum = 0;
+    if (cart && cart[0] && cartProducts && cartProducts.length > 0) {
+        cart[0].products.forEach((product) => {
+            const quantity = cartProducts?.find((cart) => cart.product_id === product.id)?.quantity || 0;
+            sum += quantity;
+          });
+    }
+    setQuantity(sum);
+  }, [cart, cartProducts]);
 
   const closeMenu = () => setShowMenu(false);
 
@@ -121,7 +142,10 @@ function Navigation() {
           </div>
           <NavLink to="/" className='no-underline'><h1 className="nav-title font-header">Museum Central</h1></NavLink>
           <div className="nav-right">
-            <button className="nav-right-button" onClick={handleSubmit}><i className="fa-solid fa-cart-shopping"></i></button>
+            {
+              !cart[0] || !sessionUser || (sessionUser && cart[0].user_id != sessionUser.id) || cart[0].products.length === 0 ? <button className="nav-right-button" onClick={handleSubmit}><i className="fa-solid fa-cart-shopping"></i></button> :
+              <button className="cart-button-quantity" onClick={handleSubmit}>{quantity} <i className="fa-solid fa-cart-shopping"></i></button>
+            }
             {/* <button className="nav-search" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-magnifying-glass"></i></button>
             <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-regular fa-heart"></i></button>
             <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-cart-shopping"></i></button> */}
