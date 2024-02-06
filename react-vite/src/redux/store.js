@@ -9,12 +9,14 @@ import sessionReducer from "./session";
 import museumReducer from "./museums";
 import productReducer from "./products";
 import cartReducer from "./carts";
+import wishlistReducer from "./wishlists";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   museums: museumReducer,
   products: productReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  wishlist: wishlistReducer
 });
 
 let enhancer;

@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton"
 import { thunkLoadMuseums } from "../../redux/museums"
 import { thunkLoadProductDetails } from "../../redux/products"
 import { thunkLoadCart, thunkAddToCart, thunkCreateCart } from "../../redux/carts"
+import { thunkLoadWishlist, thunkAddToWishlist, thunkCreateWishlist } from "../../redux/wishlists"
 import DeleteProductModal from "../DeleteProductModal"
 import './ProductDetailsPage.css'
 
@@ -18,6 +19,8 @@ export default function ProductDetailsPage() {
     const product = Object.values(productDetailsObj)
     const cartObj = useSelector(state => state.cart.singleCart)
     const cart = Object.values(cartObj)
+    const wishlistObj = useSelector(state => state.wishlist.singleWishlist)
+    const wishlist = Object.values(wishlistObj)
     let category;
     if (product.length > 0 && product[0].category === "Kids") {
         category = "kids"
@@ -72,9 +75,30 @@ export default function ProductDetailsPage() {
         }
     }
 
+    const handleWishlistAdd = async (e) => {
+        e.preventDefault();
+        console.log("Calling handleWishlistAdd");
+        dispatch(thunkLoadWishlist())
+        // await dispatch(thunkLoadCart());
+        // console.log("thunkLoadCart dispatched");
+        if (!wishlist[0] || wishlist[0].user_id != sessionUser.id ) {
+            console.log("No Wishlist")
+            await dispatch(thunkCreateWishlist())
+            console.log("Now there is a wishlist!")
+            await dispatch(thunkAddToWishlist(productId))
+            navigate('/wishlist')
+        }
+        else {
+            console.log("Wishlist")
+            dispatch(thunkAddToWishlist(productId))
+            navigate('/wishlist')
+        }
+    }
+
     useEffect(() => {
         dispatch(thunkLoadProductDetails(productId))
         dispatch(thunkLoadCart())
+        dispatch(thunkLoadWishlist())
     }, [dispatch, productId, sessionUser])
 
     useEffect(() => {
@@ -123,9 +147,9 @@ export default function ProductDetailsPage() {
                         />
                         </div>
                         }
-                        {/* <div className="product-details-row-buttons">
-                            <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-regular fa-heart"></i></button>
-                        </div> */}
+                        {sessionUser && <div className="product-details-row-buttons">
+                            <button className="nav-right-button" onClick={handleWishlistAdd}><i className="fa-regular fa-heart"></i></button>
+                        </div>}
                     </div>
                     <div className="font-text">
                         <div className="product-details-characteristics-border">

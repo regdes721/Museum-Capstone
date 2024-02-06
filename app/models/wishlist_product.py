@@ -35,7 +35,7 @@ class WishlistProduct(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'cart_id': self.cart_id,
+            'wishlist_id': self.wishlist_id,
             'product_id': self.product_id,
             'quantity': self.quantity,
         }

@@ -39,6 +39,12 @@ function Navigation() {
     else navigate('/cart')
   }
 
+  const handleSubmit2 = async (e) => {
+    e.preventDefault()
+    if (!sessionUser) alert(`Please log in to view the wishlist`)
+    else navigate('/wishlist')
+  }
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -148,8 +154,8 @@ function Navigation() {
               !cart[0] || !sessionUser || (sessionUser && cart[0].user_id != sessionUser.id) || cart[0].products.length === 0 ? <button className="nav-right-button" onClick={handleSubmit}><i className="fa-solid fa-cart-shopping"></i></button> :
               <button className="cart-button-quantity" onClick={handleSubmit}>{quantity} <i className="fa-solid fa-cart-shopping"></i></button>
             }
+            <button className="nav-right-button" onClick={handleSubmit2}><i className="fa-regular fa-heart"></i></button>
             {/* <button className="nav-search" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-magnifying-glass"></i></button>
-            <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-regular fa-heart"></i></button>
             <button className="nav-right-button" onClick={() => (alert(`Feature Coming Soon...`))}><i className="fa-solid fa-cart-shopping"></i></button> */}
             {sessionUser && (
               <div>
