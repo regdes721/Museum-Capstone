@@ -7,3 +7,25 @@
 .wishlist-details-delete:hover {
     color: #515351;
 }
+
+.wishlist-cart-button {
+    background-color: white;
+    color: #0A49FA;
+    border: 1px solid #0A49FA;
+    padding: 4px 4px;
+}
+
+.wishlist-cart-button:hover {
+    cursor: pointer;
+    border: none;
+    background-color: #0A49FA;
+    color: white;
+    padding: 5px 5px;
+}
+
+.wishlist-header-title {
+    font-size: 40px;
+    font-weight: 200;
+    margin: 20px 0;
+    padding: 0
+}
