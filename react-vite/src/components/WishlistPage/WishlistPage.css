@@ -1,0 +1,9 @@
+.wishlist-details-delete {
+    color: #A7A7A7;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.wishlist-details-delete:hover {
+    color: #515351;
+}

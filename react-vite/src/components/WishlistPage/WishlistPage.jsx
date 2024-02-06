@@ -66,21 +66,22 @@ export default function WishlistPage() {
             <div className="cart-header-active">
                 <h1 className="font-text all-museums-header-title">My Wishlist</h1>
             </div>
-            {wishlist[0].products.map((product) => (
-                <div key={product.id} className="cart-details-container">
-                    <NavLink to={`/products/${product.id}/details`}><img src={product.product_images[0].image_url} className="cart-details-img" /></NavLink>
+            <div className="best-sellers-preview-grid font-text">
+            {wishlistProducts && wishlistProducts.length > 0 && wishlist[0].products.map((product) => (
+                <div key={product.id}>
                     {wishlistProducts && wishlistProducts.length > 0 && (
-                        <div className="cart-details-info">
+                        <div className="best-sellers-preview-container">
+                            <NavLink to={`/products/${product.id}/details`}><img src={product.product_images[0].image_url} className="cart-details-img" /></NavLink>
                             <NavLink to={`/products/${product.id}/details`} className="no-underline"><p className="font-text">{product.name}</p></NavLink>
                             {/* <p>{cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0}</p> */}
                             <p className="font-text cart-price">Total: €{product.price.toFixed(2)}</p>
+                            <p className="font-text wishlist-details-delete" onClick={() => handleDelete(product.id)}>Delete from my wishlist</p>
                         </div>
                     )}
-                    <div className="cart-details-delete">
-                        <p className="font-text" onClick={() => handleDelete(product.id)}>Delete</p>
-                    </div>
                 </div>
             ))}
+            </div>
+
             <div className="product-guarantees-infocard-container font-text">
                 <div className="product-guarantees-infocard-details">
                     <h3><i className="fa-solid fa-check"></i> Delivery</h3>
