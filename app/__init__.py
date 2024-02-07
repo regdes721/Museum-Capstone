@@ -11,6 +11,7 @@ from .api.museum_routes import museum_routes
 from .api.product_routes import product_routes
 from .api.cart_routes import cart_routes
 from .api.wishlist_routes import wishlist_routes
+from .api.map_routes import map_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,6 +37,7 @@ app.register_blueprint(museum_routes, url_prefix='/api/museums')
 app.register_blueprint(product_routes, url_prefix='/api/products')
 app.register_blueprint(cart_routes, url_prefix='/api/carts')
 app.register_blueprint(wishlist_routes, url_prefix='/api/wishlists')
+app.register_blueprint(map_routes, url_prefix='/api/maps')
 db.init_app(app)
 Migrate(app, db)
 
