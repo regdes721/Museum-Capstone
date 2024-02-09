@@ -175,7 +175,7 @@ You will be able to test the features without sign up by clicking on the "Demo U
          db.session.add(new_product_image)
          db.session.commit()
          return new_product.to_dict()
-      return {'errors': form.errors}, 401
+      return {'errors': form.errors}, 400
    ```
 
 ## ⏩ Future Features

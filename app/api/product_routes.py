@@ -48,7 +48,7 @@ def create_product():
         db.session.add(new_product_image)
         db.session.commit()
         return new_product.to_dict()
-    return {'errors': form.errors}, 401
+    return {'errors': form.errors}, 400
 
 @product_routes.route('/<int:productId>', methods=['PUT'])
 @login_required
@@ -84,7 +84,7 @@ def edit_product(productId):
             remove_file_from_s3(old_image_url)
         return product.to_dict()
     elif not form.validate_on_submit():
-        return {'errors': form.errors}, 401
+        return {'errors': form.errors}, 400
     return {'errors': {'message': 'Unauthorized'}}, 403
 
 

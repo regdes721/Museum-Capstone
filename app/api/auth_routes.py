@@ -31,7 +31,7 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
-    return form.errors, 401
+    return form.errors, 400
 
 
 @auth_routes.route('/logout')
@@ -64,7 +64,7 @@ def sign_up():
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    return form.errors, 401
+    return form.errors, 400
 
 
 @auth_routes.route('/unauthorized')
