@@ -10,8 +10,6 @@ export default function UpdateProductPage() {
     const { productId } = useParams();
     const productObj = useSelector(state => state.products.singleProduct)
     const product = Object.values(productObj)
-    // console.log((product && product[0] && product[0].museum_id), "-----------")
-    // console.log(product[0])
     const [museum_id, setMuseumId] = useState(product && product[0] && product[0].museum_id ? product[0].museum_id : "")
     const [name, setName] = useState(product && product[0] && product[0].name ? product[0].name : "");
     const [description, setDescription] = useState(product && product[0] && product[0].description ? product[0].description : "");
@@ -28,7 +26,6 @@ export default function UpdateProductPage() {
     if (museums) {
         userMuseums = museums.filter((museum) => museum.owner_id === sessionUser.id)
     }
-    // console.log(product)
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors({})
@@ -57,7 +54,6 @@ export default function UpdateProductPage() {
         }
         if (returnImage) form.image_url = returnImage.url
         if (!returnImage) form.image_url = image
-        console.log("form image", form.image_url)
         const handleProductUpdate = async (product) => {
             const productData = await dispatch(thunkUpdateProduct(product))
             if (!productData.errors) {

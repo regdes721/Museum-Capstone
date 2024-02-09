@@ -20,8 +20,6 @@ export default function UpdateMuseumPage() {
     const [museum_website, setMuseumWebsite] = useState(museum && museum[0] && museum[0].museum_website ? museum[0].museum_website : '')
     const [errors, setErrors] = useState('')
 
-    console.log(image)
-
     const onSubmit = async (e) => {
         e.preventDefault()
         let errorsTemp = {}
@@ -66,7 +64,6 @@ export default function UpdateMuseumPage() {
             if (!museumData.errors) {
                 navigate(`/museums/${museumData.id}`)
             } else {
-                console.log("still a form?", form)
                 setErrors(museumData.errors)
             }
         }

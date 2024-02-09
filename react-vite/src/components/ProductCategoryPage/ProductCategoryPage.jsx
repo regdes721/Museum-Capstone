@@ -10,8 +10,6 @@ export default function ProductCategoryPage() {
     const productObj = useSelector(state => state.products.allProducts)
     const products = Object.values(productObj)
     const [sortedProducts, setSortedProducts] = useState([])
-    console.log(sortedProducts)
-    console.log("category", category)
 
     useEffect(() => {
         dispatch(thunkLoadProducts())
