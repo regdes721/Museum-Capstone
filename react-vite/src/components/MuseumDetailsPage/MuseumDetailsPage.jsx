@@ -4,6 +4,7 @@ import { useParams, NavLink } from "react-router-dom";
 import { thunkLoadMuseumDetails} from "../../redux/museums";
 import OpenModalButton from "../OpenModalButton";
 import DeleteMuseumModal from "../DeleteMuseumModal";
+import MapContainer from "../Maps";
 import './MuseumDetailsPage.css'
 
 const MuseumDetailsPage = () => {
@@ -90,6 +91,7 @@ const MuseumDetailsPage = () => {
             <div className="font-text">
                 <h2>Find us at the shop</h2>
                 <div className="museum-details-shopcard-container">
+                    <MapContainer />
                     <p>{museum[0].store_name}</p>
                     <p>{museum[0].store_address}</p>
                     {museum[0].phone_number && <p>Phone: {museum[0].phone_number}</p>}

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getKey } from '../../store/maps';
+import { getKey } from '../../redux/maps';
 import Maps from './Maps';
 
 const MapContainer = () => {
