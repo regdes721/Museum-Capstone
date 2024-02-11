@@ -4,6 +4,7 @@ import { useParams, NavLink } from "react-router-dom";
 import { thunkLoadMuseumDetails} from "../../redux/museums";
 import OpenModalButton from "../OpenModalButton";
 import DeleteMuseumModal from "../DeleteMuseumModal";
+import MapContainer from "../Maps";
 import './MuseumDetailsPage.css'
 
 const MuseumDetailsPage = () => {

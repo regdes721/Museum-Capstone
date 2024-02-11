@@ -44,7 +44,7 @@ def create_museum():
         db.session.add(new_museum)
         db.session.commit()
         return new_museum.to_dict()
-    return {'errors': form.errors}, 401
+    return {'errors': form.errors}, 400
 
 @museum_routes.route("images", methods=["POST"])
 def upload_image():
@@ -61,14 +61,14 @@ def upload_image():
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message (and we printed it above)
-            return {"errors":[upload]}, 401
+            return {"errors":[upload]}, 400
 
         url = upload["url"]
         return {"url": url}
 
     if form.errors:
         # print(form.errors)
-        return {"errors": form.errors}, 401
+        return {"errors": form.errors}, 400
 
 @museum_routes.route('/<int:museumId>', methods=['PUT'])
 @login_required
@@ -92,7 +92,7 @@ def edit_museum(museumId):
             remove_file_from_s3(old_museum_image)
         return museum.to_dict()
     elif not form.validate_on_submit():
-        return {'errors': form.errors}, 401
+        return {'errors': form.errors}, 400
     return {'errors': {'message': 'Unauthorized'}}, 403
 
 

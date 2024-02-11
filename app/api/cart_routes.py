@@ -94,7 +94,7 @@ def update_cart(product_id):
         db.session.commit()
         return {'message': 'Item quantity in cart updated successfully'}
     elif not form.validate_on_submit():
-        return {'errors': form.errors}, 401
+        return {'errors': form.errors}, 400
     return {'errors': {'message': 'Unauthorized'}}, 403
 
 @cart_routes.route('/products/<int:product_id>', methods=['DELETE'])

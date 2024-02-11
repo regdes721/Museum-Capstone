@@ -31,7 +31,6 @@ export const deleteCart = () => {
 }
 
 export const thunkLoadCart = () => async (dispatch) => {
-    console.log('Thunk starting...');
     try {
         const response = await fetch('/api/carts/', {
             headers: {
@@ -70,7 +69,6 @@ export const thunkLoadCart = () => async (dispatch) => {
 export const thunkLoadCartProducts = () => async (dispatch) => {
     const response = await fetch('/api/carts/cart_products')
     const cart = await response.json();
-    console.log("thunk cart", cart)
     if (response.ok) {
         dispatch(loadCartProducts(cart));
         return cart

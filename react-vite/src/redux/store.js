@@ -10,13 +10,15 @@ import museumReducer from "./museums";
 import productReducer from "./products";
 import cartReducer from "./carts";
 import wishlistReducer from "./wishlists";
+import mapsReducer from "./maps";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   museums: museumReducer,
   products: productReducer,
   cart: cartReducer,
-  wishlist: wishlistReducer
+  wishlist: wishlistReducer,
+  maps: mapsReducer
 });
 
 let enhancer;

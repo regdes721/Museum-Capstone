@@ -12,22 +12,6 @@ export default function CartPage() {
     const cart = Object.values(cartObj)
     const cartProducts = useSelector(state => state.cart.cart_products)
     const [totalPrice, setTotalPrice] = useState(0);
-    // const [productId, setProductId] = useState(0)
-    // const [quantity, setQuantity] = useState(0)
-    // console.log("productId", productId)
-    // console.log("quantity", quantity)
-    // console.log("cartObj", cartObj)
-    // console.log("cart", cart)
-    // console.log("cart products", cartProducts)
-
-    // const handleEdit = async () => {
-    //     const form = {
-    //         productId,
-    //         quantity
-    //     }
-    //     await dispatch(thunkEditCartProduct(form))
-    //     await dispatch(thunkLoadCartProducts())
-    // }
 
     const handleDelete = async (productId) => {
         await dispatch(thunkDeleteCartProduct(productId))
@@ -127,7 +111,6 @@ export default function CartPage() {
                                     <option value={20}>20</option>
                                 </select>
                             </form>
-                            {/* <p>{cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0}</p> */}
                             <p className="font-text cart-price">Total: €{(product.price * (cartProducts.find((cart) => cart.product_id === product.id)?.quantity || 0)).toFixed(2)}</p>
                         </div>
                     )}

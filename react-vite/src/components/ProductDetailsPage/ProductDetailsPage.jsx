@@ -53,23 +53,17 @@ export default function ProductDetailsPage() {
         category = "print-on-demand"
     }
 
-    console.log(product)
-
     const handleAdd = async (e) => {
         e.preventDefault();
-        console.log("Calling handleAdd");
         dispatch(thunkLoadCart())
         // await dispatch(thunkLoadCart());
         // console.log("thunkLoadCart dispatched");
         if (!cart[0] || cart[0].user_id != sessionUser.id ) {
-            console.log("No Cart")
             await dispatch(thunkCreateCart())
-            console.log("Now there is a cart!")
             await dispatch(thunkAddToCart(productId))
             navigate('/cart')
         }
         else {
-            console.log("Cart")
             dispatch(thunkAddToCart(productId))
             navigate('/cart')
         }
@@ -77,19 +71,15 @@ export default function ProductDetailsPage() {
 
     const handleWishlistAdd = async (e) => {
         e.preventDefault();
-        console.log("Calling handleWishlistAdd");
         dispatch(thunkLoadWishlist())
         // await dispatch(thunkLoadCart());
         // console.log("thunkLoadCart dispatched");
         if (!wishlist[0] || wishlist[0].user_id != sessionUser.id ) {
-            console.log("No Wishlist")
             await dispatch(thunkCreateWishlist())
-            console.log("Now there is a wishlist!")
             await dispatch(thunkAddToWishlist(productId))
             navigate('/wishlist')
         }
         else {
-            console.log("Wishlist")
             dispatch(thunkAddToWishlist(productId))
             navigate('/wishlist')
         }

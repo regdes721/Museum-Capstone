@@ -14,22 +14,6 @@ export default function WishlistPage() {
     const cartObj = useSelector(state => state.cart.singleCart)
     const cart = Object.values(cartObj)
     const wishlistProducts = useSelector(state => state.wishlist.wishlist_products)
-    // const [productId, setProductId] = useState(0)
-    // const [quantity, setQuantity] = useState(0)
-    // console.log("productId", productId)
-    // console.log("quantity", quantity)
-    // console.log("cartObj", cartObj)
-    // console.log("cart", cart)
-    // console.log("cart products", cartProducts)
-
-    // const handleEdit = async () => {
-    //     const form = {
-    //         productId,
-    //         quantity
-    //     }
-    //     await dispatch(thunkEditCartProduct(form))
-    //     await dispatch(thunkLoadCartProducts())
-    // }
 
     const handleDelete = async (productId) => {
         await dispatch(thunkDeleteWishlistProduct(productId))
@@ -76,19 +60,14 @@ export default function WishlistPage() {
                             <button className="wishlist-cart-button"><i className="fa-solid fa-cart-shopping" onClick={async (e) => {
                                 e.preventDefault();
                                 const productId = product.id
-                                console.log("Calling handleAdd");
                                 dispatch(thunkLoadCart())
                                 // await dispatch(thunkLoadCart());
-                                // console.log("thunkLoadCart dispatched");
                                 if (!cart[0] || cart[0].user_id != sessionUser.id ) {
-                                    console.log("No Cart")
                                     await dispatch(thunkCreateCart())
-                                    console.log("Now there is a cart!")
                                     await dispatch(thunkAddToCart(productId))
                                     navigate('/cart')
                                 }
                                 else {
-                                    console.log("Cart")
                                     dispatch(thunkAddToCart(productId))
                                     navigate('/cart')
                                 }

@@ -31,7 +31,6 @@ export const deleteWishlist = () => {
 }
 
 export const thunkLoadWishlist = () => async (dispatch) => {
-    console.log('Thunk starting...');
     try {
         const response = await fetch('/api/wishlists/', {
             headers: {
@@ -70,7 +69,6 @@ export const thunkLoadWishlist = () => async (dispatch) => {
 export const thunkLoadWishlistProducts = () => async (dispatch) => {
     const response = await fetch('/api/wishlists/wishlist_products')
     const wishlist = await response.json();
-    console.log("thunk wishlist", wishlist)
     if (response.ok) {
         dispatch(loadWishlistProducts(wishlist));
         return wishlist
