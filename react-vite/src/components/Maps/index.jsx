@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getKey } from '../../redux/maps';
+import { getKey, getGeoKey } from '../../redux/maps';
 import Maps from './Maps';
 
-const MapContainer = () => {
+const MapContainer = (address) => {
   const key = useSelector((state) => state.maps.key);
+  const geoKey = useSelector((state) => state.maps.geoKey)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,12 +15,18 @@ const MapContainer = () => {
     }
   }, [dispatch, key]);
 
-  if (!key) {
+  useEffect(() => {
+    if (!geoKey) {
+      dispatch(getGeoKey());
+    }
+  }, [dispatch, geoKey]);
+
+  if (!key || !geoKey) {
     return null;
   }
 
   return (
-    <Maps apiKey={key} />
+    <Maps apiKey={key} geoKey={geoKey} address={address.address} />
   );
 };
 

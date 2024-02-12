@@ -7,3 +7,7 @@ map_routes = Blueprint('maps', __name__)
 @map_routes.route('/key', methods=['POST'])
 def key():
     return jsonify({'googleMapsAPIKey': current_app.config['GOOGLE_MAPS_API_KEY']})
+
+@map_routes.route('/geokey', methods=['POST'])
+def geokey():
+    return jsonify({'geocodeAPIKey': current_app.config['GEOCODE_API_KEY']})
