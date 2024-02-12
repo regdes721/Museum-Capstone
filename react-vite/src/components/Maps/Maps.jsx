@@ -1,9 +1,11 @@
 import React from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+const { AdvancedMarkerElement } = await google.maps.importLibrary("marker")
+
 
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '300px',
+  height: '300px',
 };
 
 const center = {

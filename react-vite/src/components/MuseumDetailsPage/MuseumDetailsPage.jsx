@@ -91,11 +91,14 @@ const MuseumDetailsPage = () => {
             <div className="font-text">
                 <h2>Find us at the shop</h2>
                 <div className="museum-details-shopcard-container">
-                    <p>{museum[0].store_name}</p>
-                    <p>{museum[0].store_address}</p>
-                    {museum[0].phone_number && <p>Phone: {museum[0].phone_number}</p>}
-                    {museum[0].email && <p>{museum[0].email}</p>}
-                    <NavLink to={museum[0].museum_website} target="_blank"><button className="nav-left-button">VISIT THE MUSEUM WEBSITE</button></NavLink>
+                    <MapContainer className="map" />
+                    <div>
+                        <p>{museum[0].store_name}</p>
+                        <p>{museum[0].store_address}</p>
+                        {museum[0].phone_number && <p>Phone: {museum[0].phone_number}</p>}
+                        {museum[0].email && <p>{museum[0].email}</p>}
+                        <NavLink to={museum[0].museum_website} target="_blank"><button className="nav-left-button">VISIT THE MUSEUM WEBSITE</button></NavLink>
+                    </div>
                 </div>
             </div> : null}
         </div>
