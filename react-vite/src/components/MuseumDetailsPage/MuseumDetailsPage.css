@@ -55,3 +55,7 @@
 .map {
     z-index: -5;
 }
+
+.museum-details-map-container {
+    margin-left: 50px
+}

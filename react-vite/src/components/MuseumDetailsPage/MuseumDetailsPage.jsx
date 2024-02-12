@@ -91,7 +91,9 @@ const MuseumDetailsPage = () => {
             <div className="font-text">
                 <h2>Find us at the shop</h2>
                 <div className="museum-details-shopcard-container">
-                    <MapContainer className="map" />
+                    <div className="museum-details-map-container">
+                        <MapContainer className="map" address={museum[0].store_address} />
+                    </div>
                     <div>
                         <p>{museum[0].store_name}</p>
                         <p>{museum[0].store_address}</p>

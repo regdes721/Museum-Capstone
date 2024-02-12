@@ -1,37 +1,62 @@
-import React from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-const { AdvancedMarkerElement } = await google.maps.importLibrary("marker")
-
+import React, { useEffect, useState } from 'react';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '300px',
-  height: '300px',
+  width: '400px',
+  height: '400px',
 };
 
-const center = {
-  lat: 38.891289,
-  lng: -77.020065,
-};
+const Maps = ({ apiKey, address }) => {
+  const [lat, setLat] = useState(38.891289);
+  const [lng, setLng] = useState(-77.020065);
 
-const Maps = ({ apiKey }) => {
+  console.log(address)
+
+  const center = {
+    lat,
+    lng
+  };
+
+  useEffect(() => {
+    const fetchGeoCoordinates = async () => {
+      try {
+        let geoAddress = address.split(" ").join("+");
+        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${geoAddress}&key=${apiKey}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch geo-coordinates');
+        }
+        const data = await response.json();
+        if (data.results.length > 0) {
+          const { lat, lng } = data.results[0].geometry.location;
+          setLat(lat);
+          setLng(lng);
+        } else {
+          console.error('No results found for the provided address');
+        }
+      } catch (error) {
+        console.error('Error fetching geo-coordinates:', error);
+      }
+    };
+
+    fetchGeoCoordinates();
+  }, [address, apiKey]);
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
   });
 
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
+    const bounds = new window.google.maps.LatLngBounds(new window.google.maps.LatLng(center.lat, center.lng));
     map.fitBounds(bounds);
-
-    setMap(map)
-  }, [])
+    setMap(map);
+  }, [center]);
 
   const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+    setMap(null);
+  }, []);
 
   return isLoaded ? (
     <GoogleMap
@@ -41,10 +66,9 @@ const Maps = ({ apiKey }) => {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      { /* Child components, such as markers, info windows, etc. */ }
-      <></>
+      <Marker position={center} />
     </GoogleMap>
-) : <></>
-}
+  ) : <></>;
+};
 
 export default React.memo(Maps);
