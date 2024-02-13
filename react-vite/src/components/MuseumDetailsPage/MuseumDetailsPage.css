@@ -43,9 +43,10 @@
 
 .museum-details-shopcard-container {
     background-color: #E5E5E5;
-    padding: 20px;
+    padding: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 
 .hidden {
@@ -57,5 +58,6 @@
 }
 
 .museum-details-map-container {
-    margin-left: 50px
+    margin-left: 20px;
+    margin-right: 20px;
 }
