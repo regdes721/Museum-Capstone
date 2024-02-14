@@ -187,7 +187,6 @@ You will be able to test the features without sign up by clicking on the "Demo U
    ```
 
 ## ⏩ Future Features
-* Google Maps
 * Search
 * Account Page
 * Orders
