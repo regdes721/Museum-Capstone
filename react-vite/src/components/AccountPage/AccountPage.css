@@ -1,0 +1,22 @@
+.account-details-container {
+    background-color: #E5E5E5;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+}
+
+.account-details-name {
+    color: #0A49FA;
+}
+
+.account-details-tab:hover {
+    cursor: pointer;
+    color: #0A49FA
+}
+
+.account-details-tab-bold {
+    color: #0A49FA;
+    font-weight: 600;
+    cursor: pointer;
+}

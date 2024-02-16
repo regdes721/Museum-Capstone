@@ -124,7 +124,7 @@ function Navigation() {
               <NavLink to="https://github.com/regdes721" target="_blank" className="nav-title"><i className="fab fa-github"> </i></NavLink>
               <NavLink to="https://www.linkedin.com/in/reginalddesrosiers/" target="_blank" className="nav-title"><i className="fab fa-fw fa-linkedin-in"></i></NavLink>
               <NavLink to="https://wellfound.com/u/reginald-desrosiers" target="_blank" className="nav-title"><i className="fa-brands fa-angellist"></i></NavLink>
-              {/* <h3 onClick={() => (alert(`Feature Coming Soon...`))}>My account</h3> */}
+              <NavLink to="/account" className="no-underline"><h3>My account</h3></NavLink>
               <h3 onClick={logout} className="cursor-pointer">Sign out</h3>
             </div>
           )}

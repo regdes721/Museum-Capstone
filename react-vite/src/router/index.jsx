@@ -15,6 +15,7 @@ import CreateProductPage from '../components/CreateProductPage';
 import UpdateProductPage from '../components/UpdateProductPage';
 import CartPage from '../components/CartPage';
 import WishlistPage from '../components/WishlistPage';
+import AccountPage from '../components/AccountPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
       {
         path: "wishlist",
         element: <WishlistPage />
+      },
+      {
+        path: "account",
+        element: <AccountPage />
       }
     ],
   },
