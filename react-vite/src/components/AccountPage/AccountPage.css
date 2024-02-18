@@ -6,6 +6,18 @@
     gap: 10px;
 }
 
+.account-details-home-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.account-details-home-card {
+    background-color: white;
+    padding: 40px;
+    text-align: center;
+}
+
 .account-details-name {
     color: #0A49FA;
 }

@@ -33,6 +33,20 @@ export default function AccountPage() {
                     {accountDetailsTab === 7 ? <p className="account-details-tab-bold">Change my password</p> : <p className="account-details-tab" onClick={() => {setAccountDetailsTab(7)}}>Change my password</p>}
                     <p onClick={logout} className="account-details-tab">Sign out</p>
                 </div>
+                {accountDetailsTab === 1 && <div className="account-details-home-container">
+                    <div className="account-details-home-card">
+                        <h2>Club Boutiques de Musées</h2>
+                        <p>Collect points with your online purchases and receive loyalty vouchers</p>
+                        <p>Take part in private events</p>
+                        <p>Benefit from special offers</p>
+                    </div>
+                    <div className="account-details-home-card">
+                        <h2>My details</h2>
+                        <p>{sessionUser.first_name} {sessionUser.last_name}</p>
+                        <p>{sessionUser.email}</p>
+                        <p>Client Number: {sessionUser.id}</p>
+                    </div>
+                </div>}
             </div>
         </div>
     )
