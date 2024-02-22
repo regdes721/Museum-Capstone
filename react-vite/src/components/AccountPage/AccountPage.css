@@ -2,7 +2,7 @@
     background-color: #E5E5E5;
     padding: 40px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
     gap: 10px;
 }
 
@@ -31,4 +31,31 @@
     color: #0A49FA;
     font-weight: 600;
     cursor: pointer;
+}
+
+.account-details-club-container {
+    background-color: white;
+    padding: 5px 40px;
+    text-align: center;
+}
+
+.account-details-club-container > h2 {
+    font-weight: 500;
+}
+
+.account-details-club-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    /* gap: 10px; */
+}
+
+.account-details-club-img {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.a {
+    color: #E5E5E5
 }
